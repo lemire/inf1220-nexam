@@ -1,0 +1,379 @@
+<!doctype html><html lang=fr dir=ltr><head><meta charset=UTF-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="
+  Exercices sur les algorithmes et les ordinateurs
+  #
+
+La notion d&rsquo;algorithme a été abordée implicitement dès les premiers cours de mathématiques, par exemple avec l&rsquo;algorithme de la division longue. Ces exercices visent à vous faire décrire formellement un algorithme. La principale difficulté pour la plupart des étudiants réside dans la rigueur et la précision requises. Au-delà d’un certain point, il n’existe pas de lectures supplémentaires : la pratique est essentielle."><meta name=theme-color media="(prefers-color-scheme: light)" content="#ffffff"><meta name=theme-color media="(prefers-color-scheme: dark)" content="#343a40"><meta name=color-scheme content="light dark"><meta property="og:url" content="https://lemire.github.io/inf1220-nexam/docs/modules/module1/exercices/"><meta property="og:site_name" content="INF 1220 - Introduction à la programmation"><meta property="og:title" content="Exercices sur les algorithmes et les ordinateurs"><meta property="og:description" content="Exercices sur les algorithmes et les ordinateurs # La notion d’algorithme a été abordée implicitement dès les premiers cours de mathématiques, par exemple avec l’algorithme de la division longue. Ces exercices visent à vous faire décrire formellement un algorithme. La principale difficulté pour la plupart des étudiants réside dans la rigueur et la précision requises. Au-delà d’un certain point, il n’existe pas de lectures supplémentaires : la pratique est essentielle."><meta property="og:locale" content="fr"><meta property="og:type" content="article"><meta property="article:section" content="docs"><title>Exercices sur les algorithmes et les ordinateurs | INF 1220 - Introduction à la programmation</title><link rel=icon href=https://lemire.github.io/inf1220-nexam/favicon.png><link rel=manifest href=https://lemire.github.io/inf1220-nexam/manifest.json><link rel=canonical href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/exercices/><link rel=stylesheet href=https://lemire.github.io/inf1220-nexam/book.min.8ae8b3de7fd835a13e7d3f1515e8a2071bec8ace1400894070fdf53b35bfc4fb.css integrity="sha256-iuiz3n/YNaE+fT8VFeiiBxvsis4UAIlAcP31OzW/xPs=" crossorigin=anonymous><script defer src=https://lemire.github.io/inf1220-nexam/fuse.min.js></script><script defer src=https://lemire.github.io/inf1220-nexam/fr.search.min.dc09d7059ee45ca84f12cda9163a6adda4c36836e628239af0cbf475d973dd95.js integrity="sha256-3AnXBZ7kXKhPEs2pFjpq3aTDaDbmKCOa8Mv0ddlz3ZU=" crossorigin=anonymous></script><link rel=stylesheet href=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.css><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/katex.min.js></script><script defer src=https://cdn.jsdelivr.net/npm/katex@0.16.22/dist/contrib/auto-render.min.js onload=renderMathInElement(document.body)></script><style>.a11y-skip-link{position:absolute;left:-9999px;top:0;z-index:1000;padding:12px 20px;background:#fff;color:#1c1c1c;border:2px solid #1c1c1c;border-radius:0 0 4px 0;font-weight:700;text-decoration:none}.a11y-skip-link:focus{left:0}.a11y-sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}.book-page:focus,.book-article:focus{outline:none}.book-menu-content nav a{padding-top:5px;padding-bottom:5px}.book-toc-content nav a{padding-top:6px;padding-bottom:6px}.CodeMirror-linenumber{color:#6b6b6b!important}.cm-s-eclipse span.cm-meta{color:#c00!important}.token.comment,.token.prolog,.token.doctype,.token.cdata{color:#5c6670!important}.token.function,.token.class-name{color:#b3204a!important}.token.string,.token.char,.token.builtin,.token.inserted,.token.selector,.token.attr-value{color:#456800!important}</style></head><body dir=ltr><input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control><main class="container flex"><aside class=book-menu><div class=book-menu-content><nav><h2 class=book-brand><a class="flex align-center" href=https://lemire.github.io/inf1220-nexam/><img src=https://lemire.github.io/inf1220-nexam/livre.jpg alt=Logo class=book-icon><span>INF 1220 - Introduction à la programmation</span></a></h2><div class="book-search hidden"><input type=text id=book-search-input placeholder=Rechercher aria-label=Rechercher maxlength=64 data-hotkeys=s/><div class="book-search-spinner hidden"></div><ul id=book-search-results></ul></div><script>document.querySelector(".book-search").classList.remove("hidden")</script><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/environnement/>Programmation Java en ligne</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/format/>Formattage du code Java</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/erreurs/>Vous avez trouvé une erreur?</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/>Modules</a><ul><li><input type=checkbox id=section-f7e1271f980bf830e8c6912edf1a4479 class=toggle checked>
+<label for=section-f7e1271f980bf830e8c6912edf1a4479 class=flex><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/ class=flex-auto>Module 1: Algorithme et pseudocode</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/teluq/>Modèle du cours</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/robot/>Robot conversationnel et intelligence artificielle</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/autoevaluation/>Autoévaluation</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/pasapas/>Java pas à pas</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/ordinateurs/>Les ordinateurs et leurs langages</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/algorithmes/>Les algorithmes</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/algorithmes2/>Les algorithmes : conception et syntaxe</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/algorithmes3/>Les algorithmes: les structures de contrôle</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/difficile/>Les problèmes difficiles</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/complex/>Complexité algorithmique</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/erreurs/>Les erreurs communes</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/syntaxe/>Présentation du pseudocode</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/exercices/ class=active>Exercices sur les algorithmes et les ordinateurs</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/travail-note-1/>Travail noté 1</a></li></ul></li><li><input type=checkbox id=section-a757d210324b2537a57ec93cca8777d8 class=toggle>
+<label for=section-a757d210324b2537a57ec93cca8777d8 class=flex><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/ class=flex-auto>Module 2: Introduction au langage Java</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/preparation/>Préparation de l’espace de travail</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/pasapas/>Java pas à pas</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/oriente/>Création d'une classe en Java</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/typeoperateur/>Introduction aux types de base et à leurs opérateurs</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/exercices-2-1/>Exercices sur les classes, les variables, les types et les opérateurs</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/methodes/>Méthodes et constructeurs</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/exercices-2-2/>Exercices sur les classes et méthodes</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/conseils/>Recommandations</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/javamodern/>Java moderne</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/markdown/>Markdown</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/gabarit/>Gabarit pour les travaux notés 2, 3, 4 et 5</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module2/travail-note-2/>Travail noté 2</a></li></ul></li><li><input type=checkbox id=section-3c80c03e875e37488840f48407b59dde class=toggle>
+<label for=section-3c80c03e875e37488840f48407b59dde class=flex><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/ class=flex-auto>Module 3: Les structures de données, de contrôle et d'itération en Java</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/pasapas/>Java pas à pas</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/github/>GitHub</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-1/>Les structures de contrôle</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-2/>Les structures itératives</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-3-string/>Les chaînes de caractères (String)</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-3/>Les structures de données de base</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-3-random/>Les valeurs aléatoires</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/fonctionnel/>La programmation fonctionnelle en Java</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/exercices-3-1/>Exercices sur les structures de contrôle, les structures de données, les structures itératives</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-4/>Les exceptions</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-5/>La récursivité</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/exercices-3-2/>Exercices sur les exceptions et la récursivité</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/activite-3-3-modele/>Exemple : modèle de langue</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/conseils/>Recommandations</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module3/travail-note-3/>Travail noté 3</a></li></ul></li><li><input type=checkbox id=section-a9012630b3b4b02e9b50bf35f72aa27c class=toggle>
+<label for=section-a9012630b3b4b02e9b50bf35f72aa27c class=flex><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/ class=flex-auto>Module 4: Les entrées et sorties</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/pasapas/>Java pas à pas</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/activite-4-1/>Les flux de console</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/activite-4-2/>Les flux de données: lecture dans des fichiers et autres</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/exercices-4-1/>Exercices sur les flux</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/web/>Développement web</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module4/travail-note-4/>Travail noté 4</a></li></ul></li><li><input type=checkbox id=section-d52509bda07042dc9999bf1a86d074c7 class=toggle>
+<label for=section-d52509bda07042dc9999bf1a86d074c7 class=flex><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/ class=flex-auto>Module 5. La programmation orientée objet: héritage et le polymorphisme</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/pasapas/>Java pas à pas</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/activite-5-1/>L'héritage, les classes abstraites et les interfaces</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/activite-5-2/>Le polymorphisme</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/exercices-5-1/>Exercices sur l’héritage et le polymorphisme</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module5/travail-note-5/>Travail noté 5</a></li></ul></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/examen/>Examen</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/modules/entretien/>Entretien de suivi</a></li></ul></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/evaluation/>Évaluation</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/pensebete/>Pense-bête java</a></li><li><input type=checkbox id=section-6cefa585d42cdfc35453a62ef50ebf84 class=toggle>
+<label for=section-6cefa585d42cdfc35453a62ef50ebf84 class=flex><a role=button class=flex-auto>Autres ressources</a></label><ul><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/credits/>Le professeur</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/feuille-de-route/>Feuille de route</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/ressources/>Ressources</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/faq/>FAQ</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/manuel/>Manuel</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/math/>Rappel mathématique</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/ia/>Intelligence artificielle</a></li><li><a href=https://lemire.github.io/inf1220-nexam/docs/extra/courriel/>Petit guide d’usage du courriel efficace</a></li></ul></li></ul></nav><script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script></div></aside><div class=book-page><header class=book-header><div class="flex align-center justify-between"><label for=menu-control><img src=https://lemire.github.io/inf1220-nexam/svg/menu.svg class=book-icon alt=Menu></label><h3>Exercices sur les algorithmes et les ordinateurs</h3><label for=toc-control><img src=https://lemire.github.io/inf1220-nexam/svg/toc.svg class=book-icon alt="Table of Contents"></label></div><aside class="hidden clearfix"><nav id=TableOfContents><ul><li><a href=#réponses-uniques->Réponses uniques ?</a><ul><li><a href=#logiciels>Logiciels</a></li><li><a href=#exercice-1--la-somme-dun-tableau>Exercice 1 : La somme d’un tableau</a></li><li><a href=#exercice-2--la-recherche-dun-entier>Exercice 2 : La recherche d’un entier</a></li><li><a href=#exercice-3--somme-des-multiples-de-3-ou-5>Exercice 3 : Somme des multiples de 3 ou 5</a></li><li><a href=#exercice-4--plus-grand-diviseur-premier>Exercice 4 : Plus grand diviseur premier</a></li><li><a href=#exercice-5--chiffre-des-dizaines>Exercice 5 : Chiffre des dizaines</a></li><li><a href=#exercice-6--erreur-dans-un-pseudocode>Exercice 6 : Erreur dans un pseudocode</a></li><li><a href=#exercice-7--racines-dun-polynôme-du-second-degré>Exercice 7 : Racines d’un polynôme du second degré</a></li><li><a href=#exercice-8--exécution-de-lalgorithme-des-racines>Exercice 8 : Exécution de l’algorithme des racines</a></li><li><a href=#exercice-9--conversion-de-base>Exercice 9 : Conversion de base</a></li><li><a href=#exercice-10--tester-la-parité-en-base-2>Exercice 10 : Tester la parité en base 2</a></li><li><a href=#exercice-11--calcul-de-la-factorielle>Exercice 11 : Calcul de la factorielle</a></li><li><a href=#exercice-12--inverser-un-tableau>Exercice 12 : Inverser un tableau</a></li><li><a href=#exercice-13--compter-les-voyelles>Exercice 13 : Compter les voyelles</a></li><li><a href=#exercice-14--tester-si-un-entier-est-un-palindrome>Exercice 14 : Tester si un entier est un palindrome</a></li><li><a href=#exercice-15--minimum-et-maximum-dun-tableau>Exercice 15 : Minimum et maximum d’un tableau</a></li><li><a href=#exercice-16--recherche-dans-un-tableau>Exercice 16 : Recherche dans un tableau</a></li><li><a href=#exercice-17--recherche-binaire>Exercice 17 : Recherche binaire</a></li><li><a href=#exercice-18--algorithme-quadratique>Exercice 18 : Algorithme quadratique</a></li><li><a href=#exercice-19--algorithme-de-tri-efficace>Exercice 19 : Algorithme de tri efficace</a></li><li><a href=#exercice-20--alan-kay>Exercice 20 : Alan Kay</a></li><li><a href=#exercice-21--dahl-et-nygaard>Exercice 21 : Dahl et Nygaard</a></li><li><a href=#exercice-22--james-gosling>Exercice 22 : James Gosling</a></li><li><a href=#exercice-23--domaines-industriels>Exercice 23 : domaines industriels</a></li><li><a href=#exercice-24--backus-naur>Exercice 24 : Backus-Naur</a></li><li><a href=#exercice-25--cycles>Exercice 25 : Cycles</a></li><li><a href=#exercice-26--kibioctet>Exercice 26 : kibioctet</a></li><li><a href=#exercice-27--doublons>Exercice 27 : doublons</a></li><li><a href=#exercice-28--puissance>Exercice 28 : puissance</a></li><li><a href=#exercice-29--occurrences-dun-caractère-spécifique>Exercice 29 : occurrences d’un caractère spécifique</a></li><li><a href=#exercice-30--recherche-dune-clé>Exercice 30 : recherche d&rsquo;une clé</a></li><li><a href=#exercice-31--définition-du-système-dexploitation>Exercice 31 : Définition du système d&rsquo;exploitation</a></li><li><a href=#exercice-32--gestion-des-ressources-par-le-système-dexploitation>Exercice 32 : Gestion des ressources par le système d&rsquo;exploitation</a></li><li><a href=#exercice-33--exemples-de-systèmes-dexploitation>Exercice 33 : Exemples de systèmes d&rsquo;exploitation</a></li><li><a href=#exercice-34--rôle-du-noyau>Exercice 34 : Rôle du noyau</a></li><li><a href=#exercice-35--multitâche-et-multithreading>Exercice 35 : Multitâche et multithreading</a></li><li><a href=#exercice-36--fonction-du-processeur>Exercice 36 : Fonction du processeur</a></li><li><a href=#exercice-37--processeur-multi-cœurs>Exercice 37 : Processeur multi-cœurs</a></li><li><a href=#exercice-38--différence-entre-processus-et-thread>Exercice 38 : Différence entre processus et thread</a></li><li><a href=#exercice-39--ordonnancement-des-processus>Exercice 39 : Ordonnancement des processus</a></li><li><a href=#exercice-40--partage-de-mémoire-des-threads>Exercice 40 : Partage de mémoire des threads</a></li><li><a href=#exercice-41--hiérarchie-de-la-mémoire>Exercice 41 : Hiérarchie de la mémoire</a></li><li><a href=#exercice-42--différence-ram-et-cache>Exercice 42 : Différence RAM et cache</a></li><li><a href=#exercice-43--dram-vs-sram>Exercice 43 : DRAM vs SRAM</a></li><li><a href=#exercice-44--faute-de-page-en-mémoire-virtuelle>Exercice 44 : Faute de page en mémoire virtuelle</a></li><li><a href=#exercice-45--localité-temporelle-et-spatiale>Exercice 45 : Localité temporelle et spatiale</a></li><li><a href=#exercice-46--définition-des-es>Exercice 46 : Définition des E/S</a></li><li><a href=#exercice-47--méthodes-de-communication-es>Exercice 47 : Méthodes de communication E/S</a></li><li><a href=#exercice-48--dma>Exercice 48 : DMA</a></li><li><a href=#exercice-49--classification-des-périphériques>Exercice 49 : Classification des périphériques</a></li><li><a href=#exercice-50--utilité-des-tampons-en-es>Exercice 50 : Utilité des tampons en E/S</a></li><li><a href=#vidéos-suggérées>Vidéos suggérées</a></li></ul></li></ul></nav></aside></header><article class="markdown book-article"><h1 id=exercices-sur-les-algorithmes-et-les-ordinateurs>Exercices sur les algorithmes et les ordinateurs
+<a class=anchor href=#exercices-sur-les-algorithmes-et-les-ordinateurs>#</a></h1><p>La notion d&rsquo;algorithme a été abordée implicitement dès les premiers cours de mathématiques, par exemple avec l&rsquo;algorithme de la division longue. Ces exercices visent à vous faire décrire formellement un algorithme. La principale difficulté pour la plupart des étudiants réside dans la rigueur et la précision requises. Au-delà d’un certain point, il n’existe pas de lectures supplémentaires : la pratique est essentielle.</p><blockquote class="book-hint info"><p>Pour les mathématiques, vous pouvez faire référence à notre rappel sur <a href=https://lemire.github.io/inf1220-nexam/docs/extra/math/>les principales notions mathématiques</a> du cours.</p></blockquote><p>Il est permis d’utiliser l&rsquo;intelligence artificielle pour aider à comprendre les solutions. Toutefois, entraînez-vous à produire vos propres réponses.</p><p>Comment procéder pour les exercices :</p><ol><li>Lisez attentivement la question.</li><li>Cherchez une solution. Si vous ne trouvez pas immédiatement, consacrez 10 à 15 minutes à y réfléchir. Si le problème exact vous résiste, tentez une solution partielle. Pour cet exercice, vous devez produire du pseudocode, et non du Java.</li><li>Rédigez votre solution avec précision, comme une suite de consignes qu’un enfant pourrait suivre.</li><li>Exécutez votre pseudocode.</li><li>Consultez ensuite la ou les solutions proposées.</li><li>Assurez-vous de comprendre toutes les solutions. Posez des questions si nécessaire, en fournissant votre propre solution pour appuyer vos interrogations. Comprendre les solutions proposées est impératif.</li></ol><p>Ces exercices sont obligatoires et ne doivent pas être survolés ou omis.</p><p>Pour lire les formules mathématiques sur le site du cours, utilisez un navigateur compatible avec MathML, comme Chrome, Edge, Firefox ou Safari.</p><p>Ces exercices sont conçus pour l’autoévaluation ; ils ne sont pas corrigés. Nous répondons cependant à vos questions sur la matière.</p><p>Les solutions à ces exercices ne sont pas uniques. Il existe plusieurs syntaxes possibles pour décrire un algorithme en pseudocode. Cela ne signifie pas que toutes les solutions sont correctes. Un pseudocode peut être erroné s’il ne décrit pas une solution logiquement correcte ou s’il manque de précision pour être considéré comme un algorithme. Un pseudocode doit pouvoir être exécuté littéralement par un humain sans jugement, comme un automate.</p><p>Rappel : les mathématiques du collégial sont un préalable obligatoire à ce cours. Une aisance en algèbre, fonctions et arithmétique est nécessaire. Sans ces prérequis, réussir ce cours peut être difficile.</p><blockquote class="book-hint info"><h2 id=réponses-uniques->Réponses uniques ?
+<a class=anchor href=#r%c3%a9ponses-uniques->#</a></h2><p>Les exercices incluent une solution pour comparer votre approche à la nôtre. Il n’existe pas de solution unique ; votre solution peut être meilleure ou moins bonne que celle proposée.</p></blockquote><h3 id=logiciels>Logiciels
+<a class=anchor href=#logiciels>#</a></h3><p>Certains étudiants utilisent des logiciels comme <a href=https://www.xm1math.net/algobox/>AlgoBox</a> ou <a href=https://online.pseudoflow.app>PseudoFlow</a>. Cela n’est pas nécessaire, car le pseudocode doit être écrit dans vos propres mots. Si un logiciel vous aide, utilisez-le, mais vous devriez pouvoir écrire du pseudocode manuellement, sans outil. C’est l’essence du pseudocode : il est indépendant des syntaxes et des outils.</p><h3 id=exercice-1--la-somme-dun-tableau>Exercice 1 : La somme d’un tableau
+<a class=anchor href=#exercice-1--la-somme-dun-tableau>#</a></h3><p>Dans la plupart des langages informatiques, un tableau correspond à un vecteur en algèbre linéaire, soit une série de nombres, comme \(\langle 1,6,4,10 \rangle\). Dans cet exercice, vous devez proposer un algorithme pour calculer la somme des nombres entiers d’un tableau à une dimension de longueur quelconque (de 0 à plus d’un million de nombres). Utilisez une structure d’itération (boucle) pour parcourir chaque nombre du tableau.</p><p>Pour manipuler le tableau, vous pouvez écrire « Récupérer le nombre à l’index i » (où i est une variable contenant l’index) ou utiliser une syntaxe proche des langages de programmation, par exemple : <code>Entier e = monTableau[i]</code>. Pour obtenir la longueur du tableau, utilisez « la taille de monTableau ».</p><p>Testez votre pseudocode en l’appliquant ligne par ligne à un exemple, comme si vous étiez un robot. Prenez votre temps.</p><p>Si vous introduisez d’autres conventions de notation, soyez précis. Spécifiez le type de toutes vos variables et donnez explicitement des valeurs initiales, sauf si elles sont reçues en paramètre.</p><p>Concevez cet algorithme en pseudocode, en utilisant des termes concis, explicatifs et cohérents.</p><details><summary>Réponse</summary><pre tabindex=0><code>Entrée :
+Tableau d’entiers monTableau de taille N
+
+Variables :
+Entier somme = 0 // La somme du tableau
+Entier index = 0 // Index de l’élément du tableau
+
+Sortie :
+Entier somme
+
+Algorithme sommeTableau :
+
+TANT QUE index &lt; taille de monTableau FAIRE
+    somme = somme + monTableau[index] // Addition des nombres
+    index = index + 1 // Incrémentation de l’index
+FIN TANT QUE
+
+retourne somme
+</code></pre></details><h3 id=exercice-2--la-recherche-dun-entier>Exercice 2 : La recherche d’un entier
+<a class=anchor href=#exercice-2--la-recherche-dun-entier>#</a></h3><p>La recherche d’information dans une structure de données (tableau, graphe, arbre, etc.) est un domaine clé en informatique. Bien que les bases de données comme MySQL simplifient la recherche, il est souvent nécessaire de concevoir ses propres solutions. À partir de l’exercice 1, proposez un algorithme en pseudocode pour vérifier si un entier (par exemple, un numéro de téléphone) est présent dans un tableau et retourner son index, ou -1 s’il est absent. Utilisez une structure itérative et une structure de contrôle (SI _ ALORS _ FIN SI).</p><details><summary>Réponse</summary><pre tabindex=0><code>Entrée :
+Tableau d’entiers monTableau de taille N
+Entier nombreATrouver
+
+Variables :
+Entier index = 0 // Index de l’élément du tableau
+
+Sortie :
+Index de l’entier ou -1 si non trouvé
+
+Algorithme trouverEntier :
+
+TANT QUE index &lt; taille de monTableau FAIRE
+    SI nombreATrouver est égal à monTableau[index] ALORS
+        retourner index // Fin de l’algorithme
+    FIN SI
+    index = index + 1 // Incrémentation de l’index
+FIN TANT QUE
+
+retourner -1 // Nombre non trouvé
+</code></pre></details><h3 id=exercice-3--somme-des-multiples-de-3-ou-5>Exercice 3 : Somme des multiples de 3 ou 5
+<a class=anchor href=#exercice-3--somme-des-multiples-de-3-ou-5>#</a></h3><p>Additionnez tous les nombres naturels inférieurs à \(1000\) qui sont multiples de \(3\) ou de \(5\).</p><details><summary>Réponse</summary><p>Voici un algorithme inefficace. Vous pouvez faire mieux :</p><pre tabindex=0><code>Variable entière i = 0
+Variable entière somme = 0
+TANT QUE i &lt; 1000
+    SI le reste de la division par 3 de i est zéro OU le reste de la division par 5 de i est zéro ALORS
+        somme = somme + i
+    i = i + 1
+FIN TANT QUE
+Retourne somme
+</code></pre></details><h3 id=exercice-4--plus-grand-diviseur-premier>Exercice 4 : Plus grand diviseur premier
+<a class=anchor href=#exercice-4--plus-grand-diviseur-premier>#</a></h3><p>Trouvez le plus grand nombre premier qui divise \(317584931803\).</p><details><summary>Réponse</summary><p>Voici un algorithme inefficace (effectuant plus d’opérations que nécessaire). Vous pouvez faire mieux :</p><pre tabindex=0><code>Variable entière i = 1
+Variable entière solution = 1
+TANT QUE i &lt; 317584931803
+    SI le reste de la division de 317584931803 par i est zéro ALORS
+        Variable entière j = 3
+        Variable booléenne premier = vrai
+        TANT QUE j &lt; i
+            SI le reste de la division de i par j est zéro ALORS
+                premier = faux
+            j = j + 1
+        FIN TANT QUE
+        SI premier ALORS
+            solution = i
+    i = i + 1
+FIN TANT QUE
+Retourne solution
+</code></pre><p>Pour les curieux, voici une solution exécutable en Python (<a href=https://fr.wikipedia.org/wiki/Python_%28langage%29>voir ici</a>) :</p><div class=highlight><pre tabindex=0 style=background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span>i <span style=color:#0550ae>=</span> <span style=color:#0550ae>1</span>
+</span></span><span style=display:flex><span>solution <span style=color:#0550ae>=</span> <span style=color:#0550ae>1</span>
+</span></span><span style=display:flex><span><span style=color:#cf222e>while</span> i <span style=color:#0550ae>&lt;</span> <span style=color:#0550ae>317584931803</span><span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>    <span style=color:#cf222e>if</span> <span style=color:#0550ae>317584931803</span> <span style=color:#0550ae>%</span> i <span style=color:#0550ae>==</span> <span style=color:#0550ae>0</span><span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>        j <span style=color:#0550ae>=</span> <span style=color:#0550ae>3</span>
+</span></span><span style=display:flex><span>        premier <span style=color:#0550ae>=</span> <span style=color:#cf222e>True</span>
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>while</span> j <span style=color:#0550ae>&lt;</span> i<span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>            <span style=color:#cf222e>if</span> i <span style=color:#0550ae>%</span> j <span style=color:#0550ae>==</span> <span style=color:#0550ae>0</span><span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>                premier <span style=color:#0550ae>=</span> <span style=color:#cf222e>False</span>
+</span></span><span style=display:flex><span>            j <span style=color:#0550ae>=</span> j <span style=color:#0550ae>+</span> <span style=color:#0550ae>1</span>
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>if</span> premier<span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>            <span style=color:#6639ba>print</span><span style=color:#1f2328>(</span>i<span style=color:#1f2328>,</span> <span style=color:#0a3069>&#34; est premier&#34;</span><span style=color:#1f2328>)</span>
+</span></span><span style=display:flex><span>            solution <span style=color:#0550ae>=</span> i
+</span></span><span style=display:flex><span>    i <span style=color:#0550ae>=</span> i <span style=color:#0550ae>+</span> <span style=color:#0550ae>1</span>
+</span></span><span style=display:flex><span><span style=color:#6639ba>print</span><span style=color:#1f2328>(</span>solution<span style=color:#1f2328>)</span>
+</span></span></code></pre></div><p>Vous pouvez supprimer la ligne <code>print(i, " est premier")</code> pour n’obtenir que la réponse finale. Notez que j commence à 3, car tout diviseur premier (sauf 2) est impair d’après le théorème fondamental de l’arithmétique.</p></details><h3 id=exercice-5--chiffre-des-dizaines>Exercice 5 : Chiffre des dizaines
+<a class=anchor href=#exercice-5--chiffre-des-dizaines>#</a></h3><p>Pour un entier positif \(x\), trouvez le chiffre occupant la position des dizaines.</p><details><summary>Réponse</summary><pre tabindex=0><code>Variable entière x
+
+Divise x par 10, stocke le quotient dans la variable y
+
+Divise y par 10, retourne le reste de la division
+</code></pre><p>Exemple : si x est 531, le quotient de 531 divisé par 10 est 53, reste 1. Le quotient de 53 divisé par 10 est 5, reste 3.</p></details><h3 id=exercice-6--erreur-dans-un-pseudocode>Exercice 6 : Erreur dans un pseudocode
+<a class=anchor href=#exercice-6--erreur-dans-un-pseudocode>#</a></h3><p>Trouvez l’erreur dans le pseudocode suivant :</p><pre tabindex=0><code>Entrées :
+Tableau R de longueur N
+Valeur X
+
+Sortie :
+Est-ce que la valeur X se trouve dans le tableau R ?
+
+Variables :
+Itérateur i = 0
+
+Tant que i &lt;= N
+    Si R[i] = X Alors retourne Vrai
+    i = i + 1
+
+retourne Faux
+</code></pre><details><summary>Réponse</summary><p>L’itérateur i prend les valeurs de 0 à N, accédant ainsi à N+1 éléments du tableau R, ce qui provoque une erreur d’accès hors limites.</p></details><h3 id=exercice-7--racines-dun-polynôme-du-second-degré>Exercice 7 : Racines d’un polynôme du second degré
+<a class=anchor href=#exercice-7--racines-dun-polyn%c3%b4me-du-second-degr%c3%a9>#</a></h3><p>Soit \(P(x) = ax^2 + bx + c\) un polynôme du second degré à coefficients réels. Les racines se calculent via le discriminant \(A = b^2 - 4ac\).</p><ul><li>Si \(A < 0\), il n’y a pas de racine.</li><li>Si \(A > 0\), il existe deux racines : \(X_1 = \frac{-b - \sqrt{A}}{2a}\) et \(X_2 = \frac{-b + \sqrt{A}}{2a}\).</li><li>Si \(A = 0\), il existe une racine double : \(X_1 = X_2 = \frac{-b}{2a}\).</li></ul><p>Écrivez un algorithme qui, pour un polynôme donné par ses coefficients, calcule le discriminant, affiche « ce polynôme n’a pas de racine dans R » si A &lt; 0, et calcule les racines sinon.</p><details><summary>Réponse</summary><pre tabindex=0><code>Algo pol
+
+Entrée :
+Nombres réels a, b, c // Coefficients du polynôme
+
+Variables :
+Nombres réels X1, X2, A // Racines et discriminant
+
+Début
+    A = b² - 4ac
+    Si A &lt; 0 Alors
+        Afficher «&amp;nbsp;ce polynôme n’a pas de racine dans R&amp;nbsp;»
+    Sinon
+        Si A égale 0
+            X1 = X2 = -b/(2a)
+        Sinon // A &gt; 0
+            X1 = (-b - √A)/(2a)
+            X2 = (-b + √A)/(2a)
+        Fin Si
+    Fin Si
+Fin
+</code></pre></details><h3 id=exercice-8--exécution-de-lalgorithme-des-racines>Exercice 8 : Exécution de l’algorithme des racines
+<a class=anchor href=#exercice-8--ex%c3%a9cution-de-lalgorithme-des-racines>#</a></h3><p>Exécutez l&rsquo;algorithme de l&rsquo;exercice 7 pour \(P(x) = x^2 - 5x + 6\), en présentant les résultats dans un tableau.</p><details><summary>Réponse</summary><table><thead><tr><th>Catégorie</th><th>Variable</th><th>Initialisation</th><th>Étape 1</th><th>Étape 2</th><th>Étape 3</th><th>Fin</th></tr></thead><tbody><tr><td>Entrée</td><td>a</td><td>1</td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td></td><td>b</td><td>-5</td><td>-5</td><td>-5</td><td>-5</td><td>-5</td></tr><tr><td></td><td>c</td><td>6</td><td>6</td><td>6</td><td>6</td><td>6</td></tr><tr><td>Variables</td><td>X1</td><td></td><td></td><td>2</td><td>2</td><td>2</td></tr><tr><td></td><td>X2</td><td></td><td></td><td></td><td>3</td><td>3</td></tr><tr><td></td><td>A</td><td></td><td>1</td><td>1</td><td>1</td><td>1</td></tr><tr><td>Sorties</td><td>écran</td><td></td><td></td><td></td><td></td><td></td></tr></tbody></table></details><h3 id=exercice-9--conversion-de-base>Exercice 9 : Conversion de base
+<a class=anchor href=#exercice-9--conversion-de-base>#</a></h3><p>Pour un entier \(B > 1\) et un nombre \(M\), la représentation en base \(B\) de \(M\) s’obtient par division successive : \(M = B \times Q_1 + R_1\), puis \(Q_1 = B \times Q_2 + R_2\), jusqu’à un quotient inférieur à \(B\). La représentation est \(Q_{n-1}R_n\ldots R_1\). Si \(B > 10\), les chiffres de \(10\) à \(B-1\) sont notés \(A, B, C, \ldots\) (par exemple, pour \(B = 16\), \(10 = A\), \(11 = B\), etc.).</p><p>Écrivez un algorithme pour convertir un nombre \(M\) dans une base \(B ≥ 2\) (\(B < 17\)). Affichez un message d’erreur si \(B < 2\).</p><details><summary>Réponse</summary><pre tabindex=0><code>Algo base
+
+Entrée :
+Nombre entier positif B // Base
+Nombre entier positif M // Nombre à convertir
+
+Variables :
+Nombre entier q, r
+Suite de caractères alphanumériques S
+
+Début
+    S = chaîne vide
+    Si B &lt; 2 Alors
+        Afficher «&amp;nbsp;entrez un entier supérieur ou égal à 2&amp;nbsp;»
+    Sinon
+        q = M
+        Tant que q &gt; 0
+            r = q - (q ÷ B) × B
+            au cas où r
+                égal à 10 : ajouter A au début de S
+                égal à 11 : ajouter B au début de S
+                égal à 12 : ajouter C au début de S
+                égal à 13 : ajouter D au début de S
+                égal à 14 : ajouter E au début de S
+                égal à 15 : ajouter F au début de S
+                dans tous les autres cas : ajouter r au début de S
+            q = q ÷ B
+        Fin Tant que
+    Fin Si
+Fin
+</code></pre><p>Voici l’équivalent en Python (<a href=https://www.python.org>voir ici</a>) :</p><div class=highlight><pre tabindex=0 style=background-color:#f7f7f7;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-text-size-adjust:none><code class=language-python data-lang=python><span style=display:flex><span><span style=color:#cf222e>def</span> <span style=color:#6639ba>f</span><span style=color:#1f2328>(</span>M<span style=color:#1f2328>,</span> B<span style=color:#1f2328>):</span>
+</span></span><span style=display:flex><span>    s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;&#34;</span>
+</span></span><span style=display:flex><span>    <span style=color:#cf222e>if</span> B <span style=color:#0550ae>&lt;</span> <span style=color:#0550ae>2</span><span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>        <span style=color:#6639ba>print</span><span style=color:#1f2328>(</span><span style=color:#0a3069>&#34;entrez un entier supérieur ou égal à 2&#34;</span><span style=color:#1f2328>)</span>
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>return</span>
+</span></span><span style=display:flex><span>    q <span style=color:#0550ae>=</span> M
+</span></span><span style=display:flex><span>    <span style=color:#cf222e>while</span> q <span style=color:#0550ae>&gt;</span> <span style=color:#0550ae>0</span><span style=color:#1f2328>:</span>
+</span></span><span style=display:flex><span>        r <span style=color:#0550ae>=</span> q <span style=color:#0550ae>-</span> <span style=color:#1f2328>(</span>q <span style=color:#0550ae>//</span> B<span style=color:#1f2328>)</span> <span style=color:#0550ae>*</span> B
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>if</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>10</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;A&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>elif</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>11</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;B&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>elif</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>12</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;C&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>elif</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>13</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;D&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>elif</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>14</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;E&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>elif</span> r <span style=color:#0550ae>==</span> <span style=color:#0550ae>15</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#0a3069>&#34;F&#34;</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        <span style=color:#cf222e>else</span><span style=color:#1f2328>:</span> s <span style=color:#0550ae>=</span> <span style=color:#6639ba>str</span><span style=color:#1f2328>(</span>r<span style=color:#1f2328>)</span> <span style=color:#0550ae>+</span> s
+</span></span><span style=display:flex><span>        q <span style=color:#0550ae>=</span> q <span style=color:#0550ae>//</span> B
+</span></span><span style=display:flex><span>    <span style=color:#cf222e>return</span> s
+</span></span></code></pre></div></details><h3 id=exercice-10--tester-la-parité-en-base-2>Exercice 10 : Tester la parité en base 2
+<a class=anchor href=#exercice-10--tester-la-parit%c3%a9-en-base-2>#</a></h3><p>En utilisant l’algorithme Algo_base, qui retourne la représentation en base \(B\) d’un nombre \(M\) (\(S = \text{Algo\_base}(B, M)\)), écrivez un algorithme qui teste la parité d’un nombre \(M\) et affiche « pair » ou « impair ».</p><details><summary>Réponse</summary><pre tabindex=0><code>Algo parité
+
+Entrée :
+Nombre entier positif M // Nombre à tester
+
+Variables :
+Suite de caractères alphanumériques S
+
+Début
+    S = Algo_base(2, M)
+    Si dernier caractère de S est égal au chiffre 0 Alors
+        Afficher «&amp;nbsp;pair&amp;nbsp;»
+    Sinon
+        Afficher «&amp;nbsp;impair&amp;nbsp;»
+    Fin Si
+Fin
+</code></pre></details><h3 id=exercice-11--calcul-de-la-factorielle>Exercice 11 : Calcul de la factorielle
+<a class=anchor href=#exercice-11--calcul-de-la-factorielle>#</a></h3><p>Écrivez un algorithme qui calcule la factorielle d’un entier positif \(n\) (\(n!\)).</p><details><summary>Solution</summary><pre tabindex=0><code>Entrée :
+Entier positif n
+
+Variable :
+Entier fact = 1
+Entier i = 1
+
+TANT QUE i &lt;= n FAIRE
+    fact = fact × i
+    i = i + 1
+FIN TANT QUE
+
+Retourner fact
+</code></pre></details><h3 id=exercice-12--inverser-un-tableau>Exercice 12 : Inverser un tableau
+<a class=anchor href=#exercice-12--inverser-un-tableau>#</a></h3><p>Proposez un algorithme pour inverser un tableau d’entiers de taille quelconque.</p><details><summary>Solution</summary><pre tabindex=0><code>Entrée :
+Tableau d’entiers T de taille N
+
+Variables :
+Entier i = 0
+Entier j = N - 1
+
+TANT QUE i &lt; j FAIRE
+    échanger T[i] et T[j]
+    i = i + 1
+    j = j - 1
+FIN TANT QUE
+
+Retourner T
+</code></pre></details><h3 id=exercice-13--compter-les-voyelles>Exercice 13 : Compter les voyelles
+<a class=anchor href=#exercice-13--compter-les-voyelles>#</a></h3><p>Écrivez un algorithme qui compte le nombre de voyelles dans une chaîne de caractères donnée.</p><details><summary>Solution</summary><pre tabindex=0><code>Entrée :
+Chaîne de caractères S
+
+Variable :
+Entier compteur = 0
+Entier i = 0
+
+TANT QUE i &lt; longueur de S FAIRE
+    SI S[i] est une voyelle ALORS
+        compteur = compteur + 1
+    FIN SI
+    i = i + 1
+FIN TANT QUE
+
+Retourner compteur
+</code></pre></details><h3 id=exercice-14--tester-si-un-entier-est-un-palindrome>Exercice 14 : Tester si un entier est un palindrome
+<a class=anchor href=#exercice-14--tester-si-un-entier-est-un-palindrome>#</a></h3><p>Donnez un algorithme pour déterminer si un nombre entier est un palindrome (se lit de la même façon de gauche à droite et de droite à gauche).</p><details><summary>Solution</summary><pre tabindex=0><code>Entrée :
+Entier positif n
+
+Variables :
+Entier original = n
+Entier renverse = 0
+
+TANT QUE n &gt; 0 FAIRE
+    renverse = renverse × 10 + (reste de la division de n avec 10)
+    n = n ÷ 10
+FIN TANT QUE
+
+SI original = renverse ALORS
+    Retourner Vrai
+SINON
+    Retourner Faux
+FIN SI
+</code></pre></details><h3 id=exercice-15--minimum-et-maximum-dun-tableau>Exercice 15 : Minimum et maximum d’un tableau
+<a class=anchor href=#exercice-15--minimum-et-maximum-dun-tableau>#</a></h3><p>Écrivez un algorithme qui trouve le minimum et le maximum dans un tableau d’entiers.</p><details><summary>Solution</summary><pre tabindex=0><code>Entrée :
+Tableau d’entiers T de taille N
+
+Variables :
+Entier min = T[0]
+Entier max = T[0]
+Entier i = 1
+
+TANT QUE i &lt; N FAIRE
+    SI T[i] &lt; min ALORS
+        min = T[i]
+    FIN SI
+    SI T[i] &gt; max ALORS
+        max = T[i]
+    FIN SI
+    i = i + 1
+FIN TANT QUE
+
+Retourner min, max
+</code></pre></details><h3 id=exercice-16--recherche-dans-un-tableau>Exercice 16 : Recherche dans un tableau
+<a class=anchor href=#exercice-16--recherche-dans-un-tableau>#</a></h3><p>Quel est le nombre maximal de comparaisons nécessaires pour rechercher un élément dans un tableau non trié de taille \( n \) ? Justifiez votre réponse.</p><details><summary>Solution</summary><p>Dans un tableau non trié de taille \( n \), il faut au pire comparer l’élément recherché à chaque élément du tableau, soit \( n \) comparaisons. Cela correspond à une recherche linéaire, de complexité \( O(n) \).</p></details><h3 id=exercice-17--recherche-binaire>Exercice 17 : Recherche binaire
+<a class=anchor href=#exercice-17--recherche-binaire>#</a></h3><p>Pourquoi la recherche binaire n’est-elle applicable qu’aux tableaux triés ? Quelle est sa complexité en temps ?</p><details><summary>Solution</summary><p>La recherche binaire n’est applicable qu’aux tableaux triés, car elle repose sur le fait que l’on peut éliminer la moitié des éléments à chaque étape en comparant la valeur recherchée à l’élément du milieu. Si le tableau n’est pas trié, on ne peut pas savoir dans quelle moitié chercher. Sa complexité en temps est \( O(\log n) \).</p></details><h3 id=exercice-18--algorithme-quadratique>Exercice 18 : Algorithme quadratique
+<a class=anchor href=#exercice-18--algorithme-quadratique>#</a></h3><p>Donnez un exemple d’algorithme ayant une complexité en \( O(n^2) \) et expliquez pourquoi.</p><details><summary>Solution</summary><p>Un exemple classique est le tri à bulles (bubble sort). Pour chaque élément, on compare avec tous les autres, ce qui fait environ \( n^2 \) comparaisons pour un tableau de taille \( n \). C’est pourquoi sa complexité est \( O(n^2) \).</p></details><h3 id=exercice-19--algorithme-de-tri-efficace>Exercice 19 : Algorithme de tri efficace
+<a class=anchor href=#exercice-19--algorithme-de-tri-efficace>#</a></h3><p>Un algorithme de tri efficace comme le tri fusion (merge sort) a une complexité en \( O(n \log n) \). Expliquez ce que cela signifie et pourquoi c’est plus rapide qu’un tri naïf pour de grands tableaux.</p><details><summary>Solution</summary><p>Une complexité en \( O(n \log n) \) signifie que le nombre d’opérations croît plus vite que linéairement, mais beaucoup moins vite que quadratiquement. Par exemple, le tri fusion (merge sort) divise le tableau en deux à chaque étape (logarithmique) et traite chaque élément à chaque niveau de division (linéaire), d’où le \( n \log n \). Pour de grands tableaux, c’est beaucoup plus rapide qu’un tri naïf en \( O(n^2) \).</p></details><h3 id=exercice-20--alan-kay>Exercice 20 : Alan Kay
+<a class=anchor href=#exercice-20--alan-kay>#</a></h3><p>Alan Kay est considéré comme l’un des pères de la programmation orientée objet. Quelles étaient ses motivations principales lorsqu’il a conçu ce paradigme ? En quoi sa vision différait-elle de l’utilisation courante de la programmation orientée objet aujourd’hui ? Résumez brièvement ses objectifs et l’esprit original de la programmation orientée objet selon Kay.</p><details><summary>Réponse</summary><p>Alan Kay a conçu la programmation orientée objet pour faciliter la création de systèmes logiciels modulaires, flexibles et évolutifs, inspirés par la biologie et la communication entre objets autonomes. Son objectif principal était de permettre à chaque « objet » d’être responsable de son propre état et de communiquer avec d’autres objets uniquement via des messages, favorisant ainsi l’encapsulation et l’indépendance des composants.</p><p>Pour Kay, la programmation orientée objet devait avant tout encourager l’émergence de systèmes dynamiques, adaptatifs et faciles à modifier, plutôt que de se limiter à la simple hiérarchie de classes et à l’héritage. Il insistait sur l’importance de la communication par messages et sur la capacité à faire évoluer les programmes sans tout réécrire.</p><p>De nos jours, la programmation orientée objet est souvent réduite à l’organisation du code et des données, alors que la vision originale de Kay mettait l’accent sur la modularité, la flexibilité et l’autonomie des objets. Sa conception visait à rendre la programmation plus naturelle, intuitive et proche du fonctionnement des systèmes vivants.</p></details><h3 id=exercice-21--dahl-et-nygaard>Exercice 21 : Dahl et Nygaard
+<a class=anchor href=#exercice-21--dahl-et-nygaard>#</a></h3><p>Ole-Johan Dahl et Kristen Nygaard sont les créateurs du premier langage orienté objet, Simula. Quelles étaient leurs motivations principales lors de la création de ce langage ? Expliquez en quoi leur approche a influencé la programmation moderne.</p><details><summary>Réponse</summary><p>Dahl et Nygaard ont conçu Simula pour faciliter la modélisation et la simulation de systèmes complexes, comme des réseaux, des usines ou des processus sociaux. Leur motivation était de représenter chaque entité du système par un « objet » autonome, regroupant données et comportements, afin de refléter la réalité de manière plus naturelle et modulaire.</p><p>Ils voulaient permettre l’encapsulation, la réutilisation du code grâce à l’héritage, et la création de structures hiérarchiques. Cette approche a posé les bases de la programmation orientée objet moderne, en rendant la conception de logiciels plus flexible, évolutive et adaptée à la complexité des systèmes réels.</p></details><h3 id=exercice-22--james-gosling>Exercice 22 : James Gosling
+<a class=anchor href=#exercice-22--james-gosling>#</a></h3><p>Qui est James Gosling et quel a été son rôle dans la création du langage Java ? Quelles étaient les motivations principales derrière la conception de Java ?</p><details><summary>Réponse</summary><p>James Gosling est un informaticien canadien considéré comme le principal créateur du langage Java, développé chez Sun Microsystems dans les années 1990. Son objectif était de concevoir un langage portable, sécurisé, simple et adapté aux systèmes embarqués et aux réseaux. Java devait permettre d’écrire un programme une seule fois et de l’exécuter partout (« Write Once, Run Anywhere »), grâce à la machine virtuelle Java (JVM).</p></details><h3 id=exercice-23--domaines-industriels>Exercice 23 : domaines industriels
+<a class=anchor href=#exercice-23--domaines-industriels>#</a></h3><p>Citez trois domaines ou secteurs industriels où Java est largement utilisé aujourd’hui. Expliquez brièvement pourquoi Java est apprécié dans ces contextes.</p><details><summary>Réponse</summary><p>Java est largement utilisé dans :</p><ul><li><b>Le développement d’applications d’entreprise</b> (banques, assurances, télécommunications), grâce à sa robustesse, sa sécurité et la richesse de ses bibliothèques.</li><li><b>Le développement d’applications mobiles</b> (notamment Android), car Java est le langage principal pour Android et bénéficie d’un vaste écosystème.</li><li><b>Les systèmes embarqués et l’Internet des objets (IoT)</b>, où la portabilité et la fiabilité de Java sont des atouts majeurs.</li></ul></details><h3 id=exercice-24--backus-naur>Exercice 24 : Backus-Naur
+<a class=anchor href=#exercice-24--backus-naur>#</a></h3><p>Qu’est-ce que la notation de Backus-Naur (BNF) ? À quoi sert-elle en informatique ? Donnez un exemple simple de BNF décrivant la syntaxe d’une expression arithmétique composée de chiffres et de l’opérateur +.</p><details><summary>Réponse</summary><p>La notation de Backus-Naur (BNF) est une méthode formelle pour décrire la syntaxe des langages de programmation et des langages formels. Elle permet de spécifier les règles de formation des expressions valides dans un langage, en utilisant des symboles non terminaux, des symboles terminaux et des règles de production.</p><p>La BNF est largement utilisée pour définir la grammaire des langages de programmation, des protocoles ou des formats de données.</p><p><b>Exemple de BNF pour une expression arithmétique simple :</b></p><pre>
+&lt;expression&gt; ::= &lt;chiffre&gt; | &lt;expression&gt; "+" &lt;chiffre&gt;
+&lt;chiffre&gt; ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
+</pre><p>Cela décrit une expression composée d’un ou plusieurs chiffres séparés par des +.</p></details><h3 id=exercice-25--cycles>Exercice 25 : Cycles
+<a class=anchor href=#exercice-25--cycles>#</a></h3><p>Mon ordinateur roule à une fréquence de 3 GHz. À tous les cycles, il exécute ses opérations.
+Quelle distance est-ce que la vitesse de la lumière traverse pendant un cycle ?</p><details><summary>Réponse</summary><p>À 3 GHz, un cycle d’horloge dure :</p><p>1 / 3 000 000 000 = 0,333... nanoseconde (ns) par cycle.</p><p>La lumière parcourt environ 30 cm (0,3 mètre) en 1 ns. Donc, en 0,333 ns, elle parcourt :</p><p>30 cm × 0,333... ≈ 10 cm.</p><p><b>Réponse :</b> Pendant un cycle d’horloge à 3 GHz, la lumière parcourt environ 10 centimètres dans le vide.</p></details><h3 id=exercice-26--kibioctet>Exercice 26 : kibioctet
+<a class=anchor href=#exercice-26--kibioctet>#</a></h3><p>Quelle est la différence entre un kibioctet et un kilo-octet ?</p><details><summary>Réponse</summary><p>Un kilo-octet (ko) correspond à 1 000 octets (selon le système décimal, préfixe SI), tandis qu’un kibioctet (Kio) correspond à 1 024 octets (selon le système binaire, préfixe IEC). Le préfixe « kilo » (k) est utilisé pour les puissances de 10, alors que « kibi » (Ki) est utilisé pour les puissances de 2. Ainsi, 1 Kio = 1 024 octets, 1 ko = 1 000 octets.</p></details><h3 id=exercice-27--doublons>Exercice 27 : doublons
+<a class=anchor href=#exercice-27--doublons>#</a></h3><p>Écrivez un algorithme qui supprime les doublons d’un tableau d’entiers trié en ordre croissant, en renvoyant la nouvelle taille du tableau.</p><details><summary>Réponse</summary><pre tabindex=0><code>Entrée :
+Tableau d’entiers trié T de taille N
+
+Variables :
+Entier nouvelle_taille = 1
+Entier i = 1
+
+Tant que i &lt; N faire
+    Si T[i] ≠ T[nouvelle_taille - 1] alors
+        T[nouvelle_taille] = T[i]
+        nouvelle_taille = nouvelle_taille + 1
+    Fin si
+    i = i + 1
+Fin tant que
+
+Retourner nouvelle_taille
+</code></pre></details><h3 id=exercice-28--puissance>Exercice 28 : puissance
+<a class=anchor href=#exercice-28--puissance>#</a></h3><p>Écrivez un algorithme qui calcule \( a^n \), où \( a \) est un entier et \( n \) un entier positif.</p><details><summary>Réponse</summary><pre tabindex=0><code>
+Entrée :
+Entier a
+Entier positif ou nul n
+
+Variable :
+Entier résultat = 1
+Entier i = 0
+
+Tant que i &lt; n faire
+    résultat = résultat × a
+    i = i + 1
+Fin tant que
+
+Retourner résultat
+</code></pre></details><h3 id=exercice-29--occurrences-dun-caractère-spécifique>Exercice 29 : occurrences d’un caractère spécifique
+<a class=anchor href=#exercice-29--occurrences-dun-caract%c3%a8re-sp%c3%a9cifique>#</a></h3><p>Écrivez un algorithme qui compte le nombre d’occurrences d’un caractère spécifique dans une chaîne de caractères.</p><details><summary>Réponse</summary><pre tabindex=0><code>Entrée :
+Chaîne de caractères S
+Caractère c
+
+Variable :
+Entier compteur = 0
+Entier i = 0
+
+Tant que i &lt; longueur de S faire
+    Si S[i] = c alors
+        compteur = compteur + 1
+    Fin si
+    i = i + 1
+Fin tant que
+
+Retourner compteur
+</code></pre></details><h3 id=exercice-30--recherche-dune-clé>Exercice 30 : recherche d&rsquo;une clé
+<a class=anchor href=#exercice-30--recherche-dune-cl%c3%a9>#</a></h3><p>Quelle est la complexité algorithme de la recherche d&rsquo;un clé dans une table de hachage ?</p><details><summary>Réponse</summary><p>Un temps moyen de \( O(1) \).</p></details><h3 id=exercice-31--définition-du-système-dexploitation>Exercice 31 : Définition du système d&rsquo;exploitation
+<a class=anchor href=#exercice-31--d%c3%a9finition-du-syst%c3%a8me-dexploitation>#</a></h3><p>Qu&rsquo;est-ce qu&rsquo;un système d&rsquo;exploitation ? Décrivez brièvement ses rôles principaux.</p><details><summary>Réponse</summary><p>Un système d&rsquo;exploitation est un logiciel qui agit comme interface entre l&rsquo;utilisateur, les applications et le matériel. Ses rôles incluent la gestion des ressources, l&rsquo;interface utilisateur, l&rsquo;exécution des programmes, la sécurité et la gestion des erreurs.</p></details><h3 id=exercice-32--gestion-des-ressources-par-le-système-dexploitation>Exercice 32 : Gestion des ressources par le système d&rsquo;exploitation
+<a class=anchor href=#exercice-32--gestion-des-ressources-par-le-syst%c3%a8me-dexploitation>#</a></h3><p>Vrai ou Faux : Le système d&rsquo;exploitation gère uniquement l&rsquo;interface utilisateur et ne contrôle pas les ressources matérielles.</p><details><summary>Réponse</summary><p>Faux : Le système d&rsquo;exploitation gère aussi les ressources matérielles.</p></details><h3 id=exercice-33--exemples-de-systèmes-dexploitation>Exercice 33 : Exemples de systèmes d&rsquo;exploitation
+<a class=anchor href=#exercice-33--exemples-de-syst%c3%a8mes-dexploitation>#</a></h3><p>Nommez trois exemples de systèmes d&rsquo;exploitation et décrivez brièvement leurs utilisations principales.</p><details><summary>Réponse</summary><p>Windows (ordinateurs personnels), macOS (Mac), Linux (serveurs et personnalisation), Android/iOS (mobiles).</p></details><h3 id=exercice-34--rôle-du-noyau>Exercice 34 : Rôle du noyau
+<a class=anchor href=#exercice-34--r%c3%b4le-du-noyau>#</a></h3><p>Quel est le rôle du noyau dans un système d&rsquo;exploitation ?</p><details><summary>Réponse</summary><p>Le noyau gère directement le matériel et les ressources de base.</p></details><h3 id=exercice-35--multitâche-et-multithreading>Exercice 35 : Multitâche et multithreading
+<a class=anchor href=#exercice-35--multit%c3%a2che-et-multithreading>#</a></h3><p>Expliquez comment le système d&rsquo;exploitation permet le multitâche et le multithreading.</p><details><summary>Réponse</summary><p>Le multitâche permet l&rsquo;exécution simultanée de plusieurs programmes via l&rsquo;ordonnancement. Le multithreading gère les threads légers au sein d&rsquo;un processus pour la concurrence.</p></details><h3 id=exercice-36--fonction-du-processeur>Exercice 36 : Fonction du processeur
+<a class=anchor href=#exercice-36--fonction-du-processeur>#</a></h3><p>Que fait le processeur (CPU) dans un ordinateur ?</p><details><summary>Réponse</summary><p>Le CPU exécute les instructions des programmes, effectuant calculs et transferts.</p></details><h3 id=exercice-37--processeur-multi-cœurs>Exercice 37 : Processeur multi-cœurs
+<a class=anchor href=#exercice-37--processeur-multi-c%c5%93urs>#</a></h3><p>Qu&rsquo;est-ce qu&rsquo;un processeur multi-cœurs ? Donnez un exemple d&rsquo;avantage.</p><details><summary>Réponse</summary><p>Un processeur avec plusieurs cœurs indépendants, permettant le traitement parallèle (ex. : multitâche plus efficace).</p></details><h3 id=exercice-38--différence-entre-processus-et-thread>Exercice 38 : Différence entre processus et thread
+<a class=anchor href=#exercice-38--diff%c3%a9rence-entre-processus-et-thread>#</a></h3><p>Quelle est la différence entre un processus et un thread ?</p><details><summary>Réponse</summary><p>Un processus est une instance isolée d&rsquo;un programme ; un thread est une unité d&rsquo;exécution légère partageant la mémoire du processus.</p></details><h3 id=exercice-39--ordonnancement-des-processus>Exercice 39 : Ordonnancement des processus
+<a class=anchor href=#exercice-39--ordonnancement-des-processus>#</a></h3><p>Comment le système d&rsquo;exploitation gère-t-il l&rsquo;ordonnancement des processus ?</p><details><summary>Réponse</summary><p>Via l&rsquo;ordonnancement, en alternant entre processus pour maximiser l&rsquo;utilisation du CPU.</p></details><h3 id=exercice-40--partage-de-mémoire-des-threads>Exercice 40 : Partage de mémoire des threads
+<a class=anchor href=#exercice-40--partage-de-m%c3%a9moire-des-threads>#</a></h3><p>Vrai ou Faux : Les threads partagent la même mémoire au sein d&rsquo;un processus.</p><details><summary>Réponse</summary><p>Vrai.</p></details><h3 id=exercice-41--hiérarchie-de-la-mémoire>Exercice 41 : Hiérarchie de la mémoire
+<a class=anchor href=#exercice-41--hi%c3%a9rarchie-de-la-m%c3%a9moire>#</a></h3><p>Expliquez la hiérarchie de la mémoire et pourquoi elle existe.</p><details><summary>Réponse</summary><p>Hiérarchie : RAM, cache, etc., pour équilibrer vitesse et coût.</p></details><h3 id=exercice-42--différence-ram-et-cache>Exercice 42 : Différence RAM et cache
+<a class=anchor href=#exercice-42--diff%c3%a9rence-ram-et-cache>#</a></h3><p>Quelle est la différence entre RAM et mémoire cache en termes de vitesse et de volatilité ?</p><details><summary>Réponse</summary><p>RAM : rapide mais volatile ; cache : très rapide, non volatile pour les données fréquentes.</p></details><h3 id=exercice-43--dram-vs-sram>Exercice 43 : DRAM vs SRAM
+<a class=anchor href=#exercice-43--dram-vs-sram>#</a></h3><p>Comparez brièvement la DRAM et la SRAM.</p><details><summary>Réponse</summary><p>DRAM : recharge périodique, bon compromis ; SRAM : accès rapide, coûteuse.</p></details><h3 id=exercice-44--faute-de-page-en-mémoire-virtuelle>Exercice 44 : Faute de page en mémoire virtuelle
+<a class=anchor href=#exercice-44--faute-de-page-en-m%c3%a9moire-virtuelle>#</a></h3><p>Que se passe-t-il lors d&rsquo;une faute de page en mémoire virtuelle ?</p><details><summary>Réponse</summary><p>Une faute de page charge la page depuis le disque en RAM.</p></details><h3 id=exercice-45--localité-temporelle-et-spatiale>Exercice 45 : Localité temporelle et spatiale
+<a class=anchor href=#exercice-45--localit%c3%a9-temporelle-et-spatiale>#</a></h3><p>Qu&rsquo;est-ce que la localité temporelle et spatiale, et comment le cache l&rsquo;exploite-t-il ?</p><details><summary>Réponse</summary><p>Localité temporelle : réutilisation des mêmes données ; spatiale : données proches. Le cache stocke les données récentes/proches pour accélérer.</p></details><h3 id=exercice-46--définition-des-es>Exercice 46 : Définition des E/S
+<a class=anchor href=#exercice-46--d%c3%a9finition-des-es>#</a></h3><p>Qu&rsquo;est-ce que les entrées/sorties (E/S) dans un ordinateur ?</p><details><summary>Réponse</summary><p>Interactions avec le monde extérieur via périphériques.</p></details><h3 id=exercice-47--méthodes-de-communication-es>Exercice 47 : Méthodes de communication E/S
+<a class=anchor href=#exercice-47--m%c3%a9thodes-de-communication-es>#</a></h3><p>Expliquez les deux méthodes principales de communication entre le CPU et les périphériques.</p><details><summary>Réponse</summary><p>Interruptions (alerte CPU) et DMA (transfert direct vers RAM).</p></details><h3 id=exercice-48--dma>Exercice 48 : DMA
+<a class=anchor href=#exercice-48--dma>#</a></h3><p>Que signifie DMA et pourquoi est-il utile ?</p><details><summary>Réponse</summary><p>Direct Memory Access : transfert sans monopoliser le CPU, utile pour la performance.</p></details><h3 id=exercice-49--classification-des-périphériques>Exercice 49 : Classification des périphériques
+<a class=anchor href=#exercice-49--classification-des-p%c3%a9riph%c3%a9riques>#</a></h3><p>Classez les exemples suivants en périphériques d&rsquo;entrée, de sortie ou de stockage/réseau :</p><ul><li>Clavier</li><li>Écran</li><li>Disque dur</li><li>Microphone</li><li>Réseau Wi-Fi</li></ul><details><summary>Réponse</summary><p>Entrée : Clavier, Microphone ; Sortie : Écran ; Stockage/Réseau : Disque dur, Réseau Wi-Fi.</p></details><h3 id=exercice-50--utilité-des-tampons-en-es>Exercice 50 : Utilité des tampons en E/S
+<a class=anchor href=#exercice-50--utilit%c3%a9-des-tampons-en-es>#</a></h3><p>Pourquoi utilise-t-on des tampons (buffers) dans les E/S ?</p><details><summary>Réponse</summary><p>Pour lisser les échanges lents et éviter les blocages du CPU.</p></details><h3 id=vidéos-suggérées>Vidéos suggérées
+<a class=anchor href=#vid%c3%a9os-sugg%c3%a9r%c3%a9es>#</a></h3><p>Des vidéos sur l’algorithmique et le pseudocode sont disponibles, comme <a href="https://www.youtube.com/playlist?list=PLdi5YpL19uBDkRVGWMeZ0ZhtUQKOW-hUZ">celles de Loïc & Julien</a>.</p></article><footer class=book-footer><div class="flex flex-wrap justify-between"></div><div class="flex flex-wrap justify-between"><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/syntaxe/ class="flex align-center float-left book-icon"><img src=https://lemire.github.io/inf1220-nexam/svg/backward.svg alt=Previous title="Présentation du pseudocode">
+<span>Présentation du pseudocode</span>
+</a><a href=https://lemire.github.io/inf1220-nexam/docs/modules/module1/travail-note-1/ class="flex align-center float-right book-icon"><span>Travail noté 1</span>
+<img src=https://lemire.github.io/inf1220-nexam/svg/forward.svg alt=Next title="Travail noté 1"></a></div><script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){if(window.getSelection().toString())return;e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script></footer><div class=book-comments></div><label for=menu-control class="hidden book-menu-overlay"></label></div><aside class=book-toc><div class=book-toc-content><nav id=TableOfContents><ul><li><a href=#réponses-uniques->Réponses uniques ?</a><ul><li><a href=#logiciels>Logiciels</a></li><li><a href=#exercice-1--la-somme-dun-tableau>Exercice 1 : La somme d’un tableau</a></li><li><a href=#exercice-2--la-recherche-dun-entier>Exercice 2 : La recherche d’un entier</a></li><li><a href=#exercice-3--somme-des-multiples-de-3-ou-5>Exercice 3 : Somme des multiples de 3 ou 5</a></li><li><a href=#exercice-4--plus-grand-diviseur-premier>Exercice 4 : Plus grand diviseur premier</a></li><li><a href=#exercice-5--chiffre-des-dizaines>Exercice 5 : Chiffre des dizaines</a></li><li><a href=#exercice-6--erreur-dans-un-pseudocode>Exercice 6 : Erreur dans un pseudocode</a></li><li><a href=#exercice-7--racines-dun-polynôme-du-second-degré>Exercice 7 : Racines d’un polynôme du second degré</a></li><li><a href=#exercice-8--exécution-de-lalgorithme-des-racines>Exercice 8 : Exécution de l’algorithme des racines</a></li><li><a href=#exercice-9--conversion-de-base>Exercice 9 : Conversion de base</a></li><li><a href=#exercice-10--tester-la-parité-en-base-2>Exercice 10 : Tester la parité en base 2</a></li><li><a href=#exercice-11--calcul-de-la-factorielle>Exercice 11 : Calcul de la factorielle</a></li><li><a href=#exercice-12--inverser-un-tableau>Exercice 12 : Inverser un tableau</a></li><li><a href=#exercice-13--compter-les-voyelles>Exercice 13 : Compter les voyelles</a></li><li><a href=#exercice-14--tester-si-un-entier-est-un-palindrome>Exercice 14 : Tester si un entier est un palindrome</a></li><li><a href=#exercice-15--minimum-et-maximum-dun-tableau>Exercice 15 : Minimum et maximum d’un tableau</a></li><li><a href=#exercice-16--recherche-dans-un-tableau>Exercice 16 : Recherche dans un tableau</a></li><li><a href=#exercice-17--recherche-binaire>Exercice 17 : Recherche binaire</a></li><li><a href=#exercice-18--algorithme-quadratique>Exercice 18 : Algorithme quadratique</a></li><li><a href=#exercice-19--algorithme-de-tri-efficace>Exercice 19 : Algorithme de tri efficace</a></li><li><a href=#exercice-20--alan-kay>Exercice 20 : Alan Kay</a></li><li><a href=#exercice-21--dahl-et-nygaard>Exercice 21 : Dahl et Nygaard</a></li><li><a href=#exercice-22--james-gosling>Exercice 22 : James Gosling</a></li><li><a href=#exercice-23--domaines-industriels>Exercice 23 : domaines industriels</a></li><li><a href=#exercice-24--backus-naur>Exercice 24 : Backus-Naur</a></li><li><a href=#exercice-25--cycles>Exercice 25 : Cycles</a></li><li><a href=#exercice-26--kibioctet>Exercice 26 : kibioctet</a></li><li><a href=#exercice-27--doublons>Exercice 27 : doublons</a></li><li><a href=#exercice-28--puissance>Exercice 28 : puissance</a></li><li><a href=#exercice-29--occurrences-dun-caractère-spécifique>Exercice 29 : occurrences d’un caractère spécifique</a></li><li><a href=#exercice-30--recherche-dune-clé>Exercice 30 : recherche d&rsquo;une clé</a></li><li><a href=#exercice-31--définition-du-système-dexploitation>Exercice 31 : Définition du système d&rsquo;exploitation</a></li><li><a href=#exercice-32--gestion-des-ressources-par-le-système-dexploitation>Exercice 32 : Gestion des ressources par le système d&rsquo;exploitation</a></li><li><a href=#exercice-33--exemples-de-systèmes-dexploitation>Exercice 33 : Exemples de systèmes d&rsquo;exploitation</a></li><li><a href=#exercice-34--rôle-du-noyau>Exercice 34 : Rôle du noyau</a></li><li><a href=#exercice-35--multitâche-et-multithreading>Exercice 35 : Multitâche et multithreading</a></li><li><a href=#exercice-36--fonction-du-processeur>Exercice 36 : Fonction du processeur</a></li><li><a href=#exercice-37--processeur-multi-cœurs>Exercice 37 : Processeur multi-cœurs</a></li><li><a href=#exercice-38--différence-entre-processus-et-thread>Exercice 38 : Différence entre processus et thread</a></li><li><a href=#exercice-39--ordonnancement-des-processus>Exercice 39 : Ordonnancement des processus</a></li><li><a href=#exercice-40--partage-de-mémoire-des-threads>Exercice 40 : Partage de mémoire des threads</a></li><li><a href=#exercice-41--hiérarchie-de-la-mémoire>Exercice 41 : Hiérarchie de la mémoire</a></li><li><a href=#exercice-42--différence-ram-et-cache>Exercice 42 : Différence RAM et cache</a></li><li><a href=#exercice-43--dram-vs-sram>Exercice 43 : DRAM vs SRAM</a></li><li><a href=#exercice-44--faute-de-page-en-mémoire-virtuelle>Exercice 44 : Faute de page en mémoire virtuelle</a></li><li><a href=#exercice-45--localité-temporelle-et-spatiale>Exercice 45 : Localité temporelle et spatiale</a></li><li><a href=#exercice-46--définition-des-es>Exercice 46 : Définition des E/S</a></li><li><a href=#exercice-47--méthodes-de-communication-es>Exercice 47 : Méthodes de communication E/S</a></li><li><a href=#exercice-48--dma>Exercice 48 : DMA</a></li><li><a href=#exercice-49--classification-des-périphériques>Exercice 49 : Classification des périphériques</a></li><li><a href=#exercice-50--utilité-des-tampons-en-es>Exercice 50 : Utilité des tampons en E/S</a></li><li><a href=#vidéos-suggérées>Vidéos suggérées</a></li></ul></li></ul></nav></div></aside></main><script>(function(){"use strict";var n,s,o,i,a,r,c,l,d,u,h,m,f,p,g,j,e=document,t=e.querySelector("article.book-article")||e.querySelector(".book-page");t&&(t.id||(t.id="main-content"),t.setAttribute("tabindex","-1"),o=e.createElement("a"),o.className="a11y-skip-link",o.href="#"+t.id,o.textContent="Aller au contenu principal",o.addEventListener("click",function(e){e.preventDefault(),t.focus(),t.scrollIntoView(),history.replaceState&&history.replaceState(null,"","#"+t.id)}),e.body.insertBefore(o,e.body.firstChild));function v(t,n,s){var o=e.querySelector(t);return o?(o.getAttribute("aria-label")||o.setAttribute("aria-label",n),s&&!o.getAttribute("role")&&o.setAttribute("role",s),o):null}g=v(".book-menu","Navigation du cours"),g&&(f=g.querySelector("nav"),f&&f.setAttribute("aria-label","Navigation du cours")),h=v(".book-toc","Sommaire de la page"),h&&(u=h.querySelector("nav"),u&&u.setAttribute("aria-label","Sommaire de la page")),c=e.querySelector(".book-header aside"),c&&(c.setAttribute("aria-label","Sommaire de la page (menu mobile)"),d=c.querySelector("nav"),d&&d.setAttribute("aria-label","Sommaire de la page (menu mobile)")),[{id:"menu-control",text:"Afficher la navigation du cours"},{id:"toc-control",text:"Afficher le sommaire de la page"}].forEach(function(t){var s,n=e.getElementById(t.id);if(!n)return;n.setAttribute("aria-label",t.text),s=function(){n.setAttribute("aria-expanded",n.checked?"true":"false")},n.addEventListener("change",s),s()}),l=e.getElementById("book-search-input"),s=e.getElementById("book-search-results"),l&&s&&window.MutationObserver&&(s.setAttribute("aria-label","Résultats de la recherche"),n=e.createElement("div"),n.className="a11y-sr-only",n.setAttribute("role","status"),n.setAttribute("aria-live","polite"),s.parentNode.insertBefore(n,s.nextSibling),m=-1,new MutationObserver(function(){var e=s.querySelectorAll("li").length;if(e===m)return;m=e,l.value?e===0?n.textContent="Aucun résultat.":n.textContent=e===1?"1 résultat.":e+" résultats.":n.textContent=""}).observe(s,{childList:!0})),r=e.querySelector(".book-article"),r&&window.MutationObserver&&(p=function(){for(var n,t=r.querySelectorAll("button"),e=0;e<t.length;e++)n=getComputedStyle(t[e]).cursor==="not-allowed",String(t[e].getAttribute("aria-disabled")==="true")!==String(n)&&t[e].setAttribute("aria-disabled",n?"true":"false")},p(),a=!1,new MutationObserver(function(){if(a)return;a=!0,requestAnimationFrame(function(){a=!1,p()})}).observe(r,{subtree:!0,attributes:!0,attributeFilter:["style","class"]})),i=e.querySelectorAll(".book-article table, .book-article .mermaid, .book-article pre");function b(){for(var e,n,t=0;t<i.length;t++)e=i[t],n=e.scrollWidth>e.clientWidth+1,n&&e.getAttribute("data-a11y-scroll")!=="on"?(e.setAttribute("tabindex","0"),e.setAttribute("data-a11y-scroll","on")):!n&&e.getAttribute("data-a11y-scroll")==="on"&&(e.removeAttribute("tabindex"),e.removeAttribute("data-a11y-scroll"))}i.length&&(b(),window.addEventListener("resize",function(){clearTimeout(j),j=setTimeout(b,150)}))})()</script></body></html>

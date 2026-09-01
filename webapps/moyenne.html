@@ -1,0 +1,155 @@
+<div style="background: white; padding: 24px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); max-width: 800px; width: 100%;">
+        <h2 style="font-size: 24px; margin-bottom: 16px; color: #1f2937;">Calcul de la moyenne</h2>
+        <p style="font-size: 16px; margin-bottom: 16px; color: #4b5563;">Entrez un tableau de nombres rationnels séparés par des virgules et exécutez le pseudocode pour calculer la moyenne.</p>
+        <div style="margin-bottom: 16px;">
+            <label for="moyenneArrayInput" style="display:block; margin-bottom:4px; font-size:16px; color:#374151;">Nombres séparés par des virgules</label>
+            <input id="moyenneArrayInput" type="text" value="10.4, 12.6, 18.7, 5.0" style="padding: 8px; font-size: 16px; border: 1px solid #e5e7eb; border-radius: 4px; width: calc(100% - 18px);">
+        </div>
+        <div style="display: flex; gap: 16px;">
+            <div style="flex: 1; background-color: #f9fafb; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px;">
+                <p style="font-size: 16px; color: #374151; margin-bottom: 8px;">Pseudocode</p>
+                <pre id="moyennePseudocode" style="font-size: 14px; color: #374151; text-align: left; background: #fff; padding: 8px; border-radius: 4px;">
+Tableau de quatre nombres rationnels : notes
+Variables :
+  Nombre entier : iterateur = 0
+  Nombre rationnel : moyenne = 0
+Sorties :
+  Nombre rationnel : moyenne
+TANT QUE iterateur < la longueur de notes FAIRE
+    moyenne = moyenne + notes[iterateur]
+    iterateur = iterateur + 1
+FIN TANT QUE
+moyenne = moyenne / la longueur de notes
+                </pre>
+            </div>
+            <div style="flex: 1;">
+                <p style="font-size: 16px; color: #374151; margin-bottom: 8px;">État</p>
+                <div style="background-color: #f9fafb; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px; margin-bottom: 16px;">
+                    <p style="font-size: 14px; color: #374151;">Tableau : <span id="moyenneArray">[]</span></p>
+                    <p style="font-size: 14px; color: #374151;">Itérateur : <span id="moyenneIterator">0</span></p>
+                    <p style="font-size: 14px; color: #374151;">Moyenne : <span id="moyenneAverage">0</span></p>
+                </div>
+                <div id="moyenneLog" style="font-size: 14px; color: #374151; max-height: 150px; overflow-y: auto; background-color: #f9fafb; padding: 16px; border: 1px solid #e5e7eb; border-radius: 8px;"></div>
+            </div>
+        </div>
+        <div style="margin-top: 16px;">
+            <button id="moyenneStepButton" style="background: #2471a3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Prochaine étape</button>
+            <button id="moyenneResetButton" style="background: #2471a3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;">Réinitialiser</button>
+        </div>
+    </div>
+    <script>
+        let moyenneNotes = [10.4, 12.6, 18.7, 5.0];
+        let moyenneIterator = 0;
+        let moyenneAverage = 0;
+        let moyenneStep = 0;
+        let moyenneIsRunning = false;
+
+        const moyennePseudocodeLines = [
+            "Tableau de quatre nombres rationnels : notes",
+            "Variables :",
+            "  Nombre entier : iterateur = 0",
+            "  Nombre rationnel : moyenne = 0",
+            "Sorties :",
+            "  Nombre rationnel : moyenne",
+            "TANT QUE iterateur < la longueur de notes FAIRE",
+            "    moyenne = moyenne + notes[iterateur]",
+            "    iterateur = iterateur + 1",
+            "FIN TANT QUE",
+            "moyenne = moyenne / la longueur de notes"
+        ];
+
+        function moyenneUpdateDisplay() {
+            document.getElementById('moyenneArray').textContent = `[${moyenneNotes.join(', ')}]`;
+            document.getElementById('moyenneIterator').textContent = moyenneIterator;
+            document.getElementById('moyenneAverage').textContent = moyenneAverage.toFixed(2);
+            const pseudocode = document.getElementById('moyennePseudocode');
+            pseudocode.innerHTML = moyennePseudocodeLines.map((line, index) => 
+                `<span style="display: block; ${index === moyenneStep ? 'background: #e6f4ea; color: #146c31;' : ''}">${line}</span>`
+            ).join('');
+            document.getElementById('moyenneStepButton').style.cssText = moyenneIsRunning || moyenneStep >= moyennePseudocodeLines.length ?
+                'background: #95a5a6; color: #1c2626; border: none; padding: 10px 20px; border-radius: 5px; cursor: not-allowed; font-size: 16px;' :
+                'background: #2471a3; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer; font-size: 16px;';
+        }
+
+        function moyenneLog(message) {
+            const logDiv = document.getElementById('moyenneLog');
+            const messageDiv = document.createElement('div');
+            messageDiv.textContent = message;
+            messageDiv.style.cssText = 'opacity: 0; transition: opacity 0.5s ease;';
+            logDiv.appendChild(messageDiv);
+            setTimeout(() => { messageDiv.style.opacity = '1'; }, 10);
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+
+        function moyenneValidateInput(input) {
+            const values = input.split(',').map(v => v.trim());
+            return values.every(v => !isNaN(v) && v !== '' && Number.isFinite(Number(v)));
+        }
+
+        function moyenneUpdateArray() {
+            const input = document.getElementById('moyenneArrayInput').value;
+            if (!moyenneValidateInput(input)) {
+                alert('Veuillez entrer des nombres rationnels valides séparés par des virgules.');
+                document.getElementById('moyenneArrayInput').value = moyenneNotes.join(', ');
+                return false;
+            }
+            moyenneNotes = input.split(',').map(v => Number(v.trim()));
+            moyenneReset();
+            return true;
+        }
+
+        async function moyenneRunStep() {
+            if (moyenneIsRunning || moyenneStep >= moyennePseudocodeLines.length) return;
+            moyenneIsRunning = true;
+            document.getElementById('moyenneStepButton').style.cssText = 'background: #95a5a6; color: #1c2626; border: none; padding: 10px 20px; border-radius: 5px; cursor: not-allowed; font-size: 16px;';
+
+            if (moyenneStep === 2) {
+                moyenneIterator = 0;
+                moyenneLog('Initialisation : itérateur = 0');
+            } else if (moyenneStep === 3) {
+                moyenneAverage = 0;
+                moyenneLog('Initialisation : moyenne = 0');
+            } else if (moyenneStep === 6) {
+                if (moyenneIterator < moyenneNotes.length) {
+                    moyenneLog(`Vérification : itérateur (${moyenneIterator}) < longueur de notes (${moyenneNotes.length})`);
+                } else {
+                    moyenneLog(`Vérification : itérateur (${moyenneIterator}) >= longueur de notes (${moyenneNotes.length}), sortie de la boucle`);
+                    moyenneStep = 9; // Passe à FIN TANT QUE
+                }
+            } else if (moyenneStep === 7) {
+                const oldAverage = moyenneAverage;
+                moyenneAverage += moyenneNotes[moyenneIterator];
+                moyenneLog(`Moyenne = ${oldAverage.toFixed(2)} + notes[${moyenneIterator}] = ${moyenneAverage.toFixed(2)}`);
+            } else if (moyenneStep === 8) {
+                moyenneIterator++;
+                moyenneLog(`Itérateur = ${moyenneIterator - 1} + 1 = ${moyenneIterator}`);
+                moyenneStep = 5; // Retour à TANT QUE
+            } else if (moyenneStep === 10) {
+                const oldAverage = moyenneAverage;
+                moyenneAverage /= moyenneNotes.length;
+                moyenneLog(`Moyenne = ${oldAverage.toFixed(2)} / ${moyenneNotes.length} = ${moyenneAverage.toFixed(2)}`);
+            }
+
+            moyenneStep++;
+            moyenneUpdateDisplay();
+            await new Promise(resolve => setTimeout(resolve, 500));
+            moyenneIsRunning = false;
+            moyenneUpdateDisplay();
+        }
+
+        function moyenneReset() {
+            moyenneIterator = 0;
+            moyenneAverage = 0;
+            moyenneStep = 0;
+            document.getElementById('moyenneLog').innerHTML = '';
+            moyenneUpdateDisplay();
+        }
+
+        document.getElementById('moyenneArrayInput').addEventListener('change', moyenneUpdateArray);
+        document.getElementById('moyenneStepButton').addEventListener('click', moyenneRunStep);
+        document.getElementById('moyenneResetButton').addEventListener('click', () => {
+            if (moyenneUpdateArray()) moyenneReset();
+        });
+
+        moyenneUpdateDisplay();
+    </script>
