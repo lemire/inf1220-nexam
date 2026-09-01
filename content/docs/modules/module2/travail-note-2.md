@@ -77,7 +77,7 @@ Par exemple, http://google.com est un URL.
 
 Un hyperlien (souvent appelé simplement « lien » ou « hyperlink » en anglais) est un élément interactif dans une page web, un courriel, un document PDF, une application, etc. En Markdown, un hyperlien peut être créé avec la syntaxe `[sujet](http://...)`.
 
-Incluez donc l'URL en tant [qu'hyperlien](https://lemire.github.io/inf1220-hugo/docs/environnement/?javacode=eyJmaWxlcyI6W3sibmFtZSI6IkJvbmpvdXIuamF2YSIsInR5cGUiOiJqYXZhIiwiY29udGVudCI6InZvaWQgbWFpbigpIHtcbiAgICBTeXN0ZW0ub3V0LnByaW50bG4oXCJCb25qb3VyIGxlIG1vbmRlIVwiKTtcbn0ifV19).
+Incluez donc l'URL en tant [qu'hyperlien](https://lemire.github.io/inf1220-nexam/docs/environnement/?javacode=eyJmaWxlcyI6W3sibmFtZSI6IkJvbmpvdXIuamF2YSIsInR5cGUiOiJqYXZhIiwiY29udGVudCI6InZvaWQgbWFpbigpIHtcbiAgICBTeXN0ZW0ub3V0LnByaW50bG4oXCJCb25qb3VyIGxlIG1vbmRlIVwiKTtcbn0ifV19).
 
 {{% /hint %}}
 
