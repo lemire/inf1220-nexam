@@ -127,7 +127,7 @@ Si vous n'avez pas les aptitudes requises, le cours peut vous paraître inaccess
     bases solides en étudiant les principes de base comme la notion d'algorithme. Notre objectif premier est de vous
     préparer à des cours plus avancés en informatique. Il ne s'agit donc pas d'un cours grand public. Nous y utilisons
     une terminologie propre à l'informatique. Nous n'évitons pas les mathématiques. Le contenu du cours, la charge de
-    travail, l'ampleur de travaux et la composition de l'examen sont comparables à ce que vous trouvez au sein de cours
+    travail et la composition des examens sont comparables à ce que vous trouvez au sein de cours
     d'introduction à la programmation dans les universités québécoises. Il s'agit tout de même d'un cours
     d'introduction: si vous avez pris des cours de programmation auparavant, ou que vous avez une longue expérience avec la
     programmation informatique, ce cours n'est sans doute pas pour vous.</p>

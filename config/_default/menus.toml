@@ -56,12 +56,6 @@
   parent = "module1"
   weight = 13
 [[book]]
-  name = "Travail noté 1"
-  url = "/modules/module1/travail-note-1/"
-  parent = "module1"
-  weight = 14
-
-[[book]]
   name = "Module 2"
   identifier = "module2"
   weight = 20
@@ -96,12 +90,6 @@
   parent = "module2"
   weight = 26
 [[book]]
-  name = "Travail noté 2"
-  url = "/modules/module2/travail-note-2/"
-  parent = "module2"
-  weight = 27
-
-[[book]]
   name = "Module 3"
   identifier = "module3"
   weight = 30
@@ -125,11 +113,6 @@
   url = "/modules/module3/exercices-3-1/"
   parent = "module3"
   weight = 34
-[[book]]
-  name = "Travail noté 3"
-  url = "/modules/module3/travail-note-3/"
-  parent = "module3"
-  weight = 35
 [[book]]
   name = "Activité 3.4"
   url = "/modules/module3/activite-3-4/"
@@ -161,12 +144,6 @@
   parent = "module4"
   weight = 43
 [[book]]
-  name = "Travail noté 4"
-  url = "/modules/module4/travail-note-4/"
-  parent = "module4"
-  weight = 44
-
-[[book]]
   name = "Module 5"
   identifier = "module5"
   weight = 50
@@ -186,12 +163,6 @@
   parent = "module5"
   weight = 53
 [[book]]
-  name = "Travail noté 5"
-  url = "/modules/module5/travail-note-5/"
-  parent = "module5"
-  weight = 54
-
-[[book]]
-  name = "Examen"
+  name = "Examens"
   url = "/modules/examen/"
   weight = 60

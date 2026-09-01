@@ -42,7 +42,7 @@ De plus, la plupart des langages de programmation modernes sont ou incluent des 
 - héritage simple et multiple,
 - polymorphisme.
 
-Le cours est divisé en 5 modules avec un ensemble d'activités introduisant les éléments de programmation. Des exercices pratiques et des travaux notés viennent évaluer vos connaissances, pour enfin terminer le cours avec un examen final. Chaque module se termine par un travail noté.
+Le cours est divisé en 5 modules avec un ensemble d'activités introduisant les éléments de programmation. De nombreux exercices pratiques et des activités d'autoévaluation vous permettent de vérifier vos connaissances. L'évaluation repose sur deux examens en ligne télésurveillés : un premier examen à la septième semaine, portant sur les modules 1 et 2 (30 %), puis un examen final portant sur l'ensemble du cours (70 %).
 
 
 Le site du cours vous permet d'exécuter du code Java directement dans votre 
@@ -98,18 +98,14 @@ En appui à ces activités, le livre de Claude Delannoy, *Programmer en Java* es
 ## Intelligence artificielle
 
 
-<p>Dans ce cours, l'utilisation de l'intelligence artificielle (<a href="https://grok.com">Grok</a>, <a href="https://gemini.google.com/app">Gemini</a>, etc.) est permise et même recommandée (mais optionnelle). Cependant, vous devez l'utiliser de manière responsable&nbsp;:</p>
+<p>Pendant le cours, l'utilisation de l'intelligence artificielle (<a href="https://grok.com">Grok</a>, <a href="https://gemini.google.com/app">Gemini</a>, etc.) est permise et même recommandée (mais optionnelle) pour explorer la matière. Cependant, vous devez l'utiliser de manière responsable&nbsp;:</p>
 <ul>
-<li>Décrivez votre utilisation de l'IA.  Une utilisation de l'IA sans déclaration peut être considérée comme une forme de faute. Contrairement à ce que vous pourriez croire, déclarer votre utilisation de l'IA vous protège.</li>
-<li>Expliquez votre démarche. Qu'est-ce que vous avez fait avec l'IA&nbsp;? Nous vous encourageons à inclure des copies des résultats de vos interactions avec l'IA.</li> 
-<li>Assurez-vous de bien expliquer vos résultats, en vos propres mots.</li>
+<li>Servez-vous en pour comprendre, pas pour produire des réponses à votre place. Demandez des explications, des contre-exemples, des variantes d'un problème.</li>
+<li>Après chaque interaction, refaites l'exercice par vous-même, sans aide, jusqu'à ce que vous puissiez le résoudre de mémoire.</li>
+<li>Assurez-vous de pouvoir expliquer vos résultats, en vos propres mots.</li>
 </ul>
 
-<p>Vous devez toujours être capable d'expliquer pleinement vos solutions, sans aide.</p>
-
-
-Si vous utilisez l'intelligence artificielle pour produire des réponses que vous
-ne pourriez pas produire par vous-même, il s'agit d'une utilisation irresponsable.
+<p>L'intelligence artificielle est <strong>interdite pendant les examens</strong>, qui se déroulent sans accès à Internet. Si vous utilisez l'intelligence artificielle pour produire des solutions que vous ne pourriez pas produire par vous-même, il s'agit d'une utilisation irresponsable et vous risquez l'échec du cours.</p>
 
 {{% /hint  %}}
 
@@ -120,22 +116,23 @@ ne pourriez pas produire par vous-même, il s'agit d'une utilisation irresponsab
 {{% hint danger %}}
 
 
-## Entretien de suivi
+## Les examens
 
-Que ce soit dans les travaux notés ou à l'examen, vous devez produire vos propres réponses. Vous devez pleinement
-maîtriser ces réponses. Le cours se termine par un entretien de suivi obligatoire. Au cours de cet entretien, nous allons vérifier que vous êtes capable d'expliquer vos solutions de vive voix, sans aide. Vous **aurez** à résoudre des problèmes de programmation durant l'entretien de suivi, sans aide. Un échec à l'entretien de suivi entraîne un échec au  cours. Il n'y a aucune possibilité  de reprise.
+Le cours est évalué au moyen de **deux examens en ligne télésurveillés** : un premier examen à la
+septième semaine, portant sur les modules 1 et 2 (30 %), puis un examen final portant sur l'ensemble du
+cours (70 %). Chaque examen dure trois heures. Il n'y a aucun travail noté à remettre.
 
-Suite à votre examen, **vous devez** prendre rendez-vous avec la personne qui vous encadre.
-**Vous devez** vous identifier. Et **vous devrez** satisfaire la personne qui vous encadre
-que vos réponses à l'examen sont les vôtres et que vous maîtrisez la matière.
+Pendant les examens, vous n'avez droit à **aucune note** (ni notes personnelles, ni aide-mémoire, ni manuel)
+et vous n'avez **pas accès à Internet**. Vous n'avez pas non plus accès à un compilateur Java ni à un
+environnement de programmation. Vous devez donc écrire votre code de mémoire, sans le compiler ni l'exécuter.
 
+Vous pouvez utiliser l’IA pour explorer la matière pendant le cours. En revanche, pour réussir ce cours, vous
+devez être capable de résoudre de manière autonome, et sans aucune aide, des problèmes semblables à ceux
+proposés dans les exercices et dans les examens factices. Si vous utilisez l'intelligence artificielle pour
+produire des solutions que vous ne pourriez pas produire par vous-même, vous vous préparez mal aux examens.
 
-
-
-Vous pouvez utiliser l’IA dans le cadre des travaux notés. En revanche, pour réussir ce cours, vous devez être capable de résoudre de manière autonome un problème identique ou semblable à ceux proposés lors des travaux notés ou de l’examen. Résoudre un problème signifie essentiellement écrire un programme en Java qui répond aux contraintes posées. Lors de l’entretien de suivi, ce programme devra être produit sans recours à l’IA, en partageant votre écran avec la personne qui vous encadre. 
-
-
-Il est possible que l'on vous demande [d'utiliser la page de l'entretien sur le site]({{< relref "docs/modules/entretien" >}}).
+[Consultez la page des examens]({{< relref "docs/modules/examen" >}}) pour connaître les conditions,
+les conseils de préparation et des exemples d'examens.
 
 {{% /hint  %}}
 
@@ -155,8 +152,8 @@ bien fait tout le tour, commencez avec le premier module.
 
 
 {{% hint info %}}
-_Vous devez bien planifier votre temps._  En plus des travaux
-notés, nous vous inviterons à résoudre une quinzaine de problèmes de programmation et de lire des dizaines de pages par semaine.
+_Vous devez bien planifier votre temps._  Nous vous inviterons à résoudre une quinzaine de problèmes
+de programmation et à lire des dizaines de pages par semaine.
 Le site du cours compte plus de **400 exemples de code Java** dont plus d'une centaine peuvent être exécutés directement en ligne.
 Le site du cours compte aussi plus de **200 problèmes résolus** couvrant toute la matière du cours. Nous offrons aussi
 des **dizaines de laboratoires interactifs en ligne**, directement dans le site web. 

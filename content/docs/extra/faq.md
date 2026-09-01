@@ -55,6 +55,18 @@ Cela lit une ligne de texte entrée par l'utilisateur et la stocke dans la varia
 
 Réponse: Nous nous ferons un plaisir de répondre à vos questions par courriel, mais nous n'offrons pas d'enseignement par vidéoconférence au sein du cours INF 1220. La plupart des universités québécoises ont offert des cours d'informatique en vidéoconférence (zoom, etc.) lors de la grande pandémie de 2020-2021. L'Université Laval offre plusieurs cours selon ce modèle. Ce n'est pas le modèle de l'Université TÉLUQ. La plupart de nos étudiants ne souhaitent pas se présenter à heure fixe pour une session de cours de trois heures en vidéoconférence. Il est indéniable que l'enseignement par vidéoconférence répond bien aux besoins de certains étudiants, mais il est déjà offert ailleurs et nous ne croyons pas qu'il répond aux besoins de nos étudiants.
 
+### Question: Combien y a-t-il d'examens dans ce cours&nbsp;?
+
+Réponse: Il y en a deux. Le premier a lieu à la septième semaine, porte sur les modules 1 et 2 et compte pour 30&nbsp;% de la note. Le second a lieu à la fin du cours, porte sur l'ensemble de la matière et compte pour 70&nbsp;% de la note. Chaque examen dure trois heures. Il n'y a aucun travail noté à remettre et aucun entretien de suivi.
+
+### Question: Puis-je apporter mes notes ou consulter le manuel pendant un examen&nbsp;?
+
+Réponse: Non. Les deux examens sont télésurveillés et vous n'avez droit à aucune note, aucun aide-mémoire, aucune documentation et aucun manuel.
+
+### Question: Ai-je accès à Internet ou à un environnement de programmation pendant un examen&nbsp;?
+
+Réponse: Non. Vous n'avez pas accès à Internet (donc ni au site du cours, ni à l'intelligence artificielle) et vous n'avez pas accès à un compilateur Java ni à un environnement de programmation. Vous devez écrire votre code de mémoire, sans le compiler ni l'exécuter.
+
 ### Question: J'ai remis ma solution sans explication. Ma solution était correcte, mais j'ai quand même obtenu zéro, est-ce normal&nbsp;?
 
 Réponse: Oui, vous devez expliquer vos solutions.
@@ -63,22 +75,13 @@ Réponse: Oui, vous devez expliquer vos solutions.
 
 Réponse: Oui, suivez les consignes fournies par l'Université. Vous devez passer par les moyens sécurisés de l'Université.
 
-### Question: Ma date de fin de cours était hier, et aujourd'hui, je n'arrive pas à déposer mon travail noté. Est-ce que je peux le transmettre par courriel ?
+### Question: Il m'a fallu des heures pour compléter le module X, est-ce normal ?
 
-Réponse: Non. Si la date de fin de cours est passée, il est normal que vous ne puissiez pas déposer votre travail. Vous obtiendrez la note de zéro.
+Réponse: Absolument. Il faut prévoir des dizaines d'heures par module. Prévoyez entre 5 et 15 heures par semaine pendant 15 semaines pour compléter le cours.
 
+### Question: Mon examen final est dans trois mois, mais la date de fin de cours officielle est dans une semaine. Est-ce que cela me donne trois mois supplémentaires ?
 
-### Question: Ma date de fin de cours était hier, et je vais déposer mon travail noté, est-ce que c'est ok ?
-
-Réponse: Non. Si la date de fin de cours est passée, vous obtiendrez la note de zéro.
-
-### Question: Il m'a fallu des heures pour compléter le module X et remettre le travail noté, est-ce normal ?
-
-Réponse: Absolument. Il faut prévoir des dizaines d'heures par module (et donc par travail noté). Prévoyez entre 5 et 15 heures par semaine pendant 15 semaines pour compléter le cours.
-
-### Question: Mon examen est dans trois mois, mais la date de fin de cours officiel est dans une semaine. Est-ce que cela signifie que j'ai trois mois supplémentaires pour remettre mes travaux ?
-
-Réponse: Non. Tout travail remis après votre date de fin de cours peut recevoir la note de zéro.
+Réponse: Non. Le fait que votre examen ait lieu après votre date de fin de cours ne constitue pas une extension de celle-ci.
 
 ### Question: Je n'ai pas reçu de lettre confirmant mon inscription au cours ?
 
@@ -100,16 +103,16 @@ Réponse: Le temps nécessaire dépend de votre préparation individuelle, mais 
 
 Réponse: Non. Si vous devez reporter votre date de fin de cours, vous devez joindre l'Université.
 
-### Question: J'ai du mal avec une question dans un des travaux, est-ce que je peux avoir un indice, une partie de la solution ?
+### Question: J'ai du mal avec un exercice, est-ce que je peux avoir un indice ?
 
-Réponse: Non. Les travaux notés sont des travaux individuels. Assurez-vous de bien compléter les exercices et les lectures avant d'entreprendre les travaux notés.
+Réponse: Nous répondons volontiers à vos questions sur la matière. Par contre, nous ne donnons jamais d'indice au sujet du contenu des examens.
 
-### Question: Je dois passer l'examen le X, mais j'ai un empêchement, est-ce que vous pouvez déplacer l'examen ?
+### Question: Je dois passer un examen le X, mais j'ai un empêchement, est-ce que vous pouvez déplacer l'examen ?
 
 Réponse: Vous devez joindre l'Université.
 
-### Question: Je viens de passer 35 heures sur la question X du travail noté Y, est-ce que vous pouvez me donner un indice ?
+### Question: Je viens de passer 35 heures sur un exercice du module X, est-ce normal ?
 
-Réponse: Non. Ce serait inéquitable. Nous avons un grand volume d'étudiants avec un bon taux de succès (de bonnes notes) : nous savons donc que les travaux notés ne sont pas trop difficiles. Par contre, il arrive souvent que les étudiants ne fassent pas correctement tous les exercices et toutes les lectures préparatoires, croyant à tort qu'ils gagneront du temps en allant directement au travail noté. D'autres étudiants n'ont tout simplement pas la préparation suffisante : la programmation est un langage formel qui est difficile pour ceux qui n'ont pas acquis les bases en mathématiques.
+Réponse: Oui. Nous avons un grand volume d'étudiants avec un bon taux de succès (de bonnes notes) : nous savons donc que les exercices du cours ne sont pas trop difficiles. Par contre, il arrive souvent que les étudiants ne fassent pas correctement toutes les lectures préparatoires, croyant à tort qu'ils gagneront du temps. D'autres étudiants n'ont tout simplement pas la préparation suffisante : la programmation est un langage formel qui est difficile pour ceux qui n'ont pas acquis les bases en mathématiques.
 
 Ceci étant dit, il est parfaitement normal de passer 35 heures sur un des modules. Il faut prévoir un total d'environ 135 heures (en moyenne) pour compléter le cours. Certains étudiants peuvent aller plus rapidement. Si vous partez de plus loin et qu'il vous manque des préalables (par exemple, mathématiques), il faut prévoir un peu plus de temps.

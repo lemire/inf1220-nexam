@@ -34,5 +34,4 @@ Vous apprendrez également à utiliser Maven pour automatiser la compilation et 
 
 ## Planification du temps
 
-Nous vous suggérons de consacrer deux semaines au quatrième module  (environ 18 heures). Assurez-vous de remettre
-le quatrième travail noté à la fin de la 11e semaine.
+Nous vous suggérons de consacrer deux semaines au quatrième module  (environ 18 heures), soit les semaines 11 et 12.

@@ -79,7 +79,11 @@ Ce module a pour objectif de vous donner une compréhension solide des bases de 
 
 ## Planification du temps
 
-Nous vous suggérons de consacrer trois semaines au second module (environ 27 heures).  Vous aurez à lire deux chapitres dans le manuel,
+Nous vous suggérons de consacrer trois semaines au second module (environ 27 heures), soit les semaines 4 à 6.  Vous aurez à lire deux chapitres dans le manuel,
 nous vous suggérons d'en lire un par semaine pendant les deux premières semaines, en plus des lectures du site web.
-Assurez-vous de remettre le second travail noté à la fin de la sixième semaine.
+
+Le **premier examen** a lieu à la septième semaine et porte sur les modules 1 et 2. Il compte pour 30&nbsp;% de la note du cours.
+Assurez-vous d'avoir terminé ce module et de vous être bien préparé avant cette date. Rappelez-vous que l'examen est télésurveillé&nbsp;:
+vous n'aurez droit à aucune note, à aucun accès à Internet et à aucun compilateur.
+[Consultez la page des examens]({{< relref "docs/modules/examen" >}}) pour un examen factice portant sur les modules 1 et 2.
 

@@ -41,7 +41,7 @@ reprises, vous serez frustré par une erreur dans votre code que vous ne compren
 
 ## Version du Java
 
-Le Java est en pleine évolution. Le site du cours requiert Java 26. Nous vous recommendons d'utiliser Java 21 ou mieux. Un petit nombre d'exemples du cours nécessitent Java 26 ou mieux. Par contre, tous les travaux notés et l'examen peuvent être faits avec Java 8.
+Le Java est en pleine évolution. Le site du cours requiert Java 26. Nous vous recommendons d'utiliser Java 21 ou mieux. Un petit nombre d'exemples du cours nécessitent Java 26 ou mieux. Par contre, tous les exercices et les examens peuvent être faits avec Java 8.
 
 
 ## Erreurs et avertissements

@@ -5,66 +5,79 @@ weight: 8
 
 # Évaluation
 
-Ce cours compte 5 travaux notés à remettre au cours des 15 semaines et d'un examen final à réaliser à la fin du cours. 
+Ce cours est évalué au moyen de **deux examens en ligne télésurveillés**. Il n'y a aucun travail noté
+à remettre et aucun entretien de suivi.
 
 
-| Évaluations          | Sujets                                    | semaine de remise 
-|----------------------|-------------------------------------------|-------------------|
-| Travail Noté #1      | Les algorithmes                          | 3                  |
-| Travail Noté #2      | Types, opérateurs et méthodes            | 6                  |
-| Travail Noté #3      | Structures de contrôle, itérations et données | 9             |
-| Travail Noté #4      | Les flux d'entrée et de sortie           | 11                 |
-| Travail Noté #5      | Héritage et polymorphisme               | 14                 |
-| Examen               | L'ensemble du cours                      | 15                 |
-| Entretien de suivi               | L'ensemble du cours                      | 15                 |
+| Évaluation  | Sujets                | Moment           | Durée     | Pondération |
+|-------------|-----------------------|------------------|-----------|-------------|
+| Examen 1    | Modules 1 et 2        | semaine 7        | 3 heures  | 30&nbsp;%   |
+| Examen 2    | L'ensemble du cours   | fin du cours     | 3 heures  | 70&nbsp;%   |
 
+Le premier examen porte uniquement sur la matière des deux premiers modules&nbsp;: les algorithmes et le
+pseudocode (module 1) ainsi que les bases du langage Java, soit les types, les opérateurs, les variables et les
+méthodes (module 2). Le second examen porte sur **l'ensemble du cours**, y compris la matière déjà couverte
+par le premier examen.
 
-La semaine de remise des travaux est une suggestion. Néanmoins, vous devez compléter tous les travaux avant la date de fin de cours.
-Votre date de fin de cours apparaît sur votre portail étudiant&nbsp;: elle est différente pour chaque étudiant.
-Planifiez bien votre temps&nbsp;!
+{{% hint danger %}}
 
-**Vous aurez à faire de la programmation sans aide pendant l'examen de suivi.**
+## Conditions d'examen
 
-Avant de faire les travaux, il faut avoir fait les lectures et les exercices de préparation. Il faut prévoir environ 9 heures
-de travail par semaine.
+Les deux examens sont en ligne et **télésurveillés**. Dans les deux cas&nbsp;:
+
+- vous n'avez droit à **aucune note** (ni notes personnelles, ni aide-mémoire, ni manuel, ni documentation)&nbsp;;
+- vous n'avez **pas accès à Internet** (ni le site du cours, ni un moteur de recherche, ni l'intelligence artificielle)&nbsp;;
+- vous n'avez **pas accès à un compilateur Java ni à un environnement de programmation**.
+
+Vous devez donc écrire votre code Java de mémoire, sans le compiler ni l'exécuter. C'est pour cette raison
+que la pratique régulière est essentielle tout au long du cours.
+
+{{% /hint %}}
+
+## Préparation
+
+Le cours ne comporte pas de travail à remettre&nbsp;: votre note dépend entièrement de votre capacité à
+programmer et à expliquer vos solutions par vous-même, en temps limité. La préparation passe par les lectures,
+les exercices et les activités d'autoévaluation de chaque module. Il faut prévoir environ 9&nbsp;heures de
+travail par semaine.
 
 {{% hint info %}}
-Essayez d'aller directement aux travaux notés est une stratégie perdante pour la plupart des étudiants. Prenez le temps d'étudier la matière&nbsp;!
+Sauter les lectures et les exercices est une stratégie perdante. Comme vous n'aurez ni notes ni Internet
+pendant les examens, la seule préparation qui fonctionne est la pratique répétée&nbsp;: écrivez du code,
+beaucoup de code, et vérifiez-le.
 {{% /hint %}}
 
 {{% hint warning %}}
 Dans tous les cas, vous devez expliquer vos solutions.
 {{% /hint %}}
 
-Les travaux notés sont des travaux individuels. Vous devez les réaliser seul. L'utilisation de l'intelligence artificielle est permise, et même
-encouragée, mais vous devez l'utiliser de manière responsable. Un copier-coller de ChatGPT n'est pas acceptable. Vous pouvez utiliser l'intelligence artificielle comme compagnon afin d'explorer la matière. Par contre, vous devez produire vos propres réponses.
+## Consignes pour les deux examens
 
-## Consignes pour tous les travaux notés
+### Rédaction des réponses
 
-Les consignes suivantes s'appliquent à l'ensemble des travaux notés du cours.
+Vous devez expliquer vos solutions. Il ne suffit pas de produire du code ou des réponses brèves sans
+justification. Vos explications doivent être rédigées clairement, dans un français soigné, et permettre à
+la personne correctrice de suivre votre raisonnement. Une solution correcte mais non expliquée peut recevoir
+la note de zéro.
 
-### Dépôt des travaux
+### Mise en forme du code
 
-Vous devez remettre chaque travail noté au moyen de l'outil officiel de dépôt de la TÉLUQ. Les remises par courriel ne sont pas acceptées. Si vous éprouvez un problème technique avec la plateforme de dépôt, vous devez communiquer avec l'Université. Il est de votre responsabilité de vérifier que le dépôt a bien été effectué avant l'échéance.
+Même écrit à la main, votre code Java doit être lisible&nbsp;: accolades alignées, indentation cohérente,
+noms de variables clairs et commentaires utiles. Un code illisible est difficile à corriger et vous
+désavantage.
 
-### Date limite
+### Intelligence artificielle
 
-Les semaines de remise indiquées plus haut sont des repères utiles pour vous aider à progresser de manière régulière. Toutefois, la vraie contrainte administrative est votre date de fin de cours, qui apparaît dans votre portail étudiant. Tous les travaux notés doivent avoir été remis avant cette date. Les enseignants ne peuvent pas modifier cette date. Si vous vivez une situation exceptionnelle, vous devez vous adresser à l'Université, et non au professeur.
+Pendant le cours, l'utilisation de l'intelligence artificielle est permise et même encouragée pour explorer
+la matière. En revanche, elle est **strictement interdite pendant les examens**, qui se déroulent sans accès
+à Internet. Si vous utilisez l'intelligence artificielle pour produire des solutions que vous ne pourriez pas
+produire par vous-même, vous vous préparez mal aux examens et vous risquez l'échec du cours.
 
-### Format du document
+### Déroulement
 
-Chaque travail noté doit être remis sous la forme d'un unique fichier PDF. Le document doit être lisible, permettre le copier-coller du code et contenir clairement vos réponses. Les documents manuscrits, les captures d'écran et les remises qui rendent la correction difficile ne sont pas acceptables. Si vous incluez du code Java, il doit être intégré proprement dans le PDF.
+Les examens sont gérés par l'Université, et non par la personne qui vous encadre. La date, l'heure, la durée,
+le lieu et la plateforme technologique relèvent de l'Université. Si vous avez une question ou un empêchement
+concernant un examen, vous devez joindre l'Université.
 
-### Présentation des réponses
-
-Vous devez expliquer vos solutions. Il ne suffit pas de remettre du code ou des réponses brèves sans justification. Vos explications doivent être rédigées clairement, dans un français soigné, et permettre à la personne correctrice de suivre votre raisonnement. Avant de remettre un travail, relisez l'ensemble du document attentivement, car une fois le dépôt effectué, vous ne pourrez plus modifier votre remise.
-
-### Travail individuel et usage de l'IA
-
-Les travaux notés sont individuels. Vous devez produire vos propres réponses et ne pas collaborer avec d'autres étudiants. L'intelligence artificielle peut être utilisée comme outil d'accompagnement, mais elle ne doit jamais se substituer à votre propre compréhension. Un simple copier-coller d'une réponse générée automatiquement n'est pas acceptable.
-
-### Préparation attendue
-
-Avant de commencer un travail noté, vous devez avoir fait les lectures et les exercices préparatoires du module correspondant. Les travaux notés ne sont pas conçus pour être votre premier contact avec la matière. Vous devez aussi prévoir assez de temps pour tester votre code, vérifier vos réponses et corriger les erreurs avant la remise.
-
-*Note*. L'entretien de suivi est obligatoire. Il est de votre responsabilité de prendre rendez-vous pour l'entretien de suivi après votre examen.
+Consultez la [page des examens]({{< relref "docs/modules/examen" >}}) pour les détails, les conseils de
+préparation et des exemples d'examens.

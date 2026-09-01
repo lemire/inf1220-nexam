@@ -17,7 +17,7 @@ vous pouvez faire référence à notre rappel sur [les principales notions math�
 
 {{% /hint %}}
 
-Si vous ne faites pas honnêtement les exercices et les lectures dans ce cours, il est possible que vous n’arriviez pas à faire les travaux notés et les examens.
+Si vous ne faites pas honnêtement les exercices et les lectures dans ce cours, il est possible que vous n’arriviez pas à faire les examens.
 
 Prenez note qu’il est permis d’utiliser le robot conversationnel du cours lors des exercices. Cependant, vous devriez vous entraîner à produire vos propres réponses.
 

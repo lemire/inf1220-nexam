@@ -21,7 +21,7 @@ détails additionnels, prenez le temps de le faire, ou expliquez clairement pour
 souhaitable.
 
 L'objet d'un courriel doit en refléter le contenu. Il faut éviter les objets génériques (par ex., «&nbsp;une question&nbsp;»). Il
-faut éviter à tout prix les objets qui ne réflètent pas le contenu (par ex. intitulé un cours «&nbsp;travail 2&nbsp;» alors que
+faut éviter à tout prix les objets qui ne réflètent pas le contenu (par ex. intitulé un courriel «&nbsp;module 2&nbsp;» alors que
 celui-ci porte en fait sur l'examen. Si vous utilisez un objet de courriel vague ou absent, il faut vous attendre à ce
 que votre courriel puisse ne pas être traité correctement.
 

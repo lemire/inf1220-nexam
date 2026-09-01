@@ -98,13 +98,13 @@ Le niveau de difficulté du cours augmente progressivement. Les premiers travaux
 
 Le cours INF 1220 n'est pas un cours facile.
 
-1. Dans certaines disciplines, lire suffit pour préparer les travaux. En programmation, la lecture seule est insuffisante. Un manuel ne vous apprendra pas à programmer. Vous devez lire, faire des exercices, relire, et répéter ce processus. Apprendre à programmer demande du travail et de la persévérance. La présence de nombreux travaux dans le cours vise à vous encourager à travailler régulièrement et à pratiquer.
+1. Dans certaines disciplines, lire suffit pour préparer les travaux. En programmation, la lecture seule est insuffisante. Un manuel ne vous apprendra pas à programmer. Vous devez lire, faire des exercices, relire, et répéter ce processus. Apprendre à programmer demande du travail et de la persévérance. Le grand nombre d'exercices du cours vise à vous encourager à travailler régulièrement et à pratiquer.
 
-2. Prévoyez environ 9 heures de travail par semaine pendant 15 semaines pour réussir ce cours. Chaque travail noté demande plusieurs heures, tout comme la préparation et l'étude préalables. Il est normal de consacrer des dizaines d'heures pour compléter un module et son travail noté. Si vous n'avez pas entre 5 et 15 heures par semaine à consacrer au cours, vous risquez de ne pas réussir.
+2. Prévoyez environ 9 heures de travail par semaine pendant 15 semaines pour réussir ce cours. Chaque module demande plusieurs heures d'exercices, de lectures et d'étude. Il est normal de consacrer des dizaines d'heures pour compléter un module. Si vous n'avez pas entre 5 et 15 heures par semaine à consacrer au cours, vous risquez de ne pas réussir.
 
-3. Le cours inclut des lectures et des activités d'autoévaluation (par exemple, des problèmes avec solutions cachées). Vous devez obligatoirement réaliser ces lectures et activités avant les travaux notés. Des vidéos explicatives sont également disponibles : visionnez-les et revisionnez-les au besoin. Tenter de passer directement aux travaux notés sans préparation est voué à l'échec. Faire uniquement le minimum pour compléter les travaux notés ne suffira pas pour réussir l'examen. Vous devez pratiquer la programmation, apprendre à penser comme un programmeur et maîtriser le Java grâce à une étude rigoureuse.
+3. Le cours inclut des lectures et des activités d'autoévaluation (par exemple, des problèmes avec solutions cachées). Vous devez obligatoirement réaliser ces lectures et activités. Des vidéos explicatives sont également disponibles : visionnez-les et revisionnez-les au besoin. Tenter de passer directement aux examens sans préparation est voué à l'échec. Comme les examens se déroulent sans notes, sans Internet et sans compilateur, faire le minimum ne suffira pas. Vous devez pratiquer la programmation, apprendre à penser comme un programmeur et maîtriser le Java grâce à une étude rigoureuse.
 
-4. Si un travail noté exige d'expliquer votre solution, cette consigne est impérative. Ne pas la respecter peut entraîner une note de zéro.
+4. Si une question d'examen exige d'expliquer votre solution, cette consigne est impérative. Ne pas la respecter peut entraîner une note de zéro.
 
 5. Votre code doit être fonctionnel et valide, sinon une note de zéro peut être attribuée. La réussite de ce cours repose sur votre capacité à programmer.
 
@@ -127,14 +127,14 @@ Le cours INF 1220 n'est pas un cours facile.
 
 ## Réseaux sociaux
 
-<p>Attention: Il est strictement défendu de demander des  indices aux autres étudiants du cours concernant les travaux
-notés et l'examen. Il est aussi défendu de donner des indices concernant les travaux notés.</p>
+<p>Attention: Il est strictement défendu de demander des  indices aux autres étudiants du cours concernant les
+examens. Il est aussi défendu de donner de tels indices ou de diffuser le contenu d'un examen.</p>
 
 
 ## Plagiat
 
 
-<p> Nous mettons bien entendu à jour les travaux notés et les examens.  Dans le cas des travaux notés, vous pouvez toujours remettre la version que vous avez débutée sans pénalité dans le cas où les travaux sont mis à jour pendant votre travail. Par contre, soyez avisé que nous portons une attention particulière au plagiat. Si votre travail ressemble trop à un autre travail remis, nous pourrons alors procéder à un examen oral, pour vérifier si vous avez effectivement fait le travail par vous-même. Dans le cas des examens, nous tentons de les offrir en présence avec surveillance. Quand ce n'est pas possible, nous varions autant que possible le contenu des examens et nous utilisons d'autres mesures à notre disposition pour contrer le plagiat.</p>
+<p> Nous mettons bien entendu à jour le contenu des examens. Soyez avisé que nous portons une attention particulière au plagiat. Les deux examens du cours sont télésurveillés : vous n'y avez droit à aucune note, vous n'avez pas accès à Internet et vous n'avez pas accès à un compilateur Java. Nous varions par ailleurs autant que possible le contenu des examens et nous utilisons d'autres mesures à notre disposition pour contrer le plagiat.</p>
 
 <p>Le plagiat peut avoir des conséquences sévères. Une note permanente peut être ajoutée à votre dossier et à votre relevé de notes. Le plagiat peut mener à votre exclusion du programme universitaire où vous avez été admis.</p>
 

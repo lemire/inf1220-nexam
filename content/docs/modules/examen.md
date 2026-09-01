@@ -1,132 +1,81 @@
 ---
-title: "Examen"
+title: "Examens"
 weight: 6
 ---
 
-# Examen final
+# Examens
 
-<p>L&rsquo;objectif principal de l&rsquo;examen est de valider le savoir-faire que vous avez intégré tout au long du cours. Comme la question revient sans cesse, soyons clair sur ce point: <strong>l'examen couvre toute la matière du cours.</strong> </p>
+<p>Le cours INF 1220 est évalué au moyen de <strong>deux examens en ligne télésurveillés</strong>. Il n'y a aucun travail noté à remettre et aucun entretien de suivi. L&rsquo;objectif des examens est de valider le savoir-faire que vous avez intégré tout au long du cours.</p>
 
-<p>Il est permis d'utiliser une intelligence artificielle pendant l'examen. Cependant vous devez produire vos propres réponses et vos propres analyses.</p>
+| Évaluation  | Sujets                | Moment           | Durée     | Pondération |
+|-------------|-----------------------|------------------|-----------|-------------|
+| Examen 1    | Modules 1 et 2        | semaine 7        | 3 heures  | 30&nbsp;%   |
+| Examen 2    | L'ensemble du cours   | fin du cours     | 3 heures  | 70&nbsp;%   |
 
-{{% hint warning %}}
+Le premier examen a lieu à la septième semaine du cours et porte uniquement sur les deux premiers modules&nbsp;:
+les algorithmes et le pseudocode, puis les bases du langage Java (types, opérateurs, variables, méthodes,
+classes et instances). Comme la question revient sans cesse, soyons clair sur le second examen&nbsp;:
+**l'examen 2 couvre toute la matière du cours**, y compris celle du premier examen.
 
-Si vous utilisez l'intelligence artificielle pour produire des réponses que vous
-ne pourriez pas produire par vous-même, il s'agit d'une utilisation irresponsable et vous pourriez obtenir la note de zéro.
+{{% hint danger %}}
+
+## Conditions d'examen
+
+Les deux examens sont télésurveillés. Dans les deux cas&nbsp;:
+
+- vous n'avez droit à **aucune note** (ni notes personnelles, ni aide-mémoire, ni manuel, ni documentation)&nbsp;;
+- vous n'avez **pas accès à Internet** (ni le site du cours, ni un moteur de recherche, ni l'intelligence artificielle)&nbsp;;
+- vous n'avez **pas accès à un compilateur Java ni à un environnement de programmation**.
+
+Vous devez donc écrire votre code Java de mémoire, sans le compiler ni l'exécuter.
 
 {{% /hint %}}
 
-{{< figure src="/comics/iaresp.jpg" alt="IA responsable" >}}
+<p>Si vous ne maîtrisez pas la matière du cours, vous ne réussirez probablement pas les examens. Prenez le temps d'étudier, de réviser et de poser des questions le cas échéant. Pratiquez-vous à programmer.</p>
 
-<p>Si vous ne maîtrisez pas la matière du cours, vous ne réussirez probablement pas l'examen. Prenez le temps d'étudier, de réviser et de poser des questions le cas échéant. Pratiquez-vous à programmer.</p>
-
-<p>Quand il s'agit de programmer, plusieurs étudiants remettent du code qui n'est pas fonctionnel, qui ne peut en aucun cas répondre à la question. Vous devez autant que possible vous assurez que votre code est fonctionnel. Pour y arriver, vous pouvez le relire et l'exécuter dans votre esprit, en traçant la valeur des variables. Comme vous devez de toute manière toujours expliquer vos solutions, vous pouvez en profiter pour y inclure une séquence d'exécution de votre programme. Un programmeur doit toujours se relire, et tester, et retester son code. Il est facile de se tromper complètement en écrivant même du code simple si on ne se relit pas avec soin.</p>
-
-**Nous vous suggérons de prévoir au moins 4 heures pour vous préparer à l'examen.**
+<p>Quand il s'agit de programmer, plusieurs étudiants remettent du code qui n'est pas fonctionnel, qui ne peut en aucun cas répondre à la question. Comme vous ne pouvez pas exécuter votre code pendant l'examen, vous devez le relire et l'exécuter dans votre esprit, en traçant la valeur des variables. Comme vous devez de toute manière toujours expliquer vos solutions, vous pouvez en profiter pour y inclure une séquence d'exécution de votre programme. Un programmeur doit toujours se relire. Il est facile de se tromper complètement en écrivant même du code simple si on ne se relit pas avec soin.</p>
 
 ## Mise en forme de votre examen
 
-Que ce soit pendant un examen ou lors d'un travail noté, nous vous demandons d'apporter une attention particulière à la mise en page de votre code Java. Veillez à aligner les accolades ouvrantes et fermantes, à espacer les opérateurs et les virgules de manière uniforme, et à limiter la longueur des lignes à environ 100 caractères pour éviter les retours à la ligne forcés. Nous vous suggérons de 
-rédiger votre examen en [Markdown]({{< relref "/docs/modules/module2/markdown/" >}}) si vous l'avez fait pendant vos travaux notés (vous devrez alors remettre un document PDF). Si vous souhaitez utiliser un traitement de texte comme Microsoft Word, vous pouvez utiliser [notre outil de formatage]({{< relref "/docs/format/" >}}) pour améliorer l'apparence de votre code Java en générant une version colorée et syntaxiquement mise en évidence. N'oubliez pas d'ajouter des commentaires clairs et concis pour expliquer les parties complexes, en les plaçant au-dessus des blocs de code concernés plutôt qu'en fin de ligne. Choisissez une police de caractères à taille fixe et suffisamment petite pour afficher 100 caractères par ligne. Le code informatique est mis en forme avec un interligne simple.
-
-<div style=" border: 2px solid red; margin: 2em; padding:2em;">
-
-## Entretien de suivi
-
-L'entretien de suivi sert à confirmer votre identité et à démontrer que vous êtes bien la personne ayant réalisé cet examen. Il nous permet de vérifier que vous êtes capable d'expliquer les solutions que vous avez soumises de vive voix. Vous devez faire les démarches nécessaires pour passer l'entretien de suivi.
-
-
-### Microsoft Teams
-
-En préparation de l'entretien de suivi, nous vous demandons d'installer
-[Microsoft Teams](https://www.teluq.ca/site/etudes/office365.php). Si vous
-rencontrez des difficultés, communiquez avec [support@teluq.ca](mailto:support@teluq.ca).
-Il est de votre responsabilité de disposer de Microsoft Teams.
-
-### Qu’est-ce que l’entretien de suivi?
-
-L’entretien de suivi est une rencontre individuelle d’environ 15 minutes, par visioconférence, avec la personne qui a corrigé votre examen final. Durant cette discussion, vous avez à présenter une pièce d’identité. Ensuite, une discussion permet de s'assurer que vous êtes bien la personne qui a réalisé l’examen. Par exemple, on peut vous demander d’expliquer vos réponses. Vous devrez faire de la programmation pendant l'entretien sans l'aide de l'IA ou de vos notes. Après avoir fait plus d'une centaine de problèmes de programmation  Java pendant le cours, vous devez avoir une maîtrise innée de la syntaxe Java.
-
-### L’entretien de suivi est-il obligatoire?
-
-Oui. L'entretien de suivi constitue une étape obligatoire.
-Si vous ne vous présentez pas à l’entretien de suivi ou si n’êtes pas en mesure de présenter de pièce d’identité avec photo, vous obtiendrez un échec.
-
-### À quel moment se tient-il?
-<p>Une fois votre examen corrigé, vous disposez de trois jours ouvrables pour prendre un rendez-vous. Vous pouvez écrire à la personne qui vous encadre ou vous pouvez le faire dans votre portail si cette personne affiche ses disponibilités.</p>
-
-### Comment se déroule-t-il?
-<p>Vous validez d’abord votre identité à l’aide d’une pièce d’identité avec photo. Ensuite, quelques questions vous sont posées dans le seul but de s’assurer que vous êtes bien la personne qui a réalisé l’examen. Il est probable que nous vous demandions de partager votre écran. Vous aurez ensuite à répondre à des questions. Nous allons vérifier que vous pouvez programmer sans aide. Par exemple, nous pouvons vous demander de résoudre des problèmes similaires à ceux des travaux ou de l'examen.</p>
-
-
-Il est possible que l'on vous demande [d'utiliser la page de l'entretien sur le site]({{< relref "docs/modules/entretien" >}}).
-
-### Dois-je me préparer à l'entretien de suivi?
-
-Aucune préparation n’est nécessaire. À la fin du cours, vous avez fait des centaines de problèmes en Java sans
-assistance de l'IA ou d'un ami, vous avez fait un examen sans vous en remettre à l'IA ou à un ami. À ce point-ci du cours, vous pouvez facilement produire vos solutions sans aide.
-
-### L’entretien de suivi est-il noté?
-<p>Oui. L’entretien de suivi fait l’objet d’une notation indiquant votre capacité d’expliquer vos réponses à l’examen de vive voix et de programmer sans aide.<p>
-
-### Dans quelles conditions est-ce que l’entretien de suivi peut mener à un échec dans le cours?
-
-<p>La réussite de l'entretien de suivi est requise pour réussir le cours. Vous pouvez échouer l'entretien de suivi
-pour les raisons suivantes.</p>
-
-<ul>
-<li>Vous n'avez pas pris rendez-vous pour l'entretien;</li>
-<li>Vous ne vous présentez pas à l'entretien;</li>
-<li>Vous ne présentez pas de pièce d'identité avec photo;</li>
-<li>Vous n'arrivez pas à répondre aux questions portant sur votre examen de manière satisfaisante;</li>
-<li>Vous n'arrivez pas à programmer sans aider devant la personne qui vous encadre;</li>
-<li>Il y a apparence d’infraction liée aux études.</li>
-</ul>
-
-<p>En cas d’irrégularité, un dossier de dénonciation pour infraction à l’intégrité intellectuelle pourrait être déposé.
-
-### Si j'échoue l'entretien, est-ce que je peux demander une révision ou une reprise?
-
-<p>Non. La note obtenue à l'entretien est définitive. Elle ne sera pas révisée. Vous ne pouvez pas reprendre
-l'entretien de suivi.</p>
-
-
-### Qui puis-je contacter si j’ai des questions?
-
-<p>En cas de besoin, n’hésitez pas à communiquer avec la personne responsable de votre encadrement.</p>
-
-{{% hint warning %}}
-L'entretien de suivi fait l'objet d'un seuil distinct&nbsp;: un échec à l'entretien de suivi entraîne l'échec du cours, et ce, indépendamment de la note obtenue à l'examen. Il ne s'agit donc pas d'un simple échec à l'examen, mais bien d'un échec au cours. Il n'est pas possible de demander une révision de note concernant l'entretien.
-{{% /hint %}}
-
-</div>
-
-
-
+Même écrit sans l'aide d'un environnement de développement, votre code Java doit être lisible. Veillez à aligner les accolades ouvrantes et fermantes, à indenter votre code de manière cohérente, à espacer les opérateurs et les virgules de manière uniforme, et à limiter la longueur des lignes à environ 100 caractères. N'oubliez pas d'ajouter des commentaires clairs et concis pour expliquer les parties complexes, en les plaçant au-dessus des blocs de code concernés plutôt qu'en fin de ligne. Un code illisible est difficile à corriger et vous désavantage.
 
 ## Se préparer
 
-Les étudiants qui passent un examen en ligne doivent s'assurer d'avoir un environnement adéquat. Il se peut que vous deviez programmer pendant l'examen en ligne sur votre ordinateur: il est de votre responsabilité d'avoir un ordinateur configuré d'une manière efficace avec un bon clavier et tous les logiciels dont vous avez besoin. Si vous travaillez sur un ordinateur portable, gardez-le sous tension. Assurez-vous de travailler sur un ordinateur stable. Au besoin, prévoyez un second ordinateur. Assurez-vous d'avoir une bonne connection Internet avec une solution de rechange (par exemple, un branchement par l'entremise de votre téléphone cellulaire). 
+Les étudiants qui passent un examen en ligne télésurveillé doivent s'assurer d'avoir un environnement adéquat. Il est de votre responsabilité d'avoir un ordinateur fiable, avec un bon clavier, une caméra fonctionnelle et une connexion Internet stable permettant la télésurveillance. Si vous travaillez sur un ordinateur portable, gardez-le sous tension. Prévoyez au besoin une solution de rechange pour votre connexion (par exemple, un branchement par l'entremise de votre téléphone cellulaire).
 
 Nous comprenons que la vie vous réserve des surprises. Parfois un logiciel plante. Parfois il faut redémarrer un ordinateur et ainsi de suite. Néanmoins, vous êtes responsable d'être bien préparé.
 
-Assurez-vous d'avoir des solutions de rechange&nbsp;:
+Puisque vous n'aurez ni notes, ni manuel, ni compilateur, ni accès à Internet, la préparation ne consiste pas à rassembler de la documentation&nbsp;: elle consiste à pratiquer.
 
-- Installez un environnement de développement Java sur votre ordinateur. [Vous pouvez faire l'examen avec l'environnement de développement du site du cours,]({{< ref "docs/environnement" >}}) mais une panne est toujours possible. Prenez le temps de tester de plusieurs manières différentes la compilation et l'exécution de votre code. Vous devez tester votre code.
-- Si vous prévoyez utiliser l'intelligence artificielle pour votre examen, assurez-vous d'avoir une page dans votre navigateur ouverte. Rappelez-vous que vous devez faire une utilisation responsable de l'intelligence artificielle (pas de copier-coller aléatoire).
-- Il est fortement conseillé d'avoir une copie du manuel du cours à votre disposition pendant l'examen. [Si vous avez acheté la version papier du manuel, gardez-la à proximité](https://www.amazon.ca/Java-pas-Introduction-programmation-langage/dp/B0CR7RW87Y/).
-- Vous pouvez rédigez vos propres notes.
-- Vous pouvez préparer des exemples de code.
+- Écrivez du code Java à la main, sur papier ou dans un simple éditeur de texte, sans le compiler. Vérifiez ensuite votre code en le compilant. Vous découvrirez vos erreurs habituelles.
+- Apprenez par cœur la structure d'un programme Java&nbsp;: déclaration de classe, méthode `main`, déclaration de méthode, boucles, conditions.
+- Refaites les exercices et les activités d'autoévaluation de chaque module jusqu'à ce que vous puissiez les résoudre sans aide.
+- Faites les examens factices ci-dessous en conditions réelles&nbsp;: trois heures, sans notes, sans Internet et sans compilateur.
+
+**Nous vous suggérons de prévoir au moins 4 heures pour vous préparer à chaque examen.**
 
 ## Gestion du temps à l'examen
 
-L'examen peut comporter plusieurs questions de programmation. Vous devez donc pouvoir fournir en quelques minutes du code fonctionnel ainsi que des explications précises. Vous devez donc pouvoir écrire un programme Java correct et l'expliquer en une trentaine de minutes. Même quand vous avez le droit à de la documentation lors de l'examen, vous n'avez néanmoins pas le temps de faire de la lecture. Vous devez donc arriver bien entraîné et bien préparé.
+Chaque examen peut comporter plusieurs questions de programmation. Vous devez donc pouvoir fournir en quelques minutes du code fonctionnel ainsi que des explications précises. Vous devez pouvoir écrire un programme Java correct et l'expliquer en une trentaine de minutes. Vous devez arriver bien entraîné et bien préparé.
 
-La durée de l'examen varie selon vos conditions. Par contre, une durée minimale de 3 heures est prévue. Vous devez joindre l'Université si vous avez des questions concernant la durée de votre examen. La personne qui vous encadre ne contrôle par la durée de l'examen.
+La durée de chaque examen est de trois heures. Vous devez joindre l'Université si vous avez des questions concernant la durée de votre examen. La personne qui vous encadre ne contrôle pas la durée de l'examen.
 
-## Examen factice 1
+## Examen factice — préparation à l'examen 1 (modules 1 et 2)
 
-<p>Pour vous pratiquer pour l'examen, prenez un maximum de trois heures pour répondre aux six questions suivantes :</p>
+<p>Pour vous pratiquer pour le premier examen, prenez un maximum de trois heures pour répondre aux six questions suivantes, sans notes, sans Internet et sans compilateur :</p>
+<ol>
+<li>Écrivez, en pseudocode, un algorithme qui lit une suite de nombres entiers terminée par la valeur 0 et qui affiche le plus grand nombre lu (la valeur 0 servant uniquement de marqueur de fin). Précisez les entrées, les sorties et le comportement de votre algorithme lorsque la suite est vide.</li>
+<li>Deux algorithmes résolvent le même problème : le premier effectue environ n&sup2; opérations, le second environ 100n opérations, où n est la taille de l'entrée. Expliquez ce que signifie la notation grand-O, donnez la complexité de chacun des deux algorithmes et indiquez à partir de quelle taille d'entrée le second devient préférable.</li>
+<li>Donnez la valeur et le type de chacune des expressions Java suivantes, et expliquez brièvement chaque résultat : <code>7 / 2</code>, <code>7 % 2</code>, <code>7.0 / 2</code>, <code>(int) 3.9</code>, <code>"3" + 4</code>, <code>(char) 65</code>.</li>
+<li>Écrivez une méthode Java <code>static boolean estBissextile(int annee)</code> qui retourne <code>true</code> si l'année passée en paramètre est bissextile. Une année est bissextile si elle est divisible par 4, sauf si elle est divisible par 100, à moins qu'elle ne soit aussi divisible par 400. Expliquez votre solution et donnez quelques exemples de valeurs de retour.</li>
+<li>Écrivez une classe <code>Compteur</code> comportant une variable d'instance et une variable de classe (<code>static</code>). Expliquez, en français, la différence entre une variable de classe, une variable d'instance et une variable locale, en indiquant la portée et la durée de vie de chacune.</li>
+<li>Créez une classe <code>Rectangle</code> munie d'un constructeur prenant une largeur et une hauteur, ainsi que de deux méthodes <code>aire</code> et <code>perimetre</code>. Ajoutez une méthode <code>main</code> qui crée deux rectangles et affiche leur aire et leur périmètre. Expliquez la différence entre une classe et une instance de classe.</li>
+</ol>
+<p>Dans tous les cas, vous devez expliquer vos solutions et produire du code valable.</p>
+
+## Examen factice 1 — préparation à l'examen 2
+
+<p>Pour vous pratiquer pour l'examen final, prenez un maximum de trois heures pour répondre aux six questions suivantes, sans notes, sans Internet et sans compilateur :</p>
 <ol>
 <li>Écrivez une fonction Java qui, étant donné une chaîne de caractères, retourne la même chaîne de caractères mais inversée. Par exemple, la fonction doit transformer la chaîne "un chien" en la chaîne "neihc nu". Vous pouvez faire l'hypothèse que les caractères de la chaîne originale se représentent tous en 2 octets selon la norme UTF-16.</li>
 <li>Écrivez une fonction Java qui prend un tableau d'entier et compte le nombre d'entiers négatifs.</li>
@@ -138,9 +87,9 @@ La durée de l'examen varie selon vos conditions. Par contre, une durée minimal
 <p>Dans tous les cas, vous devez expliquer vos solutions et produire du code valable.</p>
 <p>Vous devriez arrivez sans mal à produire les solutions attendues en moins de 3 heures. Si vous n'y arrivez pas, c'est que vous manquez de pratique.</p>
 
-## Examen factice 2
+## Examen factice 2 — préparation à l'examen 2
 
-<p>Pour vous pratiquer pour l'examen, prenez un maximum de trois heures pour répondre aux six questions suivantes :</p>
+<p>Pour vous pratiquer pour l'examen final, prenez un maximum de trois heures pour répondre aux six questions suivantes, sans notes, sans Internet et sans compilateur :</p>
 <ol>
 <li>Écrivez une classe «&nbsp;Tableau&nbsp;» munie d'une fonction «&nbsp;unique&nbsp;» qui prend comme paramètre un tableau (String[] t). La fonction doit trouver le nombre de valeurs répétées consécutivement dans le tableau. Une valeur est répétée si la valeur précédente lui est identique. Ainsi donc, étant donné le tableau {"bah", "bah", "be", "bo", "bo", "bo"}, votre fonction doit retourner l’entier 3 puisqu’il y a trois valeurs répétées.</li>
 <li>Écrivez une fonction occurrences(String s, char c) qui prend deux paramètres : une chaine de caractères et un caractère. Elle doit retourner un tableau comprenant les indices correspondant aux occurrences du caractère (second paramètre) dans la chaîne (premier paramètre). Les indices doivent être des entiers de 1 à s.length() inclusivement.</li>
@@ -156,7 +105,7 @@ La durée de l'examen varie selon vos conditions. Par contre, une durée minimal
 
 ## Pour se pratiquer à programmer
 
-<p>Si vous avez fait toutes les lectures, les deux examens factices, tous les exercices et tous les travaux du cours honnêtement, alors vous êtes prêt pour l'examen. Certains étudiants souhaitent se pratiquer davantage. </p>
+<p>Si vous avez fait toutes les lectures, les examens factices et tous les exercices du cours honnêtement, alors vous êtes prêt pour les examens. Certains étudiants souhaitent se pratiquer davantage. </p>
 
 <p>Voici quelques suggestions de problèmes supplémentaires pour réviser:</p>
 <ol>
@@ -170,7 +119,7 @@ La durée de l'examen varie selon vos conditions. Par contre, une durée minimal
 
 </ol>
 
-<p>N'oubliez pas de <strong>tester vos solutions</strong>. S'il s'agit de produire du code Java, alors exécutez le code Java et passez du temps avec le programme pour vous assurez qu'il fait ce qu'il doit faire. C'est une erreur commune chez les étudiants d'aller trop rapidement et de supposer que parce que le programme a l'air correct, il doit être correct. Non! Testez et testez encore.</p>
+<p>N'oubliez pas de <strong>tester vos solutions</strong> pendant vos révisions. S'il s'agit de produire du code Java, alors exécutez le code Java et passez du temps avec le programme pour vous assurez qu'il fait ce qu'il doit faire. C'est une erreur commune chez les étudiants d'aller trop rapidement et de supposer que parce que le programme a l'air correct, il doit être correct. Non! Testez et testez encore. Vous ne pourrez pas tester votre code pendant l'examen : c'est pendant vos révisions qu'il faut acquérir ce réflexe de vérification.</p>
 
 <p><a href="https://projecteuler.net/archives">Le projet Euler offre des centaines de problèmes</a> similaires à ceux qui sont utilisés dans le cours.</p>
 
@@ -185,31 +134,30 @@ La durée de l'examen varie selon vos conditions. Par contre, une durée minimal
 <p><strong>Rappel</strong>: L'enseignant ne peut modifier votre date de fin de cours  peu importe votre situation. Le moment après la date de fin de cours où votre dossier est fermé et où vous recevez (éventuellement) un incomplet est géré par l'Université. Il est de votre responsabilité de bien planifier votre temps.  Si vous avez des problèmes personnels qui limitent vos progrès (maladie, deuil, etc.), il faut voir avec l'Université: les enseignants n'ont aucune prise sur les dates de fin, sur les dates d'examen, etc.</p>
 
 
-<p>Votre date de fin de cours est inscrite dans votre dossier et vous pouvez la trouver sur le portail étudiant et sur la documentation qu'on vous a remise lors de votre inscription. Il est possible que votre examen ait lieu des semaines ou même des mois après votre date de fin de cours: cela ne constitue pas une extension de votre date de fin de cours. Tout travail remis après votre date de fin de cours pourra recevoir la note de zéro. En tout temps, la note «&nbsp;incomplet&nbsp;» peut être attribuée à un travail qui n'est pas remis après votre date de fin de cours, même si vous n'avez pas encore passé l'examen.</p>
+<p>Votre date de fin de cours est inscrite dans votre dossier et vous pouvez la trouver sur le portail étudiant et sur la documentation qu'on vous a remise lors de votre inscription. Il est possible que votre examen final ait lieu des semaines ou même des mois après votre date de fin de cours: cela ne constitue pas une extension de votre date de fin de cours.</p>
 
 ## Déroulement et le jour de l'examen
 
-L'enseignant ne peut changer la date, la durée, le lieu ou l'heure de votre examen. Il ne contrôle pas l'environnement technologique lors de l'examen. Un service distinct et indépendant au sein de l'Université gère les examens.
+L'enseignant ne peut changer la date, la durée, le lieu ou l'heure de vos examens. Il ne contrôle pas l'environnement technologique lors des examens. Un service distinct et indépendant au sein de l'Université gère les examens et la télésurveillance.
 
 
 ### Pour les personnes inscrites aux trimestres d'automne 2025 et d'hiver 2026
 
-Le déroulement de l'examen, incluant sa date et son heure, est géré par l'Université. Il est inutile d'écrire à l'enseignant pour savoir quand votre examen aura lieu ou pour en changer la date. Si vous avez des questions au sujet de la plateforme technologique ou au sujet de l'heure de l'examen, il faut voir avec l'Université et au sein du portail étudiant. Par exemple, dans le portail étudiant, sous Dossier administratif, il est possible que vous trouviez une option pour modifier une date d’examen.
+Le déroulement des examens, incluant leur date et leur heure, est géré par l'Université. Il est inutile d'écrire à l'enseignant pour savoir quand vos examens auront lieu ou pour en changer la date. Si vous avez des questions au sujet de la plateforme technologique ou au sujet de l'heure d'un examen, il faut voir avec l'Université et au sein du portail étudiant. Par exemple, dans le portail étudiant, sous Dossier administratif, il est possible que vous trouviez une option pour modifier une date d’examen.
 
 
-### Nouvelle plate-forme d'examen
+### Plate-forme d'examen
 
--[Accédez à votre examen directement dans l'environnement Moodle](https://m2.teluq.ca/mod/quiz/view.php?id=172628). Vous y trouverez davantage d'information. Les examens sont gérés par l'Université. Il est inutile de joindre la personne qui vous encadre à ce sujet avec vos questions, il faut joindre l'Université.
+-[Accédez à vos examens directement dans l'environnement Moodle](https://m2.teluq.ca/mod/quiz/view.php?id=172628). Vous y trouverez davantage d'information. Les examens sont gérés par l'Université. Il est inutile de joindre la personne qui vous encadre à ce sujet avec vos questions, il faut joindre l'Université.
 
-## Résultat et rétroaction sur l'examen
+## Résultat et rétroaction sur les examens
 
-<p>Une fois l'examen corrigé, vous trouverez votre note dans le portail étudiant. L'enseignant ne transmet jamais les examens (corrigés ou pas) par courriel. Si vous avez des questions suite à votre examen, nous nous ferons un plaisir d'en discuter avec vous. Nous ne transmettons toutefois jamais le corrigé de l'examen (à quiconque, et il n'y a pas d'exception). Quant à l'entretien de suivi&nbsp;: un échec à l'entretien de suivi est sans appel. Il est de votre responsabilité de vous assurer de passer l'entretien de suivi. Vous ne recevrez pas de rapport justificatif en cas d'échec à l'entretien de suivi&nbsp;: vous devez être capable de répondre aux questions de l'examinateur de manière satisfaisante.</p>
+<p>Une fois un examen corrigé, vous trouverez votre note dans le portail étudiant. L'enseignant ne transmet jamais les examens (corrigés ou pas) par courriel. Si vous avez des questions suite à un examen, nous nous ferons un plaisir d'en discuter avec vous. Nous ne transmettons toutefois jamais le corrigé d'un examen (à quiconque, et il n'y a pas d'exception).</p>
 
 {{% hint danger %}}
 
 
-Que ce soit pour l'examen ou pour l'entretien de suivi, il n'y a aucune possibilité de reprise.
-Par ailleurs, ce sont des activités obligatoires. Vous devez passer l'examen et l'entretien de suivi. Il est de votre responsabilité d'y voir.
+Les deux examens sont obligatoires et il n'y a aucune possibilité de reprise. Il est de votre responsabilité de vous assurer de vous présenter aux deux examens.
 
 {{% /hint  %}}
 

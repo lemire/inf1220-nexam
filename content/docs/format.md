@@ -5,8 +5,8 @@ weight: 3
 
 ## Formattage du code Java
 
-Dans le cadre de ce cours, vous aurez à composer et remettre du code Java. Il est important
-de bien mettre en forme le code Java.  Si vous préparez vos travaux avec Microsoft Word, celui-ci ne permet pas de mettre facilement le code en forme. À cette fin, vous pouvez insérer votre code Java dans la zone de texte
+Dans le cadre de ce cours, vous aurez à composer beaucoup de code Java. Il est important
+de bien mettre en forme le code Java.  Si vous rédigez vos documents avec Microsoft Word, celui-ci ne permet pas de mettre facilement le code en forme. À cette fin, vous pouvez insérer votre code Java dans la zone de texte
 et copier ensuite le résultat dans votre logiciel de traitement de texte. Vous devez garder vos lignes de code courtes, ajuster la taille de la police de caractères au besoin. Consultez [nos conseils]({{< relref "docs/modules/module2/conseils/" >}}) pour bien préparer votre code Java.
 
 

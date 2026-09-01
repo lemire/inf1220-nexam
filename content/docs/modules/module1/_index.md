@@ -32,7 +32,7 @@ Assurez-vous de bien planifier votre temps. N'oubliez pas de consacrer environ 9
 nécessite plus d'une journée par semaine, pendant quinze semaine.
 
 Nous vous suggérons de consacrer (au maximum) les trois premières semaines du cours au premier module  (environ 27 heures). 
-Assurez-vous de remettre le premier travail noté à la fin de la troisième semaine ou avant.
+La matière de ce module fait partie du premier examen, qui a lieu à la septième semaine.
 
 
 **Vous ne devriez pas prendre plus de trois semaines**. Le cours est riche en contenu, si vous prenez plus de trois
