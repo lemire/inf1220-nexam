@@ -1,4 +1,4 @@
-baseURL = 'https://lemire.github.io/inf1220-hugo/'
+baseURL = 'https://lemire.github.io/inf1220-nexam/'
 canonifyURLs = true
 languageCode = 'fr'
 defaultContentLanguage = 'fr'
