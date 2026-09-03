@@ -944,6 +944,16 @@ Par exemple, le tri rapide et le tri fusion sont souvent décrits comme étant e
 
 {{< youtube id="GJRkOxG5RmM" >}}
 
+## Analyse amortie
+
+L’analyse amortie évalue le coût d’une opération non pas isolément, mais en la replaçant dans une suite d’opérations. Certaines structures de données ont en effet un comportement irrégulier : la grande majorité des opérations sont très rapides, mais quelques-unes, beaucoup plus rares, sont coûteuses. Ne regarder que le pire cas d’une opération isolée donne alors une image trompeusement pessimiste de la structure. L’analyse amortie considère plutôt le coût total d’une suite de \( n \) opérations, puis le divise par \( n \) : on obtient le coût moyen par opération sur l’ensemble de la séquence.
+
+L’exemple classique est le tableau dynamique, comme la classe `ArrayList` en Java. Un tableau a une taille fixe : lorsqu’il est plein et qu’on veut y ajouter un élément de plus, il faut allouer un nouveau tableau plus grand et y recopier tout le contenu, ce qui coûte \( O(n) \). Prise isolément, cette insertion est donc coûteuse. Mais si on double la capacité à chaque agrandissement, les recopies se raréfient très vite : on recopie après 1 élément, puis 2, puis 4, puis 8, et ainsi de suite. Pour insérer \( n \) éléments, le total des recopies vaut donc \( 1 + 2 + 4 + \dots + n \), une somme qui reste inférieure à \( 2n \). Le coût total des \( n \) insertions est ainsi en \( O(n) \), soit un coût amorti de \( O(1) \) par insertion. Autrement dit, ajouter un élément à une `ArrayList` coûte en moyenne un temps constant, même si une insertion sur plusieurs milliers est nettement plus lente que les autres.
+
+Il ne faut pas confondre coût amorti et coût moyen. Le coût moyen repose sur une hypothèse à propos des données : il décrit ce qui se produit «&nbsp;en général&nbsp;», mais rien n’empêche une entrée particulièrement défavorable d’être lente, et de l’être à répétition. Le coût amorti, lui, est une garantie sur la séquence complète : quelle que soit la suite d’opérations demandée, son coût total ne dépassera pas la borne annoncée. Une opération peut être lente, mais elle ne peut pas l’être souvent, car c’est justement le travail des opérations rapides qui rend la suivante coûteuse.
+
+Cette distinction est utile pour lire correctement les garanties annoncées par les structures de données, à commencer par celle de la section suivante.
+
 ## Table de hachage
 
 Une table de hachage (ou « hash table ») est une structure de données qui permet d’associer des clés à des valeurs et d’accéder très rapidement à une valeur à partir de sa clé. Le principe repose sur l’utilisation d’une fonction de hachage qui transforme la clé (par exemple, un texte ou un nombre) en un indice de tableau. Les opérations d’insertion, de recherche et de suppression se font en temps moyen \( O(1) \), c’est-à-dire en temps constant, quelle que soit la taille de la table (si la fonction de hachage est bonne et la table bien dimensionnée). La table de hachage est efficace pour retrouver rapidement une information à partir d’une clé.
@@ -1316,11 +1326,413 @@ Dans ce cours, il n'est pas nécessaire de concevoir des structures en arbres.
 {{< youtube id="YXNq_i4HTJ4" >}}
 
 
-## Analyse amortie
+## Les graphes
 
-L’analyse amortie est une méthode utilisée pour évaluer la complexité moyenne d’une séquence d’opérations sur une structure de données, même si certaines opérations individuelles peuvent être coûteuses. Plutôt que de se concentrer sur le pire cas d’une seule opération, l’analyse amortie considère le coût total de nombreuses opérations et le répartit uniformément, offrant ainsi une vision plus réaliste de la performance globale.
-Le tri rapide (quick sort) est un algorithme qui a techniquement une complexité \( O(n^2) \), mais qui a une complexité amortie de \( O(n \log n) \).
-En d'autres termes, le tri rapide est généralement rapide, mais il existe des cas rares où il est lent.
+Un arbre impose qu'un nœud n'ait qu'un seul parent et qu'il n'existe aucun cycle. Si on abandonne ces contraintes, on obtient une structure beaucoup plus générale : le graphe. Un graphe est constitué d'un ensemble de *sommets* (ou nœuds) et d'un ensemble d'*arêtes* qui relient certaines paires de sommets. Un arbre n'est en fait qu'un cas particulier de graphe.
+
+Les graphes servent à représenter à peu près toutes les relations entre objets : un réseau routier (les villes sont des sommets, les routes des arêtes), un réseau social (les personnes et leurs amitiés), le web (les pages et les hyperliens), les dépendances entre les tâches d'un projet, ou encore les appels entre les méthodes d'un programme.
+
+On distingue plusieurs variantes :
+
+- Un graphe est non orienté si les arêtes se parcourent dans les deux sens (une route à double sens), et orienté si chaque arête a un sens (un lien web pointe de A vers B sans que B pointe vers A).
+- Un graphe est pondéré si chaque arête porte une valeur numérique : une distance, une durée, un coût, une capacité.
+- Un graphe est connexe si on peut aller de n'importe quel sommet à n'importe quel autre.
+
+Pour représenter un graphe de \( n \) sommets et \( m \) arêtes en mémoire, on utilise principalement deux approches. La matrice d'adjacence est un tableau à deux dimensions de taille \( n \times n \) où la case \( (i, j) \) contient le poids de l'arête entre \( i \) et \( j \) (ou une valeur spéciale s'il n'y a pas d'arête). Elle permet de vérifier en temps \( O(1) \) si deux sommets sont reliés, mais occupe toujours \( O(n^2) \) en mémoire, même si le graphe a très peu d'arêtes. Les listes d'adjacence associent plutôt à chaque sommet la liste de ses voisins : la mémoire utilisée est en \( O(n + m) \), ce qui est bien préférable pour les graphes creux, c'est-à-dire ceux où \( m \) est beaucoup plus petit que \( n^2 \). En Java, on représente souvent un graphe par un `Map<String, List<Arete>>`.
+
+Les deux parcours fondamentaux d'un graphe sont le parcours en largeur (BFS), qui visite les sommets par distance croissante en nombre d'arêtes à l'aide d'une file, et le parcours en profondeur (DFS), qui s'enfonce aussi loin que possible avant de revenir sur ses pas, à l'aide d'une pile ou de la récursivité. Les deux s'exécutent en \( O(n + m) \). Le parcours en largeur trouve le plus court chemin lorsque toutes les arêtes ont le même coût. Dès que les arêtes ont des poids différents, il faut un algorithme plus subtil.
+
+### L'algorithme de Dijkstra
+
+Edsger Dijkstra a conçu en 1956 un algorithme qui calcule le plus court chemin entre un sommet de départ et tous les autres sommets d'un graphe pondéré, à condition que les poids soient positifs. Il l'a imaginé, dit-il, en une vingtaine de minutes à la terrasse d'un café d'Amsterdam, pour illustrer les capacités d'un nouvel ordinateur.
+
+L'idée est la suivante. On maintient pour chaque sommet une distance *provisoire* depuis la source : c'est la longueur du meilleur chemin trouvé jusqu'ici. Au départ, cette distance vaut 0 pour la source et l'infini pour tous les autres. On répète ensuite le geste suivant : parmi les sommets qu'on n'a pas encore traités, on choisit celui dont la distance provisoire est la plus petite. Comme tous les poids sont positifs, aucun détour ne pourra jamais faire mieux : cette distance est donc définitive, et le sommet est marqué comme *visité*. On en profite alors pour examiner ses voisins et, pour chacun, vérifier si passer par le sommet qu'on vient de fixer améliore la distance connue. C'est l'étape de relâchement (*relaxation*).
+
+```
+fonction dijkstra(graphe, source)
+    pour chaque sommet v du graphe
+        distance[v] ← ∞
+        precedent[v] ← indéfini
+        visite[v] ← faux
+    fin pour
+
+    distance[source] ← 0
+
+    tant qu'il existe un sommet non visité dont la distance est finie
+        u ← le sommet non visité ayant la plus petite distance
+        visite[u] ← vrai
+
+        pour chaque voisin v de u
+            si visite[v] est faux
+                candidat ← distance[u] + poids(u, v)
+                si candidat < distance[v]
+                    distance[v] ← candidat
+                    precedent[v] ← u
+                fin si
+            fin si
+        fin pour
+    fin tant que
+
+    retourner distance, precedent
+fin fonction
+```
+
+L'algorithme ne construit pas le chemin directement : il retient seulement, dans le tableau `precedent`, par quel sommet on est arrivé à chaque destination. Pour obtenir le trajet complet, on remonte ce tableau à partir de la cible, puis on inverse le résultat.
+
+```
+fonction chemin(precedent, source, cible)
+    resultat ← liste vide
+    u ← cible
+    tant que u est défini
+        insérer u au début de resultat
+        u ← precedent[u]
+    fin tant que
+
+    si resultat est vide ou son premier élément ≠ source
+        retourner « aucun chemin »
+    fin si
+
+    retourner resultat
+fin fonction
+```
+
+La complexité dépend de la façon dont on cherche le sommet non visité de distance minimale. Si on parcourt bêtement tous les sommets à chaque tour, on obtient \( O(n^2) \), ce qui reste raisonnable pour un graphe dense. Si on utilise plutôt une file de priorité (un tas, ou en Java une `PriorityQueue`), on descend à \( O((n + m) \log n) \), ce qui est nettement meilleur pour les graphes creux.
+
+{{% hint warning %}}
+
+L'algorithme de Dijkstra exige des poids positifs ou nuls. Avec une arête de poids négatif, l'argument «&nbsp;le plus proche sommet non visité a sa distance définitive&nbsp;» s'effondre, car un détour pourrait encore réduire la distance. Il faut alors recourir à l'algorithme de Bellman-Ford, plus lent, en \( O(n \times m) \).
+
+{{% /hint %}}
+
+Dijkstra est au cœur des logiciels de navigation routière et du calcul des routes sur Internet. En pratique, les systèmes de cartographie utilisent des variantes accélérées, comme l'algorithme A\*, qui ajoute une estimation de la distance restante jusqu'à la destination afin d'explorer en priorité les sommets qui vont dans la bonne direction.
+
+### Application interactive
+
+La carte ci-dessous représente le pays imaginaire de Sylvanie. Les cercles sont des villes et les traits des routes, avec leur longueur en kilomètres. Choisissez une ville de départ et une ville d'arrivée, puis lancez la recherche pour voir l'algorithme progresser pas à pas.
+
+Le nombre affiché dans chaque cercle est la distance provisoire depuis la ville de départ. Une ville orange est celle que l'algorithme vient de choisir (sa distance devient définitive), une ville bleue est déjà visitée, une ville jaune a une distance provisoire mais n'est pas encore fixée, et une ville blanche est encore à l'infini. Le chemin final apparaît en rouge.
+
+<div id="dij-app" style="border: 1px solid #ccc; padding: 12px; border-radius: 6px; background: #fdfdfd; color: #222;">
+  <div style="margin-bottom: 10px;">
+    <label for="dij-source" style="margin-right: 4px;">Départ&nbsp;:</label>
+    <select id="dij-source" style="padding: 6px; margin-right: 12px;"></select>
+    <label for="dij-cible" style="margin-right: 4px;">Arrivée&nbsp;:</label>
+    <select id="dij-cible" style="padding: 6px; margin-right: 12px;"></select>
+    <label for="dij-vitesse" style="margin-right: 4px;">Vitesse&nbsp;:</label>
+    <select id="dij-vitesse" style="padding: 6px; margin-right: 12px;">
+      <option value="1400">lente</option>
+      <option value="700" selected>normale</option>
+      <option value="250">rapide</option>
+    </select>
+    <button id="dij-lancer" style="padding: 8px 12px; margin-right: 6px;">Trouver le plus court chemin</button>
+    <button id="dij-reset" style="padding: 8px 12px;">Réinitialiser</button>
+  </div>
+
+  <canvas id="dij-canvas" width="720" height="500" style="border: 1px solid #ccc; background: #f4f7f4; max-width: 100%;"></canvas>
+
+  <p id="dij-status" style="margin: 10px 0 6px 0; font-weight: bold;">Choisissez deux villes, puis cliquez sur «&nbsp;Trouver le plus court chemin&nbsp;».</p>
+
+  <div id="dij-journal" style="height: 130px; overflow-y: auto; border: 1px solid #ddd; background: #fff; padding: 8px; font-family: monospace; font-size: 12px; line-height: 1.5;"></div>
+</div>
+
+<script>
+(function () {
+    const villes = [
+        { nom: 'Valombre',    x:  80, y:  80 },
+        { nom: 'Pierrefonds', x: 245, y:  55 },
+        { nom: 'Aubelune',    x: 405, y: 105 },
+        { nom: 'Roquevert',   x: 570, y:  65 },
+        { nom: 'Mirecourt',   x: 150, y: 225 },
+        { nom: 'Belclair',    x: 330, y: 215 },
+        { nom: 'Hautrive',    x: 505, y: 240 },
+        { nom: 'Fontenoy',    x: 100, y: 375 },
+        { nom: 'Clairval',    x: 285, y: 385 },
+        { nom: 'Ombrelac',    x: 465, y: 410 },
+        { nom: 'Portvieux',   x: 630, y: 355 }
+    ];
+
+    // [ville A, ville B, longueur de la route en km]
+    const routes = [
+        [0, 1, 16], [0, 4, 15], [1, 2, 17], [1, 4, 19], [1, 5, 18],
+        [2, 3, 16], [2, 5, 13], [2, 6, 16], [3, 6, 18], [3, 10, 29],
+        [4, 5, 18], [4, 7, 15], [4, 8, 20], [5, 6, 17], [5, 8, 17],
+        [5, 9, 22], [6, 9, 16], [6, 10, 16], [7, 8, 18], [8, 9, 18],
+        [9, 10, 17]
+    ];
+
+    // Listes d'adjacence : voisins[i] = [{ v: indice du voisin, poids: ... }, ...]
+    const voisins = villes.map(() => []);
+    for (const [a, b, poids] of routes) {
+        voisins[a].push({ v: b, poids: poids });
+        voisins[b].push({ v: a, poids: poids });
+    }
+
+    const canvas = document.getElementById('dij-canvas');
+    const ctx = canvas.getContext('2d');
+    const selSource = document.getElementById('dij-source');
+    const selCible = document.getElementById('dij-cible');
+    const selVitesse = document.getElementById('dij-vitesse');
+    const boutonLancer = document.getElementById('dij-lancer');
+    const boutonReset = document.getElementById('dij-reset');
+    const status = document.getElementById('dij-status');
+    const journal = document.getElementById('dij-journal');
+
+    const RAYON = 20;
+    const INFINI = Infinity;
+
+    let distance = [];
+    let precedent = [];
+    let visite = [];
+    let etatVille = [];   // 'inconnu', 'provisoire', 'courant', 'visite', 'chemin'
+    let etatRoute = {};   // 'examen', 'amelioration', 'arbre', 'chemin'
+    let enCours = false;
+    let generation = 0;
+
+    function cle(a, b) {
+        return Math.min(a, b) + '-' + Math.max(a, b);
+    }
+
+    function sleep(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
+
+    function delai(facteur) {
+        return parseInt(selVitesse.value, 10) * (facteur || 1);
+    }
+
+    function noter(texte) {
+        const ligne = document.createElement('div');
+        ligne.textContent = texte;
+        journal.appendChild(ligne);
+        journal.scrollTop = journal.scrollHeight;
+    }
+
+    function texteDistance(d) {
+        return d === INFINI ? '∞' : String(d);
+    }
+
+    function reinitialiser() {
+        generation++;
+        enCours = false;
+        distance = villes.map(() => INFINI);
+        precedent = villes.map(() => -1);
+        visite = villes.map(() => false);
+        etatVille = villes.map(() => 'inconnu');
+        etatRoute = {};
+        journal.innerHTML = '';
+        boutonLancer.disabled = false;
+        dessiner();
+    }
+
+    function couleurRoute(etat) {
+        if (etat === 'chemin') return { couleur: '#d1332e', epaisseur: 5 };
+        if (etat === 'examen') return { couleur: '#e8a33d', epaisseur: 4 };
+        if (etat === 'amelioration') return { couleur: '#2e8b57', epaisseur: 4 };
+        if (etat === 'arbre') return { couleur: '#7fa8c9', epaisseur: 3 };
+        return { couleur: '#b9c2b9', epaisseur: 2 };
+    }
+
+    function couleurVille(etat) {
+        if (etat === 'chemin') return '#f2a0a0';
+        if (etat === 'courant') return '#f5a623';
+        if (etat === 'visite') return '#a8cfe8';
+        if (etat === 'provisoire') return '#f7ecb0';
+        return '#ffffff';
+    }
+
+    function dessiner() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+        // Les routes
+        for (const [a, b, poids] of routes) {
+            const style = couleurRoute(etatRoute[cle(a, b)]);
+            ctx.strokeStyle = style.couleur;
+            ctx.lineWidth = style.epaisseur;
+            ctx.beginPath();
+            ctx.moveTo(villes[a].x, villes[a].y);
+            ctx.lineTo(villes[b].x, villes[b].y);
+            ctx.stroke();
+        }
+
+        // Les longueurs des routes
+        ctx.font = '11px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        for (const [a, b, poids] of routes) {
+            const mx = (villes[a].x + villes[b].x) / 2;
+            const my = (villes[a].y + villes[b].y) / 2;
+            ctx.fillStyle = '#f4f7f4';
+            ctx.fillRect(mx - 12, my - 8, 24, 16);
+            ctx.fillStyle = '#555';
+            ctx.fillText(String(poids), mx, my);
+        }
+
+        // Les villes
+        for (let i = 0; i < villes.length; i++) {
+            ctx.beginPath();
+            ctx.arc(villes[i].x, villes[i].y, RAYON, 0, Math.PI * 2);
+            ctx.fillStyle = couleurVille(etatVille[i]);
+            ctx.fill();
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = etatVille[i] === 'courant' ? 3 : 1.5;
+            ctx.stroke();
+
+            ctx.fillStyle = '#111';
+            ctx.font = 'bold 12px sans-serif';
+            ctx.fillText(texteDistance(distance[i]), villes[i].x, villes[i].y);
+
+            ctx.font = '12px sans-serif';
+            ctx.fillStyle = '#222';
+            ctx.fillText(villes[i].nom, villes[i].x, villes[i].y + RAYON + 12);
+        }
+    }
+
+    function remplirListes() {
+        for (let i = 0; i < villes.length; i++) {
+            const o1 = document.createElement('option');
+            o1.value = i;
+            o1.textContent = villes[i].nom;
+            selSource.appendChild(o1);
+
+            const o2 = document.createElement('option');
+            o2.value = i;
+            o2.textContent = villes[i].nom;
+            selCible.appendChild(o2);
+        }
+        selSource.value = 0;              // Valombre
+        selCible.value = villes.length - 1; // Portvieux
+    }
+
+    async function executer() {
+        if (enCours) return;
+
+        const source = parseInt(selSource.value, 10);
+        const cible = parseInt(selCible.value, 10);
+
+        if (source === cible) {
+            status.textContent = 'Choisissez deux villes différentes.';
+            return;
+        }
+
+        reinitialiser();
+        const monTour = generation;
+        enCours = true;
+        boutonLancer.disabled = true;
+
+        distance[source] = 0;
+        etatVille[source] = 'provisoire';
+        noter('Départ : ' + villes[source].nom + ' (distance 0), toutes les autres villes à ∞.');
+        status.textContent = 'Recherche du plus court chemin de ' + villes[source].nom + ' vers ' + villes[cible].nom + '…';
+        dessiner();
+        await sleep(delai());
+        if (monTour !== generation) return;
+
+        while (true) {
+            // Sommet non visité de distance minimale
+            let u = -1;
+            for (let i = 0; i < villes.length; i++) {
+                if (!visite[i] && distance[i] !== INFINI && (u === -1 || distance[i] < distance[u])) {
+                    u = i;
+                }
+            }
+            if (u === -1) break;
+
+            visite[u] = true;
+            etatVille[u] = 'courant';
+            noter('On fixe ' + villes[u].nom + ' : sa distance ' + distance[u] + ' km est définitive.');
+            dessiner();
+            await sleep(delai());
+            if (monTour !== generation) return;
+
+            if (u === cible) {
+                etatVille[u] = 'visite';
+                break;
+            }
+
+            for (const arete of voisins[u]) {
+                const v = arete.v;
+                if (visite[v]) continue;
+
+                etatRoute[cle(u, v)] = 'examen';
+                dessiner();
+                await sleep(delai(0.5));
+                if (monTour !== generation) return;
+
+                const candidat = distance[u] + arete.poids;
+                if (candidat < distance[v]) {
+                    const ancienne = distance[v];
+                    // La route qui menait à v n'est plus la meilleure
+                    if (precedent[v] !== -1) {
+                        etatRoute[cle(precedent[v], v)] = null;
+                    }
+                    distance[v] = candidat;
+                    precedent[v] = u;
+                    etatVille[v] = 'provisoire';
+                    etatRoute[cle(u, v)] = 'amelioration';
+                    noter('  ' + villes[v].nom + ' : ' + texteDistance(ancienne) + ' → ' + candidat +
+                          ' km en passant par ' + villes[u].nom + '.');
+                    dessiner();
+                    await sleep(delai(0.6));
+                    if (monTour !== generation) return;
+                    etatRoute[cle(u, v)] = 'arbre';
+                } else {
+                    noter('  ' + villes[v].nom + ' : ' + candidat + ' km par ' + villes[u].nom +
+                          ', pas mieux que ' + texteDistance(distance[v]) + ' km.');
+                    etatRoute[cle(u, v)] = null;
+                }
+            }
+
+            etatVille[u] = 'visite';
+            dessiner();
+            await sleep(delai(0.4));
+            if (monTour !== generation) return;
+        }
+
+        // Reconstruction du chemin à partir du tableau precedent
+        if (distance[cible] === INFINI) {
+            status.textContent = 'Aucun chemin ne relie ' + villes[source].nom + ' à ' + villes[cible].nom + '.';
+            noter('Aucun chemin trouvé.');
+            enCours = false;
+            boutonLancer.disabled = false;
+            return;
+        }
+
+        const chemin = [];
+        for (let u = cible; u !== -1; u = precedent[u]) {
+            chemin.unshift(u);
+        }
+
+        etatRoute = {};
+        for (let i = 0; i < chemin.length; i++) {
+            etatVille[chemin[i]] = 'chemin';
+            if (i > 0) {
+                etatRoute[cle(chemin[i - 1], chemin[i])] = 'chemin';
+            }
+            dessiner();
+            await sleep(delai(0.4));
+            if (monTour !== generation) return;
+        }
+
+        const noms = chemin.map(i => villes[i].nom).join(' → ');
+        status.textContent = 'Plus court chemin : ' + noms + ' (' + distance[cible] + ' km).';
+        noter('Chemin retenu : ' + noms + ' = ' + distance[cible] + ' km.');
+
+        enCours = false;
+        boutonLancer.disabled = false;
+    }
+
+    boutonLancer.addEventListener('click', executer);
+    boutonReset.addEventListener('click', function () {
+        reinitialiser();
+        status.textContent = 'Choisissez deux villes, puis cliquez sur « Trouver le plus court chemin ».';
+    });
+
+    remplirListes();
+    reinitialiser();
+})();
+</script>
+
+Observez que l'algorithme ne se contente pas de foncer vers la destination : il explore les villes dans l'ordre de leur distance au point de départ, un peu comme une tache d'huile qui s'étend. Il peut donc visiter des villes situées à l'opposé de la cible avant de conclure. C'est le prix à payer pour la garantie d'optimalité, et c'est précisément ce que corrige l'algorithme A\* en orientant la recherche.
 
 
 ## Vidéo optionnelle

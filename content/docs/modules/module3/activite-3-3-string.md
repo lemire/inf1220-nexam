@@ -770,6 +770,215 @@ Utiliser <code>CharSequence</code> rend le code plus flexible : on peut manipu
 
 
 
+## Le code de hachage : `hashCode()`
+
+Toute classe Java hérite d’une méthode `hashCode()` qui retourne un `int`, appelé le code de hachage de l’objet. Ce nombre sert à ranger les objets dans les structures de données comme `HashMap` et `HashSet`, qui l’utilisent pour décider dans quel «&nbsp;seau&nbsp;» déposer une clé. La classe `String` redéfinit cette méthode pour que le code dépende du contenu de la chaîne, et non de l’adresse mémoire de l’objet.
+
+### Le contrat entre `equals` et `hashCode`
+
+La règle fondamentale est une implication à sens unique :
+
+- Si deux chaînes sont égales au sens de `equals`, alors elles ont nécessairement le même code de hachage. C’est une garantie absolue : deux chaînes qui contiennent exactement les mêmes caractères produisent toujours le même `int`, quelle que soit la façon dont elles ont été construites, et quelle que soit la machine virtuelle Java utilisée.
+- La réciproque est fausse. Deux chaînes différentes peuvent parfaitement avoir le même code de hachage. On parle alors d’une collision.
+
+```java  {style=github}
+String a = "Bonjour";
+String b = "Bon" + "jour";
+System.out.println(a.equals(b));                  // true
+System.out.println(a.hashCode() == b.hashCode()); // true, garanti
+
+String x = "Aa";
+String y = "BB";
+System.out.println(x.hashCode() == y.hashCode()); // true
+System.out.println(x.equals(y));                  // false : une collision
+```
+
+Les collisions ne sont pas un défaut d’implantation : elles sont mathématiquement inévitables. Un `int` ne peut prendre que \( 2^{32} \), soit environ 4,3 milliards de valeurs différentes, alors qu’il existe une infinité de chaînes de caractères. Rien qu’avec les mots de sept lettres minuscules, on compte déjà \( 26^7 \approx 8 \) milliards de possibilités, soit près du double du nombre de codes disponibles. Par le principe des tiroirs, certaines de ces chaînes partagent forcément un code.
+
+Il faut donc retenir la façon correcte d’utiliser un code de hachage : il sert à écarter rapidement, jamais à conclure. Si deux codes diffèrent, les objets sont certainement différents et on s’arrête là. Si les codes sont identiques, on ne sait rien encore et il faut appeler `equals` pour trancher. C’est exactement ce que fait `HashMap` en interne. Un code de hachage n’est donc ni un identifiant unique, ni une empreinte de sécurité : pour vérifier l’intégrité d’un document, on utilise plutôt une fonction de hachage cryptographique comme SHA-256, offerte en Java par la classe `MessageDigest`.
+
+### La mise en œuvre dans `String`
+
+Contrairement à la plupart des méthodes de la bibliothèque standard, le code de hachage d’une chaîne n’est pas laissé au choix de l’implantation : sa valeur est fixée par la documentation officielle de Java. Pour une chaîne \( s \) de \( n \) caractères, il vaut
+
+\[ s[0] \times 31^{n-1} + s[1] \times 31^{n-2} + \dots + s[n-2] \times 31 + s[n-1] \]
+
+Le code de la chaîne vide vaut 0. En pratique, on n’évalue pas les puissances de 31 : on utilise la méthode de Horner, qui ramène le calcul à une simple boucle avec une multiplication et une addition par caractère.
+
+```java  {style=github}
+public int monHashCode(String s) {
+    int h = 0;
+    for (int i = 0; i < s.length(); i++) {
+        h = 31 * h + s.charAt(i);
+    }
+    return h;
+}
+```
+
+Quelques remarques sur cette implantation :
+
+- Le calcul se fait sur des `int` de 32 bits et déborde très vite. En Java, ce débordement n’est pas une erreur : l’arithmétique sur les `int` boucle silencieusement, ce qui revient à travailler modulo \( 2^{32} \). C’est voulu.
+- Le multiplicateur 31 est un nombre premier impair, ce qui aide à répartir les valeurs. Il a aussi l’avantage d’être bon marché : `31 * h` s’écrit `(h << 5) - h`, soit un décalage et une soustraction, une optimisation que le compilateur applique automatiquement.
+- Comme le résultat est imposé par la spécification, il est identique sur toutes les machines virtuelles Java et il ne changera jamais. Cette stabilité est pratique, mais nous verrons qu’elle a un prix.
+- Puisqu’une chaîne est immuable, son code de hachage ne peut pas changer une fois calculé. La classe `String` en profite pour le mémoriser dans un champ privé lors du premier appel, de sorte que les appels suivants sont gratuits. C’est un exemple concret d’un avantage de l’immuabilité.
+
+Si vous écrivez vos propres classes, souvenez-vous que redéfinir `equals` sans redéfinir `hashCode` brise le contrat et rend vos objets inutilisables comme clés dans une `HashMap`. La méthode utilitaire `java.util.Objects.hash(...)` permet de combiner facilement les champs d’un objet.
+
+### Fabriquer des collisions à volonté
+
+Les collisions sont inévitables, mais dans une fonction de hachage bien conçue elles restent rares et difficiles à provoquer. Ce n’est pas le cas ici : la formule de `String.hashCode()` est publique, simple et parfaitement prévisible, ce qui permet de construire des collisions à la main.
+
+Partons de deux caractères. Dans un mot de deux lettres, le premier caractère est multiplié par 31 et le second ne l’est pas. Si on augmente le premier caractère de 1, le code augmente de 31 ; si on diminue le second de 31, le code diminue d’autant. Les deux effets s’annulent. En passant de `"Aa"` à `"BB"`, on avance le `A` (valeur 65) d’un cran vers `B` (valeur 66) et on recule le `a` (valeur 97) de 31 crans jusqu’à `B` (valeur 66) :
+
+- `"Aa"` donne \( 65 \times 31 + 97 = 2112 \)
+- `"BB"` donne \( 66 \times 31 + 66 = 2112 \)
+
+À ce stade, nous n’avons qu’une seule paire, ce qui n’est pas bien menaçant. Mais la formule possède une propriété qui rend l’attaque redoutable. Si on colle une chaîne \( v \) à la suite d’une chaîne \( u \), le code du résultat vaut
+
+\[ h(u \cdot v) = h(u) \times 31^{|v|} + h(v) \]
+
+Autrement dit, la contribution de chaque bloc ne dépend que de son propre code de hachage et de sa position. Par conséquent, si deux blocs de même longueur ont le même code, on peut les échanger n’importe où dans une chaîne sans changer le résultat. Comme `"Aa"` et `"BB"` font tous deux deux caractères et partagent le code 2112, toutes les chaînes formées en enchaînant \( k \) blocs choisis librement parmi ces deux-là ont rigoureusement le même code de hachage :
+
+```
+"AaAaAa", "AaAaBB", "AaBBAa", "AaBBBB", "BBAaAa", "BBAaBB", "BBBBAa", "BBBBBB"
+```
+
+Ces huit chaînes de six caractères ont toutes le code 1952508096. Et le procédé se généralise sans effort : avec \( k \) blocs, on obtient \( 2^k \) chaînes distinctes qui se partagent un seul et unique code. Une vingtaine de blocs suffisent donc à produire plus d’un million de clés en collision, et il n’en coûte que quelques lignes de code.
+
+### Pourquoi cela met les tables de hachage en danger
+
+Une table de hachage range chaque clé dans un seau déterminé par son code de hachage. Tant que les clés se répartissent uniformément, chaque seau ne contient qu’une poignée d’éléments et les opérations d’insertion et de recherche coûtent un temps constant.
+
+Avec des clés fabriquées comme ci-dessus, tout s’effondre : elles atterrissent toutes dans le même seau. La table dégénère alors en une simple liste. Pour insérer la \( i \)-ième clé, il faut la comparer aux \( i-1 \) clés déjà présentes afin de vérifier qu’elle n’y est pas déjà. Insérer \( n \) clés coûte donc de l’ordre de \( n^2/2 \) comparaisons au lieu de \( n \).
+
+Ce n’est pas qu’une curiosité théorique. En 2011, des chercheurs ont montré à la conférence 28C3 que la plupart des plateformes web de l’époque, en Java comme en PHP, en Python ou en Ruby, étaient vulnérables à cette faiblesse. Un serveur qui range les paramètres d’un formulaire dans une table de hachage peut être paralysé par une seule requête contenant quelques milliers de noms de paramètres soigneusement choisis. Le coût est dérisoire pour l’attaquant et énorme pour le serveur : c’est une attaque par déni de service.
+
+Le programme suivant construit \( 2^{14} = 16\,384 \) chaînes qui partagent toutes le même code de hachage, puis mesure le temps d’insertion dans une table de hachage naïve et dans une `HashMap` de Java.
+
+{{<inlineJava path="ExempleHashCode.java" lang="java">}}
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class ExempleHashCode {
+
+    // Réimplantation exacte de String.hashCode() : h = 31*h + caractère
+    public static int monHashCode(String s) {
+        int h = 0;
+        for (int i = 0; i < s.length(); i++) {
+            h = 31 * h + s.charAt(i);
+        }
+        return h;
+    }
+
+    // Construit 2^k chaînes qui ont toutes exactement le même code de hachage,
+    // en enchaînant des blocs « Aa » et « BB » qui, eux, se valent déjà.
+    public static String[] collisions(int k) {
+        String[] resultat = { "" };
+        for (int i = 0; i < k; i++) {
+            String[] suivant = new String[resultat.length * 2];
+            for (int j = 0; j < resultat.length; j++) {
+                suivant[2 * j]     = resultat[j] + "Aa";
+                suivant[2 * j + 1] = resultat[j] + "BB";
+            }
+            resultat = suivant;
+        }
+        return resultat;
+    }
+
+    // Une table de hachage naïve à chaînage, comme avant Java 8
+    static class TableNaive {
+        List<String>[] seaux;
+
+        @SuppressWarnings("unchecked")
+        TableNaive(int taille) {
+            seaux = new List[taille];
+            for (int i = 0; i < taille; i++) seaux[i] = new ArrayList<>();
+        }
+
+        void ajouter(String cle) {
+            int i = Math.floorMod(cle.hashCode(), seaux.length);
+            for (String s : seaux[i]) {      // parcours du seau : le point faible
+                if (s.equals(cle)) return;
+            }
+            seaux[i].add(cle);
+        }
+    }
+
+    public static void main(String[] args) {
+        // 1. La formule est bien celle-là
+        System.out.println("monHashCode(\"Java\") = " + monHashCode("Java"));
+        System.out.println("\"Java\".hashCode()   = " + "Java".hashCode());
+        System.out.println("\"\".hashCode()       = " + "".hashCode());
+
+        // 2. Deux chaînes identiques ont le même code ; deux chaînes
+        //    différentes peuvent aussi l'avoir.
+        String a = "Aa";
+        String b = "BB";
+        System.out.println("\"Aa\".hashCode() = " + a.hashCode()
+                + ", \"BB\".hashCode() = " + b.hashCode()
+                + ", mais a.equals(b) = " + a.equals(b));
+
+        // 3. Des collisions en quantité industrielle
+        int k = 14;
+        String[] mauvaises = collisions(k);
+        Set<Integer> codes = new HashSet<>();
+        for (String s : mauvaises) codes.add(s.hashCode());
+        System.out.println(mauvaises.length + " chaînes distinctes de "
+                + mauvaises[0].length() + " caractères se partagent "
+                + codes.size() + " code(s) de hachage.");
+
+        // 4. Des clés ordinaires de même taille, pour comparer
+        String[] ordinaires = new String[mauvaises.length];
+        for (int i = 0; i < ordinaires.length; i++) {
+            ordinaires[i] = "cle" + i + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxx".substring(0,
+                    mauvaises[0].length() - ("cle" + i).length());
+        }
+
+        long t0 = System.nanoTime();
+        TableNaive t1 = new TableNaive(2 * ordinaires.length);
+        for (String s : ordinaires) t1.ajouter(s);
+        long t1f = System.nanoTime();
+
+        TableNaive t2 = new TableNaive(2 * mauvaises.length);
+        for (String s : mauvaises) t2.ajouter(s);
+        long t2f = System.nanoTime();
+
+        HashMap<String, Integer> m1 = new HashMap<>();
+        long t3 = System.nanoTime();
+        for (int i = 0; i < ordinaires.length; i++) m1.put(ordinaires[i], i);
+        long t3f = System.nanoTime();
+
+        HashMap<String, Integer> m2 = new HashMap<>();
+        for (int i = 0; i < mauvaises.length; i++) m2.put(mauvaises[i], i);
+        long t4f = System.nanoTime();
+
+        System.out.println();
+        System.out.printf("Table naive, cles ordinaires   : %7.1f ms%n", (t1f - t0) / 1e6);
+        System.out.printf("Table naive, cles en collision : %7.1f ms%n", (t2f - t1f) / 1e6);
+        System.out.printf("HashMap,     cles ordinaires   : %7.1f ms%n", (t3f - t3) / 1e6);
+        System.out.printf("HashMap,     cles en collision : %7.1f ms%n", (t4f - t3f) / 1e6);
+    }
+}
+{{</inlineJava>}}
+
+Sur une machine récente, la table naïve met environ 2,5 ms pour les clés ordinaires, mais 143 ms pour les clés en collision, soit près de 60 fois plus. Et l’écart empire avec la taille : en quadruplant le nombre de clés, on multiplie la pénalité par environ cinq, ce qui est bien la signature d’un comportement quadratique.
+
+### Les parades
+
+La `HashMap` de Java se défend nettement mieux : dans la même expérience, elle ne prend que 13,6 ms au lieu de 3,8 ms, un facteur d’environ 3,5 seulement. Depuis Java 8, lorsqu’un seau accumule au moins huit éléments dans une table d’au moins 64 seaux, la liste chaînée est convertie en un arbre rouge-noir. Comme les chaînes sont comparables entre elles avec `compareTo`, la recherche dans le seau passe de \( O(n) \) à \( O(\log n) \). Voilà une application directe des arbres équilibrés étudiés dans le premier module.
+
+Cette parade limite les dégâts sans supprimer la cause. D’autres langages ont choisi une approche différente : ils tirent au hasard, au démarrage du programme, une clé secrète qui entre dans le calcul du hachage, si bien qu’un attaquant ne peut plus prédire les collisions. Java ne peut pas se le permettre pour `String`, justement parce que la valeur retournée par `hashCode()` fait partie de la spécification publique du langage : la changer casserait tous les programmes qui la sauvegardent ou la transmettent.
+
+Il reste donc quelques précautions à prendre lorsqu’on manipule des données venant de l’extérieur :
+
+- Limiter le nombre de clés qu’une source non fiable peut insérer dans une table de hachage.
+- Se méfier de toute structure indexée par des chaînes que l’utilisateur contrôle entièrement.
+- Ne jamais confondre `hashCode()` avec une empreinte de sécurité : pour signer ou vérifier des données, il faut une fonction de hachage cryptographique.
+
+
 ## Allocation de mémoire et ramasse-miettes
 
 {{% hint info %}}
