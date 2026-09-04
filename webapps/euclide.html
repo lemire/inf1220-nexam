@@ -1,0 +1,442 @@
+<style>
+.euclide-app {
+    background: #ffffff;
+    color: #1f2937;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    width: 100%;
+    box-sizing: border-box;
+    text-align: left;
+}
+.euclide-app h3 {
+    font-size: 24px;
+    margin: 0 0 16px 0;
+    color: #1f2937;
+}
+.euclide-app p {
+    font-size: 16px;
+    color: #374151;
+}
+.euclide-fields {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 8px;
+}
+.euclide-field label {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 16px;
+    color: #374151;
+}
+.euclide-app input[type="number"] {
+    padding: 8px;
+    font-size: 16px;
+    color: #1f2937;
+    background: #ffffff;
+    border: 1px solid #6b7280;
+    border-radius: 4px;
+    width: 12rem;
+    max-width: 100%;
+}
+.euclide-app input[aria-invalid="true"] {
+    border-color: #b91c1c;
+    border-width: 2px;
+}
+.euclide-error {
+    color: #b91c1c;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 16px 0;
+    min-height: 1.5em;
+}
+.euclide-columns {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+.euclide-column {
+    flex: 1 1 20rem;
+    min-width: 0;
+}
+.euclide-panel {
+    background-color: #f9fafb;
+    padding: 16px;
+    border: 1px solid #6b7280;
+    border-radius: 8px;
+}
+.euclide-label {
+    font-size: 16px;
+    color: #374151;
+    margin: 0 0 8px 0;
+    font-weight: bold;
+}
+.euclide-code {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1f2937;
+    background: #ffffff;
+    padding: 8px;
+    border-radius: 4px;
+    margin: 0;
+    overflow-x: auto;
+    white-space: pre;
+}
+.euclide-code span {
+    display: block;
+}
+.euclide-code .euclide-current {
+    background: #e6f4ea;
+    color: #146c31;
+    font-weight: bold;
+}
+.euclide-state {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 16px;
+    color: #374151;
+}
+.euclide-state li {
+    margin-bottom: 4px;
+}
+.euclide-state .euclide-value {
+    font-family: monospace;
+    font-size: 16px;
+}
+.euclide-result {
+    margin-top: 16px;
+    font-size: 16px;
+    color: #1f2937;
+    background: #f9fafb;
+    border: 1px solid #6b7280;
+    border-left: 6px solid #146c31;
+    border-radius: 4px;
+    padding: 12px;
+}
+.euclide-buttons {
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+.euclide-app button {
+    background: #2471a3;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+}
+.euclide-app button:hover:not(:disabled) {
+    background: #1b578a;
+}
+.euclide-app button:disabled {
+    background: #6b7280;
+    cursor: not-allowed;
+}
+.euclide-app :focus-visible {
+    outline: 3px solid #1d4ed8;
+    outline-offset: 2px;
+}
+.euclide-app table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 16px;
+    color: #1f2937;
+    margin-top: 16px;
+}
+.euclide-app caption {
+    text-align: left;
+    font-size: 16px;
+    color: #374151;
+    font-weight: bold;
+    padding-bottom: 8px;
+}
+.euclide-app th,
+.euclide-app td {
+    border: 1px solid #6b7280;
+    padding: 6px 10px;
+    text-align: left;
+}
+.euclide-app th {
+    background: #f9fafb;
+}
+.euclide-table-wrapper {
+    overflow-x: auto;
+}
+</style>
+
+<section class="euclide-app" aria-labelledby="euclideTitre">
+    <h3 id="euclideTitre">L'algorithme d'Euclide</h3>
+    <p>Choisissez deux entiers positifs, puis exécutez l'algorithme pas à pas ou d'un seul coup pour obtenir leur plus grand commun diviseur.</p>
+
+    <div class="euclide-fields">
+        <div class="euclide-field">
+            <label for="euclideEntreeA">Premier nombre (a)</label>
+            <input id="euclideEntreeA" type="number" inputmode="numeric" min="1" max="1000000000" step="1" value="1071" aria-describedby="euclideAide euclideErreur">
+        </div>
+        <div class="euclide-field">
+            <label for="euclideEntreeB">Deuxième nombre (b)</label>
+            <input id="euclideEntreeB" type="number" inputmode="numeric" min="1" max="1000000000" step="1" value="462" aria-describedby="euclideAide euclideErreur">
+        </div>
+    </div>
+    <p id="euclideAide">Entiers de 1 à 1 000 000 000.</p>
+    <p id="euclideErreur" class="euclide-error" role="alert"></p>
+
+    <div class="euclide-columns">
+        <div class="euclide-column">
+            <p class="euclide-label" id="euclidePseudocodeTitre">Pseudocode</p>
+            <div class="euclide-panel">
+                <pre class="euclide-code" id="euclidePseudocode" aria-labelledby="euclidePseudocodeTitre"></pre>
+            </div>
+        </div>
+        <div class="euclide-column">
+            <p class="euclide-label" id="euclideEtatTitre">État des variables</p>
+            <div class="euclide-panel">
+                <ul class="euclide-state" aria-labelledby="euclideEtatTitre">
+                    <li>a : <span class="euclide-value" id="euclideA">1071</span></li>
+                    <li>b : <span class="euclide-value" id="euclideB">462</span></li>
+                    <li>reste : <span class="euclide-value" id="euclideReste">—</span></li>
+                    <li>Tours de boucle : <span class="euclide-value" id="euclideTours">0</span></li>
+                </ul>
+            </div>
+            <p class="euclide-result" id="euclideStatut" role="status">Prêt. L'algorithme n'a pas encore commencé.</p>
+        </div>
+    </div>
+
+    <div class="euclide-buttons">
+        <button type="button" id="euclideBoutonEtape">Prochaine étape</button>
+        <button type="button" id="euclideBoutonTout">Tout exécuter</button>
+        <button type="button" id="euclideBoutonReset">Réinitialiser</button>
+    </div>
+
+    <div class="euclide-table-wrapper">
+        <table id="euclideTable">
+            <caption>Divisions effectuées</caption>
+            <thead>
+                <tr>
+                    <th scope="col">Tour</th>
+                    <th scope="col">a</th>
+                    <th scope="col">b</th>
+                    <th scope="col">a mod b</th>
+                </tr>
+            </thead>
+            <tbody id="euclideTableCorps">
+                <tr id="euclideTableVide"><td colspan="4">Aucune division effectuée pour l'instant.</td></tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<script>
+(function () {
+    "use strict";
+
+    var euclideLignes = [
+        "lire a",
+        "lire b",
+        "TANT QUE b ≠ 0 FAIRE",
+        "    reste ← a mod b",
+        "    a ← b",
+        "    b ← reste",
+        "FIN TANT QUE",
+        "retourner a"
+    ];
+
+    var euclideA = 1071;
+    var euclideB = 462;
+    var euclideReste = null;
+    var euclideTours = 0;
+    var euclideEtape = 0;
+    var euclideTermine = false;
+
+    var elemA = document.getElementById("euclideA");
+    var elemB = document.getElementById("euclideB");
+    var elemReste = document.getElementById("euclideReste");
+    var elemTours = document.getElementById("euclideTours");
+    var elemStatut = document.getElementById("euclideStatut");
+    var elemErreur = document.getElementById("euclideErreur");
+    var elemPseudocode = document.getElementById("euclidePseudocode");
+    var elemTableCorps = document.getElementById("euclideTableCorps");
+    var entreeA = document.getElementById("euclideEntreeA");
+    var entreeB = document.getElementById("euclideEntreeB");
+    var boutonEtape = document.getElementById("euclideBoutonEtape");
+    var boutonTout = document.getElementById("euclideBoutonTout");
+    var boutonReset = document.getElementById("euclideBoutonReset");
+
+    function euclideAfficherPseudocode() {
+        elemPseudocode.textContent = "";
+        for (var i = 0; i < euclideLignes.length; i++) {
+            var ligne = document.createElement("span");
+            var courante = !euclideTermine && i === euclideEtape;
+            // Le marqueur textuel double le repère visuel : la couleur seule ne
+            // suffit pas à signaler la ligne courante (WCAG 1.4.1).
+            ligne.textContent = (courante ? "▶ " : "  ") + euclideLignes[i];
+            if (courante) {
+                ligne.className = "euclide-current";
+                ligne.setAttribute("aria-current", "step");
+            }
+            elemPseudocode.appendChild(ligne);
+        }
+    }
+
+    function euclideAfficherEtat() {
+        elemA.textContent = euclideA;
+        elemB.textContent = euclideB;
+        elemReste.textContent = euclideReste === null ? "—" : euclideReste;
+        elemTours.textContent = euclideTours;
+        euclideAfficherPseudocode();
+        boutonEtape.disabled = euclideTermine;
+        boutonTout.disabled = euclideTermine;
+    }
+
+    function euclideAjouterLigne(a, b, reste) {
+        var vide = document.getElementById("euclideTableVide");
+        if (vide) {
+            vide.remove();
+        }
+        var tr = document.createElement("tr");
+        var cellules = [String(euclideTours), String(a), String(b), String(reste)];
+        for (var i = 0; i < cellules.length; i++) {
+            var cell = document.createElement(i === 0 ? "th" : "td");
+            if (i === 0) {
+                cell.setAttribute("scope", "row");
+            }
+            cell.textContent = cellules[i];
+            tr.appendChild(cell);
+        }
+        elemTableCorps.appendChild(tr);
+    }
+
+    function euclideViderTable() {
+        elemTableCorps.textContent = "";
+        var tr = document.createElement("tr");
+        tr.id = "euclideTableVide";
+        var td = document.createElement("td");
+        td.setAttribute("colspan", "4");
+        td.textContent = "Aucune division effectuée pour l'instant.";
+        tr.appendChild(td);
+        elemTableCorps.appendChild(tr);
+    }
+
+    function euclideLireEntree(champ, nom) {
+        var brut = champ.value.trim();
+        var valeur = Number(brut);
+        if (brut === "" || !Number.isInteger(valeur) || valeur < 1 || valeur > 1000000000) {
+            champ.setAttribute("aria-invalid", "true");
+            elemErreur.textContent = "Le " + nom + " doit être un entier compris entre 1 et 1 000 000 000.";
+            champ.focus();
+            return null;
+        }
+        champ.removeAttribute("aria-invalid");
+        return valeur;
+    }
+
+    function euclideReinitialiser() {
+        elemErreur.textContent = "";
+        var a = euclideLireEntree(entreeA, "premier nombre (a)");
+        if (a === null) {
+            return false;
+        }
+        var b = euclideLireEntree(entreeB, "deuxième nombre (b)");
+        if (b === null) {
+            return false;
+        }
+        euclideA = a;
+        euclideB = b;
+        euclideReste = null;
+        euclideTours = 0;
+        euclideEtape = 0;
+        euclideTermine = false;
+        euclideViderTable();
+        euclideAfficherEtat();
+        elemStatut.textContent = "Prêt. a vaut " + a + " et b vaut " + b + ".";
+        return true;
+    }
+
+    function euclideProchaineEtape() {
+        if (euclideTermine) {
+            return false;
+        }
+        var message = "";
+        switch (euclideEtape) {
+        case 0:
+            message = "Lecture de a : " + euclideA + ".";
+            euclideEtape = 1;
+            break;
+        case 1:
+            message = "Lecture de b : " + euclideB + ".";
+            euclideEtape = 2;
+            break;
+        case 2:
+            if (euclideB !== 0) {
+                message = "b vaut " + euclideB + ", donc b est différent de 0 : on entre dans la boucle.";
+                euclideEtape = 3;
+            } else {
+                message = "b vaut 0 : on sort de la boucle.";
+                euclideEtape = 7;
+            }
+            break;
+        case 3:
+            euclideReste = euclideA % euclideB;
+            euclideTours = euclideTours + 1;
+            euclideAjouterLigne(euclideA, euclideB, euclideReste);
+            message = "reste vaut " + euclideA + " mod " + euclideB + ", soit " + euclideReste + ".";
+            euclideEtape = 4;
+            break;
+        case 4:
+            euclideA = euclideB;
+            message = "a prend la valeur de b, soit " + euclideA + ".";
+            euclideEtape = 5;
+            break;
+        case 5:
+            euclideB = euclideReste;
+            message = "b prend la valeur du reste, soit " + euclideB + ".";
+            euclideEtape = 6;
+            break;
+        case 6:
+            message = "Fin du tour de boucle : on retourne au test.";
+            euclideEtape = 2;
+            break;
+        case 7:
+            euclideTermine = true;
+            message = "Terminé. Le plus grand commun diviseur est " + euclideA + ", obtenu en " + euclideTours + (euclideTours > 1 ? " divisions." : " division.");
+            break;
+        }
+        euclideAfficherEtat();
+        elemStatut.textContent = message;
+        return true;
+    }
+
+    function euclideToutExecuter() {
+        // Garde-fou : la boucle d'Euclide converge toujours, mais on borne
+        // quand même le nombre d'étapes.
+        var maximum = 10000;
+        while (!euclideTermine && maximum > 0) {
+            euclideProchaineEtape();
+            maximum = maximum - 1;
+        }
+    }
+
+    boutonEtape.addEventListener("click", function () {
+        euclideProchaineEtape();
+    });
+
+    boutonTout.addEventListener("click", function () {
+        euclideToutExecuter();
+    });
+
+    boutonReset.addEventListener("click", function () {
+        euclideReinitialiser();
+    });
+
+    entreeA.addEventListener("change", euclideReinitialiser);
+    entreeB.addEventListener("change", euclideReinitialiser);
+
+    euclideAfficherEtat();
+}());
+</script>
