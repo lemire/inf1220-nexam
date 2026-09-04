@@ -526,3 +526,146 @@ Ce qui frappe surtout, c'est la rapidité. La méthode naïve peut exiger un mil
 
 En 1844, Gabriel Lamé a précisé ce comportement : le nombre de divisions ne dépasse jamais cinq fois le nombre de chiffres du plus petit des deux nombres. Il a aussi identifié le pire cas, et il est inattendu : ce sont deux nombres de Fibonacci consécutifs. Le calcul du PGCD de 10946 et 6765 demande dix-neuf divisions, un record pour des nombres de cette taille. Ce résultat est considéré comme l'un des premiers de l'histoire à analyser le coût d'un algorithme plutôt que sa simple correction, un thème que nous reprendrons en détail plus loin dans le cours.
 
+
+## Exemple : Les algorithmes de l'école primaire
+
+Vous connaissiez déjà des algorithmes bien avant ce cours. L'addition posée, la multiplication en colonnes et la division longue en sont trois, et vous les avez exécutés des centaines de fois à la main. Ce sont des algorithmes au sens plein du terme : chaque étape est décrite sans ambiguïté, le nombre d'étapes est fini, et la méthode fonctionne pour n'importe quels nombres, pas seulement pour ceux de l'exercice.
+
+Ce n'est pas un hasard si ces méthodes réapparaissent ici. Le mot *algorithme* vient du nom du mathématicien Muhammad ibn Mūsā al-Khwārizmī, qui rédigea vers 825 un traité expliquant comment calculer avec les chiffres indo-arabes et la notation positionnelle. Traduit en latin au XII<sup>e</sup> siècle sous le titre *Algoritmi de numero Indorum*, il donna son nom à la discipline. Pendant des siècles, en Europe, « algorisme » a désigné précisément cela : poser ses calculs en colonnes avec des chiffres, par opposition au calcul sur abaque avec des jetons. Les algorithmes que vous avez appris à l'école sont donc les algorithmes originaux.
+
+Pour les décrire en pseudocode, il faut d'abord représenter les nombres. Un nombre écrit en décimal est une suite de chiffres, donc un tableau. Nous adoptons la convention suivante : `a[0]` est le chiffre des unités, `a[1]` celui des dizaines, `a[2]` celui des centaines, et ainsi de suite. Le tableau est donc écrit à l'envers par rapport à la façon dont on écrit le nombre sur une feuille, mais l'indice correspond alors exactement à la puissance de 10 associée au chiffre, ce qui simplifie tout. Le nombre 478 devient le tableau [8, 7, 4].
+
+Nous utiliserons deux opérations sur les entiers : `mod`, déjà rencontré, qui donne le reste de la division entière, et `div`, qui en donne le quotient. Ainsi `14 mod 10` vaut 4 et `14 div 10` vaut 1. Autrement dit, pour un nombre de deux chiffres, `mod 10` extrait le chiffre des unités et `div 10` extrait la retenue.
+
+### L'addition posée
+
+La règle apprise à l'école tient en une phrase : on additionne colonne par colonne, de droite à gauche, et lorsque la somme d'une colonne dépasse 9, on écrit le chiffre des unités et on reporte une retenue sur la colonne suivante. Supposons que les deux nombres ont `n` chiffres chacun ; si l'un est plus court, on le complète par des zéros à gauche, exactement comme on le ferait au tableau.
+
+```pseudo
+lire a          // tableau de n chiffres, a[0] = les unités
+lire b          // tableau de n chiffres, b[0] = les unités
+retenue ← 0
+i ← 0
+TANT QUE i < n FAIRE
+    s ← a[i] + b[i] + retenue
+    resultat[i] ← s mod 10
+    retenue ← s div 10
+    i ← i + 1
+FIN TANT QUE
+resultat[n] ← retenue
+retourner resultat
+```
+
+Suivons l'exécution avec 478 + 356 :
+
+| i | a[i] | b[i] | retenue entrante | s | resultat[i] | retenue sortante |
+| --- | --- | --- | --- | --- | --- | --- |
+| 0 | 8 | 6 | 0 | 14 | 4 | 1 |
+| 1 | 7 | 5 | 1 | 13 | 3 | 1 |
+| 2 | 4 | 3 | 1 | 8 | 8 | 0 |
+
+La dernière retenue vaut 0, donc `resultat[3]` vaut 0 et le résultat est 834.
+
+{{< mermaid >}}
+graph TD
+    A[Début] --> B["Lire a et b, retenue = 0, i = 0"]
+    B --> C{i < n ?}
+    C -- Vrai --> D["s = a[i] + b[i] + retenue"]
+    D --> E["resultat[i] = s mod 10"]
+    E --> F["retenue = s div 10"]
+    F --> G["i = i + 1"]
+    G --> C
+    C -- Faux --> H["resultat[n] = retenue"]
+    H --> I[Afficher resultat]
+    I --> J[Fin]
+{{< /mermaid >}}
+
+Deux remarques. D'abord, la retenue ne dépasse jamais 1 : la somme d'une colonne vaut au plus 9 + 9 + 1, soit 19. Ensuite, le nombre d'étapes est exactement le nombre de chiffres. Additionner deux nombres de mille chiffres demande mille tours de boucle, deux fois plus que pour cinq cents chiffres. C'est cette proportionnalité directe qui rend l'addition bon marché, et c'est précisément l'algorithme que votre ordinateur exécute, à ceci près qu'il travaille en base 2 plutôt qu'en base 10.
+
+### La multiplication posée
+
+La multiplication en colonnes procède en deux temps : on multiplie le premier nombre par chacun des chiffres du second, en décalant chaque ligne d'un rang vers la gauche, puis on additionne toutes les lignes obtenues. En pseudocode, on peut faire les deux à la fois en accumulant directement dans le tableau du résultat. Le fameux décalage d'un rang n'est alors rien d'autre que l'indice `i + j` : le produit du chiffre de rang `i` par le chiffre de rang `j` contribue au rang `i + j`, ce qui traduit le fait que multiplier des dizaines par des centaines donne des milliers.
+
+```pseudo
+lire a          // n chiffres
+lire b          // m chiffres
+POUR TOUT indice k de 0 à n + m - 1 FAIRE
+    resultat[k] ← 0
+FIN POUR
+i ← 0
+TANT QUE i < n FAIRE
+    retenue ← 0
+    j ← 0
+    TANT QUE j < m FAIRE
+        s ← resultat[i + j] + a[i] × b[j] + retenue
+        resultat[i + j] ← s mod 10
+        retenue ← s div 10
+        j ← j + 1
+    FIN TANT QUE
+    resultat[i + m] ← retenue
+    i ← i + 1
+FIN TANT QUE
+retourner resultat
+```
+
+Suivons l'exécution avec 23 × 45, donc a = [3, 2] et b = [5, 4] :
+
+| i | j | resultat[i+j] avant | a[i] × b[j] | retenue entrante | s | resultat[i+j] après | retenue sortante |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| 0 | 0 | 0 | 15 | 0 | 15 | 5 | 1 |
+| 0 | 1 | 0 | 12 | 1 | 13 | 3 | 1 |
+| 1 | 0 | 3 | 10 | 0 | 13 | 3 | 1 |
+| 1 | 1 | 1 | 8 | 1 | 10 | 0 | 1 |
+
+Après le premier passage, `resultat[2]` reçoit la retenue 1 ; après le second, `resultat[3]` reçoit la retenue 1. Le tableau final est [5, 3, 0, 1], c'est-à-dire 1035.
+
+Le coût n'est plus le même que pour l'addition. Chaque chiffre du premier nombre rencontre chaque chiffre du second : multiplier deux nombres de `n` chiffres demande \( n^2 \) multiplications élémentaires. Doubler la taille des nombres quadruple le travail. Pour deux nombres de mille chiffres, cela fait un million d'opérations, contre mille pour l'addition.
+
+On a longtemps cru que c'était inévitable. En 1960, Andreï Kolmogorov énonça devant un séminaire de Moscou la conjecture qu'aucune méthode ne pouvait faire mieux que \( n^2 \). Anatoli Karatsuba, alors étudiant, la réfuta en une semaine avec une méthode en \( n^{1{,}58} \) environ, obtenue en remplaçant une des multiplications par des additions. La méthode de l'école, vieille de mille ans, n'était donc pas optimale. Nous reviendrons sur cette façon de mesurer le coût d'un algorithme plus loin dans le cours.
+
+### La division longue
+
+La division longue est la plus laborieuse des trois, et c'est aussi la plus intéressante. Contrairement aux deux autres, elle se déroule de gauche à droite, en partant du chiffre le plus significatif du dividende. À chaque étape, on abaisse un chiffre à côté du reste courant, on cherche combien de fois le diviseur entre dans le nombre ainsi formé, on écrit ce chiffre au quotient, et on garde le reste.
+
+Le pseudocode ci-dessous divise un dividende `a` de `n` chiffres par un diviseur `d`, un entier positif. L'indice `n - 1` désigne le chiffre le plus à gauche, celui par lequel on commence.
+
+```pseudo
+lire a          // dividende, tableau de n chiffres, a[0] = les unités
+lire d          // diviseur, un entier positif
+reste ← 0
+i ← n - 1
+TANT QUE i ≥ 0 FAIRE
+    courant ← reste × 10 + a[i]
+    quotient[i] ← courant div d
+    reste ← courant mod d
+    i ← i - 1
+FIN TANT QUE
+retourner quotient et reste
+```
+
+Suivons l'exécution avec 1234 ÷ 7, donc a = [4, 3, 2, 1] :
+
+| i | reste entrant | a[i] | courant | quotient[i] | reste sortant |
+| --- | --- | --- | --- | --- | --- |
+| 3 | 0 | 1 | 1 | 0 | 1 |
+| 2 | 1 | 2 | 12 | 1 | 5 |
+| 1 | 5 | 3 | 53 | 7 | 4 |
+| 0 | 4 | 4 | 44 | 6 | 2 |
+
+Le quotient est [6, 7, 1, 0], c'est-à-dire 0176, soit 176, et le reste est 2. On vérifie que 7 × 176 + 2 = 1234. Le zéro de tête est celui que l'écolier n'écrit pas.
+
+L'opération `courant div d` mérite qu'on s'y arrête. Le pseudocode la traite comme une opération élémentaire, mais à l'école, c'est vous qui la réalisiez, et par tâtonnement : « combien de fois 7 entre-t-il dans 53 ? ». Vous essayiez mentalement quelques multiples jusqu'à trouver le bon. Autrement dit, cette ligne cache elle-même une recherche. On pourrait la rendre explicite en remplaçant la division par des soustractions répétées :
+
+```pseudo
+c ← 0
+TANT QUE courant ≥ d FAIRE
+    courant ← courant - d
+    c ← c + 1
+FIN TANT QUE
+quotient[i] ← c
+reste ← courant
+```
+
+Cette boucle s'exécute au plus neuf fois, puisque `courant` est toujours inférieur à dix fois `d`. C'est un premier exemple d'une situation qui reviendra souvent : ce qu'on tient pour une opération unique se révèle, en y regardant de plus près, être un algorithme à part entière.
+
+Ces trois algorithmes valent surtout comme point de repère. Ils montrent que la difficulté du pseudocode n'est pas de trouver des idées nouvelles, mais d'écrire avec une précision suffisante des méthodes que l'on connaît déjà. Vous savez additionner depuis longtemps ; l'exercice consiste à l'expliquer si complètement qu'une machine dépourvue d'intuition puisse suivre vos instructions à la lettre. C'est exactement ce que vous faisiez, enfant, en appliquant mécaniquement une règle apprise sans la comprendre entièrement : vous jouiez le rôle de l'ordinateur.
