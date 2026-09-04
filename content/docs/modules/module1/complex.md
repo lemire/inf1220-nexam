@@ -1051,6 +1051,171 @@ une table de hachage.
 
 
 
+## Le crible d'Ératosthène
+
+Voici un second exemple où le choix de l'approche change la classe de complexité. Le problème : dresser la liste de tous les nombres premiers inférieurs ou égaux à \( n \). Rappelons qu'un nombre premier est un entier supérieur à 1 qui n'est divisible que par 1 et par lui-même.
+
+La méthode directe consiste à examiner chaque nombre l'un après l'autre et à vérifier s'il est premier en cherchant un diviseur.
+
+```pseudo
+POUR k de 2 à n
+    estPremier ← VRAI
+    d ← 2
+    TANT QUE d × d <= k FAIRE
+        SI k mod d = 0 ALORS
+            estPremier ← FAUX
+            sortir de la boucle
+        FIN SI
+        d ← d + 1
+    FIN TANT QUE
+    SI estPremier ALORS
+        afficher k
+    FIN SI
+FIN POUR
+```
+
+L'arrêt à \( d \times d \le k \) mérite une explication. Si \( k \) admet un diviseur, il en admet forcément un qui ne dépasse pas \( \sqrt{k} \) : les diviseurs vont par paires dont le produit vaut \( k \), et dans une telle paire l'un des deux est toujours inférieur ou égal à la racine. Tester au-delà de \( \sqrt{k} \) est donc inutile. Cette seule observation fait passer le test d'un coût \( k \) à un coût \( \sqrt{k} \).
+
+Malgré cette optimisation, l'ensemble reste coûteux : chaque nombre premier oblige à parcourir toute la boucle jusqu'à sa racine, ce qui donne un total de l'ordre de \( n\sqrt{n} \) opérations.
+
+Ératosthène de Cyrène, un savant grec du troisième siècle avant notre ère, a proposé une méthode radicalement différente. Plutôt que de se demander pour chaque nombre s'il est premier, on part de la liste de tous les nombres et on élimine les non-premiers en bloc. Le point clé est qu'il est bien plus facile d'énumérer les multiples d'un nombre que de tester une divisibilité : les multiples de 7 s'obtiennent par additions successives, sans aucune division.
+
+On dresse donc un tableau de booléens, tous marqués « premier » au départ. On prend le premier nombre encore marqué, 2 : il est premier, et on raye tous ses multiples. Le suivant encore marqué est 3 : il est premier, on raye ses multiples. Et ainsi de suite. Ce qui survit à la fin est exactement l'ensemble des nombres premiers.
+
+```pseudo
+estPremier ← tableau de n+1 booléens, tous à VRAI
+estPremier[0] ← FAUX
+estPremier[1] ← FAUX
+
+i ← 2
+TANT QUE i × i <= n FAIRE
+    SI estPremier[i] ALORS
+        j ← i × i
+        TANT QUE j <= n FAIRE
+            estPremier[j] ← FAUX
+            j ← j + i
+        FIN TANT QUE
+    FIN SI
+    i ← i + 1
+FIN TANT QUE
+
+POUR k de 2 à n
+    SI estPremier[k] ALORS
+        afficher k
+    FIN SI
+FIN POUR
+```
+
+Deux détails de ce pseudocode ne sont pas anodins.
+
+Le rayage commence à \( i \times i \) et non à \( 2i \). Les multiples plus petits, comme \( 2i \), \( 3i \) ou \( 4i \), ont déjà été rayés par les nombres premiers précédents : quand on traite 5, les nombres 10, 15 et 20 ont été éliminés par 2 et par 3. Le premier multiple de 5 encore intact est bien 25.
+
+La boucle externe s'arrête à \( i \times i \le n \), pour la même raison que dans la méthode directe. Une fois passé \( \sqrt{n} \), tout nombre composé restant aurait déjà été rayé par un de ses facteurs plus petits.
+
+Déroulons le crible jusqu'à 30. La racine de 30 valant environ 5,48, la boucle externe s'arrête après 5.
+
+| Étape | On raye |
+| --- | --- |
+| \( i = 2 \) | 4, 6, 8, 10, 12, 14, 16, 18, 20, 22, 24, 26, 28, 30 |
+| \( i = 3 \) | 9, 15, 21, 27 |
+| \( i = 4 \) | rien : 4 a déjà été rayé, on passe |
+| \( i = 5 \) | 25 |
+
+Il reste 2, 3, 5, 7, 11, 13, 17, 19, 23 et 29, soit les dix nombres premiers inférieurs à 30.
+
+Le crible ne fait aucune division : uniquement des additions et des écritures en mémoire. Son coût total est en \( O(n \log \log n) \), une expression qu'il n'est pas nécessaire de savoir démontrer, mais dont il faut retenir qu'elle est à peine plus grande que \( n \). La fonction \( \log \log n \) croît si lentement qu'elle ne vaut même pas 3 pour un million.
+
+L'écart en pratique est net. Pour dresser la liste des 17 984 nombres premiers inférieurs à 200 000, les divisions successives demandent environ 26 fois plus de temps que le crible.
+
+Le crible a toutefois un défaut, et il illustre un compromis fréquent en informatique : il échange du temps contre de la mémoire. Il faut conserver un tableau de \( n \) booléens du début à la fin, alors que la méthode directe n'a besoin que de quelques variables. Pour énumérer les premiers jusqu'à un milliard, ce tableau devient encombrant. Et si l'on ne veut tester qu'un seul grand nombre plutôt que dresser une liste complète, le crible est le mauvais outil : mieux vaut alors une division directe, ou un test de primalité spécialisé.
+
+
+## La programmation dynamique
+
+Nous avons vu dans la section sur les problèmes difficiles qu'un algorithme glouton fait à chaque étape le choix qui paraît le meilleur sur le moment, sans jamais revenir en arrière, et qu'il ne donne généralement pas la solution optimale. La programmation dynamique est la technique qui permet, dans bien des cas, d'obtenir l'optimum sans pour autant tout essayer.
+
+Le nom est trompeur : il ne s'agit ni de dynamisme, ni de programmation au sens d'écrire du code. Richard Bellman, qui a forgé l'expression dans les années 1950, employait le mot «&nbsp;programmation&nbsp;» au sens de planification, comme dans «&nbsp;programme de production&nbsp;». Il a raconté avoir aussi choisi ce nom parce qu'il sonnait suffisamment inoffensif pour ne pas attirer l'attention de son bailleur de fonds militaire.
+
+### Un exemple qui tourne mal
+
+La suite de Fibonacci se définit simplement : les deux premiers termes valent 0 et 1, et chaque terme suivant est la somme des deux précédents. La définition se traduit directement en un algorithme récursif.
+
+```pseudo
+FONCTION fib(n)
+    SI n < 2 ALORS
+        retourner n
+    FIN SI
+    retourner fib(n-1) + fib(n-2)
+FIN FONCTION
+```
+
+Cet algorithme est correct, court et lisible. Il est aussi catastrophiquement lent. Pour calculer `fib(5)`, il faut `fib(4)` et `fib(3)` ; mais `fib(4)` réclame à son tour `fib(3)` et `fib(2)`. La valeur `fib(3)` est donc calculée deux fois, entièrement, sans que la seconde exécution profite de la première. Plus bas dans l'arbre des appels, la répétition devient massive : `fib(2)` est recalculé cinq fois pour `fib(6)`, des dizaines de fois pour `fib(10)`.
+
+Le nombre total d'appels vaut exactement \( 2 F(n+1) - 1 \), où \( F \) désigne la suite elle-même. Comme Fibonacci croît de façon exponentielle, le coût de l'algorithme aussi.
+
+| \( n \) | Appels | Temps (Java) |
+| --- | --- | --- |
+| 30 | 2 692 537 | 3 ms |
+| 40 | 331 160 281 | 336 ms |
+| 45 | 3 672 623 805 | 3,7 s |
+
+Ajouter 5 à \( n \) multiplie le travail par environ 11. Calculer `fib(90)` par cette méthode réclamerait plus de neuf milliards de milliards d'appels : au rythme mesuré ci-dessus, environ trois siècles, alors que le résultat tient sans problème dans un `long`.
+
+### Se souvenir des résultats
+
+Le défaut n'est pas la récursivité : c'est de recalculer indéfiniment les mêmes valeurs. Le problème possède beaucoup de sous-problèmes, mais peu de sous-problèmes *distincts*. Il n'y en a que \( n+1 \), de `fib(0)` à `fib(n)`.
+
+La correction est donc immédiate : on garde un carnet des résultats déjà obtenus. Avant de calculer, on consulte le carnet ; après avoir calculé, on y inscrit la réponse. Cette technique s'appelle la mémoïsation.
+
+```pseudo
+memo ← tableau de n+1 cases, toutes vides
+
+FONCTION fib(n)
+    SI n < 2 ALORS
+        retourner n
+    FIN SI
+    SI memo[n] n'est pas vide ALORS
+        retourner memo[n]
+    FIN SI
+    memo[n] ← fib(n-1) + fib(n-2)
+    retourner memo[n]
+FIN FONCTION
+```
+
+Le changement porte sur trois lignes, mais la complexité passe de l'exponentielle à \( O(n) \) : chaque valeur n'est calculée qu'une seule fois, et toutes les autres demandes sont servies par le carnet. Le calcul de `fib(90)`, hors d'atteinte quelques lignes plus haut, devient instantané.
+
+On peut aussi renverser la perspective. Plutôt que de partir de \( n \) et de descendre récursivement, on part du bas et on remonte en remplissant le tableau dans l'ordre. Cette variante s'appelle la tabulation.
+
+```pseudo
+FONCTION fib(n)
+    SI n < 2 ALORS
+        retourner n
+    FIN SI
+    table ← tableau de n+1 cases
+    table[0] ← 0
+    table[1] ← 1
+    POUR i de 2 à n
+        table[i] ← table[i-1] + table[i-2]
+    FIN POUR
+    retourner table[n]
+FIN FONCTION
+```
+
+Le résultat est identique et le coût aussi, mais il n'y a plus aucun appel récursif : une simple boucle suffit. C'est souvent la forme préférée, car elle évite le risque de saturer la pile d'appels. Dans ce cas précis, on peut même remarquer que seules les deux dernières cases servent, ce qui permet de ramener la mémoire utilisée à deux variables.
+
+### Quand la technique s'applique
+
+La programmation dynamique demande deux conditions.
+
+D'abord, le problème doit se décomposer en sous-problèmes dont les solutions optimales se combinent en une solution optimale du tout. C'est la propriété de sous-structure optimale, celle-là même qui est mentionnée à propos des algorithmes gloutons.
+
+Ensuite, et c'est ce qui distingue vraiment la technique, ces sous-problèmes doivent se recouper : le même sous-problème doit revenir plusieurs fois. Sans recoupement, la mémoïsation ne sert à rien. C'est justement le cas du tri fusion : lorsqu'il découpe le tableau en deux moitiés, celles-ci n'ont aucun élément commun et aucun sous-problème ne se répète. Le tri fusion relève de la stratégie « diviser pour régner », pas de la programmation dynamique. On peut résumer la différence ainsi : diviser pour régner découpe en morceaux indépendants, la programmation dynamique découpe en morceaux qui se chevauchent.
+
+Il est utile de comparer les trois approches vues jusqu'ici sur le problème du sac à dos. Dans la version où l'on peut prendre des fractions d'objets, l'approche gloutonne consistant à trier par rapport valeur sur poids donne l'optimum. Mais si les objets sont indivisibles, il faut les prendre ou les laisser entiers, et la même approche gloutonne échoue : elle peut remplir le sac avec un objet au bon rapport et se retrouver incapable de loger la combinaison réellement optimale. Essayer toutes les combinaisons coûterait \( 2^n \). La programmation dynamique résout ce problème exactement, en construisant un tableau indexé par le nombre d'objets considérés et la capacité restante.
+
+Beaucoup de problèmes classiques se traitent ainsi : la distance d'édition entre deux chaînes, c'est-à-dire le nombre minimal d'insertions, de suppressions et de substitutions pour passer de l'une à l'autre, le rendu de monnaie avec un nombre minimal de pièces, ou encore la plus longue sous-séquence commune, qui est au cœur des outils comparant deux versions d'un fichier.
+
+
 ## Les arbres en informatique
 
 Les arbres sont des structures de données hiérarchiques non linéaires, composées de nœuds reliés par des arêtes. Un arbre possède une racine unique, à partir de laquelle descendent des sous-arbres. Chaque nœud peut avoir zéro ou plusieurs enfants, mais un seul parent (sauf la racine). 
@@ -1734,6 +1899,72 @@ Le nombre affiché dans chaque cercle est la distance provisoire depuis la ville
 
 Observez que l'algorithme ne se contente pas de foncer vers la destination : il explore les villes dans l'ordre de leur distance au point de départ, un peu comme une tache d'huile qui s'étend. Il peut donc visiter des villes situées à l'opposé de la cible avant de conclure. C'est le prix à payer pour la garantie d'optimalité, et c'est précisément ce que corrige l'algorithme A\* en orientant la recherche.
 
+
+### L'algorithme du lièvre et de la tortue
+
+Terminons par un graphe d'une forme particulière : celui où chaque sommet possède exactement un successeur. C'est le cas d'une liste chaînée, où chaque maillon pointe vers le suivant, ou d'une suite définie par récurrence, où chaque valeur détermine la suivante.
+
+Dans un tel graphe, partons d'un sommet et suivons les flèches. Comme le nombre de sommets est fini et que chaque sommet mène toujours au même successeur, nous devons tôt ou tard revenir sur un sommet déjà visité, et à partir de là tourner en rond indéfiniment. Le trajet a donc la forme de la lettre grecque rho : une queue, parcourue une seule fois, puis un cycle parcouru sans fin.
+
+Deux questions se posent. Y a-t-il un cycle, et si oui, où commence-t-il et quelle est sa longueur ? Détecter un cycle est utile en pratique : une liste chaînée dont un maillon pointe vers un maillon antérieur fera boucler indéfiniment tout programme qui la parcourt, et c'est une source classique de blocage.
+
+La solution évidente consiste à mémoriser tous les sommets déjà visités dans un ensemble, et à s'arrêter dès qu'on en rencontre un pour la deuxième fois. C'est correct et rapide, mais cela demande une mémoire proportionnelle à la longueur du trajet. Sur une liste de plusieurs millions de maillons, cela peut être rédhibitoire.
+
+Robert Floyd a proposé une méthode qui ne demande que deux variables, quelle que soit la taille du graphe. On lance deux marcheurs depuis le point de départ : la tortue avance d'un sommet à la fois, le lièvre de deux. Si le trajet se termine, le lièvre atteindra la fin le premier et il n'y a pas de cycle. Sinon, les deux finissent par se retrouver sur le même sommet.
+
+Pourquoi cette rencontre est-elle certaine ? Une fois que les deux marcheurs sont entrés dans le cycle, le lièvre gagne exactement une position sur la tortue à chaque tour. L'écart entre eux, mesuré le long du cycle, diminue donc de 1 à chaque étape, jusqu'à devenir nul. Le lièvre ne peut pas «&nbsp;sauter par-dessus&nbsp;» la tortue, précisément parce qu'il ne la rattrape que d'un cran à la fois.
+
+Reste à situer l'entrée du cycle. Il se trouve qu'au point de rencontre, la distance qui reste à parcourir pour atteindre l'entrée du cycle est égale à la distance entre le point de départ et cette même entrée, à un nombre entier de tours près. Il suffit donc de ramener un des deux marcheurs au point de départ et de les faire avancer tous les deux d'un pas à la fois : ils se rejoindront exactement à l'entrée du cycle. La longueur du cycle s'obtient ensuite en faisant un tour complet avec un seul marcheur.
+
+```pseudo
+FONCTION detecterCycle(depart)
+    // Phase 1 : la rencontre
+    tortue ← successeur(depart)
+    lievre ← successeur(successeur(depart))
+    TANT QUE tortue ≠ lievre FAIRE
+        tortue ← successeur(tortue)
+        lievre ← successeur(successeur(lievre))
+    FIN TANT QUE
+
+    // Phase 2 : l'entrée du cycle
+    debut ← 0
+    tortue ← depart
+    TANT QUE tortue ≠ lievre FAIRE
+        tortue ← successeur(tortue)
+        lievre ← successeur(lievre)
+        debut ← debut + 1
+    FIN TANT QUE
+
+    // Phase 3 : la longueur du cycle
+    longueur ← 1
+    lievre ← successeur(tortue)
+    TANT QUE tortue ≠ lievre FAIRE
+        lievre ← successeur(lievre)
+        longueur ← longueur + 1
+    FIN TANT QUE
+
+    retourner debut, longueur
+FIN FONCTION
+```
+
+Prenons un exemple concret. Sept sommets numérotés de 0 à 6, dont les successeurs sont donnés par le tableau `successeur = [1, 2, 3, 4, 5, 6, 3]`. En partant de 0, le trajet est
+
+```
+0 → 1 → 2 → 3 → 4 → 5 → 6 → 3 → 4 → 5 → 6 → 3 → ...
+```
+
+La queue est 0, 1, 2 et le cycle est 3, 4, 5, 6. Voici la première phase, tour par tour :
+
+| Tour | Tortue | Lièvre |
+| --- | --- | --- |
+| 1 | 1 | 2 |
+| 2 | 2 | 4 |
+| 3 | 3 | 6 |
+| 4 | 4 | 4 |
+
+Ils se rencontrent au sommet 4. La deuxième phase repart de 0 avec la tortue, laisse le lièvre en 4, et les fait avancer d'un pas chacun : 1 et 5, puis 2 et 6, puis 3 et 3. Ils se rejoignent au sommet 3, qui est bien l'entrée du cycle, après 3 pas. La troisième phase fait un tour complet depuis 3 et compte 4 sommets.
+
+L'algorithme parcourt un nombre d'étapes proportionnel à la longueur de la queue plus celle du cycle, donc \( O(n) \) au pire, mais il n'utilise qu'un nombre constant de variables, soit \( O(1) \) en mémoire. C'est exactement le genre de compromis que l'analyse de complexité permet de reconnaître : la solution par ensemble est aussi rapide, mais elle paie en mémoire ce que celle-ci obtient par une idée.
 
 ## Vidéo optionnelle
 

@@ -458,3 +458,71 @@ std::cout << moyenne << std::endl;
 ```
 
 Dans chaque cas, la structure reste fidèle au pseudocode : initialisation d'une somme à zéro, parcours des indices de 0 à longueur-1 avec incrémentation, accumulation des valeurs, puis division finale par le nombre d'éléments. Cette approche rend l'algorithme indépendant de la taille exacte du tableau, exactement comme souhaité dans la version générale en pseudocode.
+
+
+## Exemple : L'algorithme d'Euclide
+
+Le deuxième exemple est nettement plus ancien : il est décrit dans les *Éléments* d'Euclide, vers 300 avant notre ère. C'est le plus vieil algorithme non trivial qui nous soit parvenu, et il précède l'invention de l'ordinateur d'environ vingt-trois siècles. Il montre bien qu'un algorithme est une idée indépendante de la machine qui l'exécute.
+
+Le problème est de trouver le plus grand commun diviseur (PGCD) de deux entiers positifs : le plus grand nombre qui les divise tous les deux sans laisser de reste. Le PGCD de 48 et 18 vaut 6, parce que 6 divise 48 (huit fois) et 18 (trois fois), et qu'aucun nombre plus grand ne fait mieux.
+
+Une première approche vient naturellement à l'esprit : essayer tous les nombres, du plus petit des deux jusqu'à 1, et s'arrêter au premier qui divise les deux.
+
+```pseudo
+lire a
+lire b
+d ← le plus petit de a et b
+TANT QUE d > 0 FAIRE
+    SI a mod d = 0 ET b mod d = 0 ALORS
+        retourner d
+    FIN SI
+    d ← d - 1
+FIN TANT QUE
+```
+
+L'opération `mod` donne le reste de la division entière : `48 mod 18` vaut 12, puisque 48 = 2 × 18 + 12. Un reste nul signifie donc une division exacte.
+
+Cet algorithme fonctionne, mais il est lent : pour deux nombres proches d'un million dont le PGCD est 1, il faut parcourir presque un million de valeurs avant de conclure.
+
+Euclide procède tout autrement. Son idée tient en une seule observation : si un nombre divise à la fois \( a \) et \( b \), alors il divise aussi le reste de la division de \( a \) par \( b \). Les deux paires \( (a, b) \) et \( (b, a \bmod b) \) ont donc exactement les mêmes diviseurs communs, et en particulier le même PGCD. Comme le reste est toujours plus petit que \( b \), on remplace le problème par un problème strictement plus petit, encore et encore, jusqu'à ce que le reste devienne nul.
+
+```pseudo
+lire a
+lire b
+TANT QUE b ≠ 0 FAIRE
+    reste ← a mod b
+    a ← b
+    b ← reste
+FIN TANT QUE
+retourner a
+```
+
+Suivons l'exécution avec \( a = 1071 \) et \( b = 462 \) :
+
+| a | b | a mod b |
+| --- | --- | --- |
+| 1071 | 462 | 147 |
+| 462 | 147 | 21 |
+| 147 | 21 | 0 |
+| 21 | 0 | — |
+
+Dès que `b` vaut 0, la réponse se trouve dans `a` : le PGCD de 1071 et 462 est 21. Trois tours de boucle ont suffi.
+
+{{< mermaid >}}
+graph TD
+    A[Début] --> B[Lire a et b]
+    B --> C{b ≠ 0 ?}
+    C -- Vrai --> D["reste = a mod b"]
+    D --> E["a = b"]
+    E --> F["b = reste"]
+    F --> C
+    C -- Faux --> G[Afficher a]
+    G --> H[Fin]
+{{< /mermaid >}}
+
+Remarquez que l'algorithme n'a besoin d'aucun tableau et d'aucune mémoire supplémentaire : trois variables suffisent, quelle que soit la taille des nombres. Remarquez aussi qu'il fonctionne même si on lui donne les deux nombres dans le mauvais ordre. Avec \( a = 18 \) et \( b = 48 \), le premier tour calcule `18 mod 48`, qui vaut 18, puis échange les deux valeurs : la paire devient (48, 18) et tout rentre dans l'ordre. Une seule itération est perdue.
+
+Ce qui frappe surtout, c'est la rapidité. La méthode naïve peut exiger un million d'itérations pour des nombres d'un million ; l'algorithme d'Euclide, lui, n'en demande jamais plus de vingt-huit. Le nombre de divisions croît comme le logarithme du plus petit des deux nombres : doubler la taille des entrées n'ajoute qu'une poignée d'étapes.
+
+En 1844, Gabriel Lamé a précisé ce comportement : le nombre de divisions ne dépasse jamais cinq fois le nombre de chiffres du plus petit des deux nombres. Il a aussi identifié le pire cas, et il est inattendu : ce sont deux nombres de Fibonacci consécutifs. Le calcul du PGCD de 10946 et 6765 demande dix-neuf divisions, un record pour des nombres de cette taille. Ce résultat est considéré comme l'un des premiers de l'histoire à analyser le coût d'un algorithme plutôt que sa simple correction, un thème que nous reprendrons en détail plus loin dans le cours.
+
