@@ -520,6 +520,10 @@ graph TD
     G --> H[Fin]
 {{< /mermaid >}}
 
+Utilisez l'application suivante pour exécuter l'algorithme sur les nombres de votre choix, soit pas à pas, soit d'un seul coup.
+
+{{< webapp path="euclide.html" >}}
+
 Remarquez que l'algorithme n'a besoin d'aucun tableau et d'aucune mémoire supplémentaire : trois variables suffisent, quelle que soit la taille des nombres. Remarquez aussi qu'il fonctionne même si on lui donne les deux nombres dans le mauvais ordre. Avec \( a = 18 \) et \( b = 48 \), le premier tour calcule `18 mod 48`, qui vaut 18, puis échange les deux valeurs : la paire devient (48, 18) et tout rentre dans l'ordre. Une seule itération est perdue.
 
 Ce qui frappe surtout, c'est la rapidité. La méthode naïve peut exiger un million d'itérations pour des nombres d'un million ; l'algorithme d'Euclide, lui, n'en demande jamais plus de vingt-huit. Le nombre de divisions croît comme le logarithme du plus petit des deux nombres : doubler la taille des entrées n'ajoute qu'une poignée d'étapes.
