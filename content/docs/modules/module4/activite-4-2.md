@@ -546,6 +546,63 @@ public class EncodageFichierTexte {
 {{</inlineJava>}}
 
 
+## Base64
+
+Beaucoup de canaux de communication ne transportent que du texte. Le courriel, les URI `data:` dans les pages web, l’en-tête HTTP `Authorization: Basic`, les documents JSON ou XML : tous attendent des caractères, pas des octets quelconques. Or on veut parfois y glisser une image, un fichier compressé ou une clé cryptographique. Le codage base64 sert exactement à cela : il représente une suite d’octets arbitraires à l’aide de 64 caractères seulement (les lettres `A` à `Z`, les lettres `a` à `z`, les chiffres `0` à `9`, ainsi que `+` et `/`), qui traversent sans dommage à peu près tous les systèmes.
+
+Le principe est simple. On prend les octets trois par trois, soit 24 bits, et on les redécoupe en quatre groupes de 6 bits. Chaque groupe est un nombre entre 0 et 63, donc l’indice d’un caractère dans l’alphabet base64. Quand la longueur n’est pas un multiple de trois, on complète avec le caractère de remplissage `=`. Prenons le mot « Bon », soit les octets 66, 111 et 110 :
+
+| Étape | Valeur |
+|---|---|
+| Octets | 66, 111, 110 |
+| Binaire | `01000010 01101111 01101110` |
+| Groupes de 6 bits | `010000 100110 111101 101110` |
+| Valeurs | 16, 38, 61, 46 |
+| Caractères | `Q`, `m`, `9`, `u` |
+
+Le mot « Bon » devient donc `Qm9u`. Remarquez le coût : quatre caractères pour trois octets, soit une inflation d’un tiers. C’est le prix à payer pour faire voyager des données binaires dans un canal textuel.
+
+Attention à ne pas se méprendre sur ce que fait le base64 : ce n’est ni du chiffrement ni de la compression. N’importe qui peut décoder une chaîne base64, et le résultat occupe plus de place que l’original. Son seul but est le transport.
+
+En Java, la classe `java.util.Base64` (depuis Java 8) fait le travail. `Base64.getEncoder().encodeToString(octets)` produit une chaîne à partir d’un tableau d’octets, et `Base64.getDecoder().decode(chaine)` fait l’inverse. Deux variantes sont utiles : `getUrlEncoder()`, qui remplace `+` et `/` par `-` et `_` afin que le résultat puisse servir dans une adresse web ou un nom de fichier, et `getMimeEncoder()`, qui insère des retours à la ligne comme l’exige le courriel.
+
+{{<inlineJava path="ExempleBase64.java" lang="java">}}
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
+import java.util.Base64;
+
+public class ExempleBase64 {
+    public static void main(String[] args) {
+        // Des octets quelconques : ici, du texte converti en UTF-8.
+        byte[] donnees = "Bonjour le monde ! Été 2026.".getBytes(StandardCharsets.UTF_8);
+
+        String code = Base64.getEncoder().encodeToString(donnees);
+        System.out.println("Codé : " + code);
+        System.out.println(donnees.length + " octets deviennent "
+                           + code.length() + " caractères.");
+
+        byte[] decode = Base64.getDecoder().decode(code);
+        System.out.println("Décodé : " + new String(decode, StandardCharsets.UTF_8));
+        System.out.println("Identique à l’original ? " + Arrays.equals(donnees, decode));
+
+        // Trois octets qui ne représentent aucun texte valide.
+        byte[] binaire = { (byte) 0xFB, (byte) 0xFF, (byte) 0xBE };
+        System.out.println("Alphabet standard : "
+                           + Base64.getEncoder().encodeToString(binaire));
+        System.out.println("Alphabet pour URL : "
+                           + Base64.getUrlEncoder().encodeToString(binaire));
+    }
+}
+{{</inlineJava>}}
+
+### La performance du base64
+
+Le base64 semble anodin, mais il est omniprésent : les serveurs web, les navigateurs et les services d’infonuagique en codent et en décodent des quantités énormes. Écrite naïvement, la conversion traite un octet à la fois, avec quelques opérations par octet et une consultation de table pour chaque caractère. Sur des mégaoctets de données, ce coût devient visible.
+
+Les processeurs modernes savent pourtant appliquer une même opération à plusieurs dizaines d’octets d’un seul coup, grâce à leurs instructions vectorielles (SIMD). Avec Wojciech Muła, j’ai montré comment exprimer le codage et le décodage base64 avec ces instructions, de manière à traiter 32 ou 64 octets par itération. Les fonctions obtenues s’exécutent presque à la vitesse d’une simple copie en mémoire, soit plusieurs fois plus vite que les mises en œuvre classiques : Wojciech Muła et Daniel Lemire, [« Base64 encoding and decoding at almost the speed of a memory copy »](https://arxiv.org/abs/1910.05109), *Software: Practice and Experience*, 2020.
+
+Ce travail n’est pas resté sur papier : il se trouve dans la machine virtuelle Java que vous utilisez. L’optimisation est arrivée dans le JDK avec le billet JDK-8268276, « Base64 Decoding optimization for x86 using AVX-512 », proposé par Scott Gibbons (Intel) et intégré dans le JDK 18, puis rétroporté dans le JDK 17 à la demande de clients pour lesquels le décodage devenait environ dix-neuf fois plus rapide.
+
 ## Boutisme
 
 
