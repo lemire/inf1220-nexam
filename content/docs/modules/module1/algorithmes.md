@@ -530,6 +530,8 @@ Ce qui frappe surtout, c'est la rapidité. La méthode naïve peut exiger un mil
 
 Avant d'aller plus loin, il faut présenter une suite de nombres qui va réapparaître ici : les nombres de Fibonacci. Décrits par Leonardo Fibonacci en 1202, ils se construisent selon une règle très simple : les deux premiers valent 1, et chaque nombre suivant est la somme des deux qui le précèdent. On obtient ainsi 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, et ainsi de suite : 1 + 1 = 2, puis 1 + 2 = 3, puis 2 + 3 = 5, puis 3 + 5 = 8. La suite grandit de plus en plus vite, chaque terme valant environ 1,618 fois le précédent. En poursuivant assez longtemps, on rencontre 6765 puis 10946, deux termes consécutifs.
 
+{{< figure src="/images/euclide-fibonacci.jpg" alt="Euclide et Fibonacci" >}}
+
 En 1844, Gabriel Lamé a précisé ce comportement : le nombre de divisions ne dépasse jamais cinq fois le nombre de chiffres du plus petit des deux nombres. Il a aussi identifié le pire cas, et il est inattendu : ce sont justement deux nombres de Fibonacci consécutifs. Le calcul du PGCD de 10946 et 6765 demande dix-neuf divisions, un record pour des nombres de cette taille. Ce résultat est considéré comme l'un des premiers de l'histoire à analyser le coût d'un algorithme plutôt que sa simple correction, un thème que nous reprendrons en détail plus loin dans le cours.
 
 
