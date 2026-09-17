@@ -32,6 +32,12 @@ Vous devez donc écrire votre code Java de mémoire, sans le compiler ni l'exéc
 
 {{% /hint %}}
 
+## Matériel autorisé
+
+Pour connaître le matériel autorisé durant votre examen, consultez la section «&nbsp;Activités d'évaluation&nbsp;»
+de votre cours dans votre [portail MaTÉLUQ](https://univ.teluq.ca/mateluq/). Il est important de consulter
+le matériel autorisé avant de commencer l'examen.
+
 <p>Si vous ne maîtrisez pas la matière du cours, vous ne réussirez probablement pas les examens. Prenez le temps d'étudier, de réviser et de poser des questions le cas échéant. Pratiquez-vous à programmer.</p>
 
 <p>Quand il s'agit de programmer, plusieurs étudiants remettent du code qui n'est pas fonctionnel, qui ne peut en aucun cas répondre à la question. Comme vous ne pouvez pas exécuter votre code pendant l'examen, vous devez le relire et l'exécuter dans votre esprit, en traçant la valeur des variables. Comme vous devez de toute manière toujours expliquer vos solutions, vous pouvez en profiter pour y inclure une séquence d'exécution de votre programme. Un programmeur doit toujours se relire. Il est facile de se tromper complètement en écrivant même du code simple si on ne se relit pas avec soin.</p>
@@ -146,6 +152,12 @@ L'enseignant ne peut changer la date, la durée, le lieu ou l'heure de vos exame
 
 Le déroulement des examens, incluant leur date et leur heure, est géré par l'Université. Il est inutile d'écrire à l'enseignant pour savoir quand vos examens auront lieu ou pour en changer la date. Si vous avez des questions au sujet de la plateforme technologique ou au sujet de l'heure d'un examen, il faut voir avec l'Université et au sein du portail étudiant. Par exemple, dans le portail étudiant, sous Dossier administratif, il est possible que vous trouviez une option pour modifier une date d’examen.
 
+
+### Période d'examen
+
+La période planifiée de votre examen se trouve dans la section «&nbsp;Activités d'évaluation&nbsp;» de votre
+cours dans votre [portail MaTÉLUQ](https://univ.teluq.ca/mateluq/). Vous recevrez un avis de convocation
+avant cette période.
 
 ### Plate-forme d'examen
 
