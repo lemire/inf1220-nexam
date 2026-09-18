@@ -350,7 +350,7 @@ avant cette période.
 
 ### Plate-forme d'examen
 
--[Accédez à vos examens directement dans l'environnement Moodle](https://m2.teluq.ca/mod/quiz/view.php?id=172628). Vous y trouverez davantage d'information. Les examens sont gérés par l'Université. Il est inutile de joindre la personne qui vous encadre à ce sujet avec vos questions, il faut joindre l'Université.
+Vous accédez à vos examens directement dans l'environnement Moodle, à partir de votre [portail MaTÉLUQ](https://univ.teluq.ca/mateluq/). Vous y trouverez davantage d'information. Les examens sont gérés par l'Université. Il est inutile de joindre la personne qui vous encadre à ce sujet avec vos questions, il faut joindre l'Université.
 
 ## Résultat et rétroaction sur les examens
 
