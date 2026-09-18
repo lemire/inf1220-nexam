@@ -59,6 +59,10 @@ Réponse: Nous nous ferons un plaisir de répondre à vos questions par courriel
 
 Réponse: Il y en a deux. Le premier a lieu à la septième semaine, porte sur les modules 1 et 2 et compte pour 30&nbsp;% de la note. Le second a lieu à la fin du cours, porte sur l'ensemble de la matière et compte pour 70&nbsp;% de la note. Chaque examen dure trois heures. Il n'y a aucun travail noté à remettre et aucun entretien de suivi.
 
+### Question: Quel est le format des examens&nbsp;?
+
+Réponse: Les deux examens ont la même structure, sur 100 points&nbsp;: 40 questions à choix de réponses (40 points), 5 questions à réponse courte (20 points) et 2 problèmes de programmation (40 points) où vous devez écrire du code Java valide, indiquer la sortie attendue et expliquer votre solution en français. La [page des examens]({{< relref "docs/modules/examen" >}}) décrit chaque examen en détail.
+
 ### Question: Puis-je apporter mes notes ou consulter le manuel pendant un examen&nbsp;?
 
 Réponse: Non. Les deux examens sont télésurveillés et vous n'avez droit à aucune note, aucun aide-mémoire, aucune documentation et aucun manuel.

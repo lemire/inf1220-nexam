@@ -32,6 +32,195 @@ Vous devez donc écrire votre code Java de mémoire, sans le compiler ni l'exéc
 
 {{% /hint %}}
 
+## Format des examens
+
+Pour qu'il n'y ait pas de surprise, voici exactement à quoi vous attendre. Les questions changent d'une
+version de l'examen à l'autre, mais la structure est fixe et **identique pour les deux examens**. Chaque
+examen est noté sur 100 points et comporte trois parties.
+
+| Partie | Type de question | Nombre | Points par question | Total | Correction |
+|--------|------------------|--------|---------------------|-------|------------|
+| A      | Choix de réponses (4 options, une seule bonne réponse) | 40 | 1 | **40** | automatique |
+| B      | Réponses courtes | 5 | 4 | **20** | manuelle |
+| C      | Problèmes de programmation (long développement) | 2 | 20 | **40** | manuelle |
+|        | **Total** | **47** | | **100** | |
+
+### Partie A — 40 questions à choix de réponses (40 points)
+
+Chaque question vaut 1 point et comporte quatre options dont une seule est exacte. Il n'y a **aucune
+pénalité** pour une mauvaise réponse&nbsp;: répondez donc à toutes les questions. Les questions vérifient
+votre compréhension des notions (définitions, rôle d'un mot réservé, valeur d'une expression, sortie d'un
+court extrait de code, résultat d'un algorithme en pseudocode, etc.). Plusieurs questions exigent que vous
+exécutiez mentalement quelques lignes de code&nbsp;: entraînez-vous à tracer la valeur des variables.
+
+### Partie B — 5 questions courtes (20 points)
+
+Chaque question vaut 4 points et se répond en quelques phrases ou en quelques lignes de code. Les cinq
+questions sont toujours du même type&nbsp;:
+
+1. **Compléter un programme**&nbsp;: un programme presque complet vous est donné, avec deux ou trois
+   éléments manquants (un `import`, une expression, une condition, un énoncé). Vous devez écrire le contenu
+   exact de chaque trou.
+2. **Expliquer un bogue**&nbsp;: un court programme ne fait pas ce qu'il devrait (mauvais résultat, exception).
+   Vous devez expliquer la cause et indiquer la correction.
+3. **Sortie d'un extrait de code**&nbsp;: vous devez indiquer, ligne par ligne, ce qu'affiche un programme.
+4. **Sortie d'un extrait de code**, sur un autre sujet, avec une brève justification.
+5. **Analyse d'un mécanisme**&nbsp;: vous devez expliquer pourquoi un code se comporte comme il le fait
+   ou décrire une technique vue dans le cours.
+
+L'exactitude technique prime. Une réponse juste sans explication obtient les points de contenu, mais pas ceux
+de justification. Une valeur exacte accompagnée d'une explication erronée est corrigée à la baisse.
+
+### Partie C — 2 problèmes de programmation (40 points)
+
+Chaque problème vaut 20 points. Vous devez écrire du code Java **valide et fonctionnel**, c'est-à-dire qui
+pourrait compiler et produire le résultat demandé, directement dans la zone de réponse, sans compilateur ni
+console. Pour chaque problème, vous devez&nbsp;:
+
+- écrire le code demandé (classe complète avec une méthode `main` lorsque c'est demandé)&nbsp;;
+- indiquer la **sortie attendue** de votre programme&nbsp;;
+- **expliquer votre solution en français** (quelques phrases suffisent).
+
+Comme le code est écrit sans compilateur, ce sont la logique et la structure qui sont évaluées avant la
+syntaxe fine. Toutefois, un code non fonctionnel, qui ne peut en aucun cas répondre à la question, ne reçoit
+pas les points de fonctionnalité. Une solution dont l'explication est absente ou incompréhensible **peut
+recevoir la note zéro, même si le code est correct**.
+
+### Gestion du temps suggérée
+
+Les deux examens durent **3 heures**. Voici la répartition que nous vous suggérons&nbsp;:
+
+| Partie | Temps suggéré |
+|--------|---------------|
+| A — 40 questions à choix de réponses | 60 minutes (environ 1 min 30 s par question) |
+| B — 5 questions courtes | 30 minutes (environ 6 minutes par question) |
+| C — 2 problèmes de programmation | 80 minutes (environ 40 minutes par problème) |
+| Relecture et vérification | 10 minutes |
+
+## Examen 1 — modules 1 et 2 (30&nbsp;%)
+
+### Matière à l'étude
+
+L'examen 1 porte sur les **modules 1 et 2** du cours&nbsp;:
+
+- **Module 1 — Algorithmes et pseudocode**&nbsp;: notion d'algorithme, rédaction et lecture de pseudocode,
+  structures de contrôle en pseudocode, bases de la complexité algorithmique (notation grand-O), architecture
+  des ordinateurs, représentation binaire, hexadécimale et décimale, compilation et machine virtuelle Java.
+- **Module 2 — Introduction au langage Java**&nbsp;: types primitifs et classes, littéraux, variables et
+  portée, opérateurs et priorités, expressions numériques, booléennes et de type `String`, méthodes,
+  constructeurs, variables de classe (`static`) et d'instance.
+
+Les lectures correspondantes dans le manuel *Java pas à pas* sont le **chapitre 2** (Introduction à la
+programmation Java) et le **chapitre 4** (Types et expressions Java). L'examen suppose que vous avez fait
+les exercices du module 1, les exercices 2-1 et 2-2 ainsi que les exercices du manuel.
+
+### Objectifs évalués
+
+À l'examen 1, vous devez démontrer que vous pouvez&nbsp;:
+
+1. reconnaître et interpréter un algorithme exprimé en pseudocode, et en évaluer sommairement la complexité&nbsp;;
+2. expliquer la représentation des nombres en binaire, en décimal et en hexadécimal, et le rôle des
+   composantes matérielles et logicielles d'un ordinateur&nbsp;;
+3. lire un programme Java simple et en décrire la structure (classe, méthode `main()`, énoncés, commentaires,
+   `import`, packages)&nbsp;;
+4. utiliser correctement les types primitifs, les littéraux, les conversions de type et les opérateurs de Java&nbsp;;
+5. prédire la valeur d'une expression Java (arithmétique, booléenne, `String`) en tenant compte des priorités,
+   des conversions, du court-circuit et des débordements&nbsp;;
+6. distinguer une valeur d'un type primitif d'une référence à un objet, et comparer correctement des chaînes
+   de caractères&nbsp;;
+7. écrire une classe Java munie d'un constructeur et de méthodes, et distinguer une variable de classe
+   (`static`) d'une variable d'instance&nbsp;;
+8. expliquer en français, de façon claire et exacte, le fonctionnement du code produit.
+
+### Répartition de la partie A
+
+| Bloc | Contenu | Questions | Points |
+|------|---------|-----------|--------|
+| A-1 | Module 1&nbsp;: algorithmes, pseudocode, complexité, ordinateurs, binaire | Q1 à Q8 | 8 |
+| A-2 | Chapitre 2 du manuel&nbsp;: introduction à la programmation Java | Q9 à Q21 | 13 |
+| A-3 | Chapitre 4 du manuel&nbsp;: types et expressions Java | Q22 à Q40 | 19 |
+
+### Parties B et C
+
+Les parties B et C portent principalement sur les chapitres 2 et 4 du manuel, avec un rappel du module 1.
+Les questions courtes portent, par exemple, sur la lecture au clavier avec `Scanner`, la comparaison de
+chaînes (`==` et `equals()`), la division entière, la concaténation, les conversions de type et les variables
+de classe. Les deux problèmes de programmation demandent typiquement d'écrire une **classe complète** (constructeur,
+méthodes d'instance, méthode `main` qui construit des objets et affiche des résultats) et de mettre en
+évidence la **distinction entre variable de classe (`static`) et variable d'instance**. Les examens factices
+ci-dessous vous en donnent des exemples représentatifs.
+
+## Examen 2 — examen final (70&nbsp;%)
+
+### Matière à l'étude
+
+L'examen final porte sur **l'ensemble du cours**, soit les cinq modules du site et les neuf chapitres du
+manuel *Java pas à pas*, y compris la matière déjà couverte par l'examen 1.
+
+| Module | Contenu | Chapitres du manuel |
+|--------|---------|---------------------|
+| 1 | Algorithmes, pseudocode, complexité, architecture des ordinateurs | 1. Concepts de base |
+| 2 | Types, littéraux, opérateurs, expressions, méthodes, classes et constructeurs | 2. Introduction à la programmation Java; 4. Types et expressions Java |
+| 3 | Structures de contrôle et d'itération, tableaux, chaînes, collections, exceptions, récursivité, programmation fonctionnelle | 3. Structures de contrôle |
+| 4 | Flux de console et de fichiers, fichiers texte et binaires, encodage, JSON et XML | 9. Traitement de fichiers |
+| 5 | Graphisme 2D, animation, conception objet, héritage, interfaces, polymorphisme, génériques | 5. Graphisme 2D et concepts de programmation objet; 6. Introduction à l'animation 2D; 7. Développement de classes&nbsp;: conception objet; 8. Animation 2D et développement d'un jeu simple |
+
+L'examen suppose que vous avez lu les neuf chapitres du manuel et fait les exercices de chaque module du
+site (autoévaluation du module 1, exercices 2-1 à 5-1) ainsi que les exercices du manuel.
+
+### Objectifs évalués
+
+À l'examen final, vous devez démontrer que vous pouvez&nbsp;:
+
+1. lire un algorithme en pseudocode, en prédire le résultat et en évaluer sommairement la complexité (grand-O)&nbsp;;
+2. expliquer la représentation binaire des données ainsi que le rôle du matériel, du système d'exploitation
+   et de la machine virtuelle Java&nbsp;;
+3. utiliser correctement les types, les littéraux, les conversions et les opérateurs de Java, et prédire la
+   valeur d'une expression&nbsp;;
+4. écrire et interpréter des structures de contrôle et d'itération (`if`, `switch`, `while`, `for`, `do`),
+   y compris leurs pièges usuels&nbsp;;
+5. manipuler des tableaux, des chaînes de caractères et des collections (`ArrayList`, `HashMap`, `HashSet`),
+   et distinguer une valeur d'une référence&nbsp;;
+6. gérer les exceptions (vérifiées et non vérifiées, `try`/`catch`/`finally`, *try-with-resources*) et
+   concevoir une méthode récursive&nbsp;;
+7. expliquer les mécanismes du graphisme 2D et de l'animation (sous-classe de `JFrame` ou de `JPanel`,
+   `Graphics`, `paint()`/`repaint()`, `MouseListener`, double tampon, `Timer`)&nbsp;;
+8. appliquer les principes de conception objet&nbsp;: découpage en classes, encapsulation, cohésion forte,
+   couplage faible, classes abstraites, héritage, interfaces, polymorphisme et génériques&nbsp;;
+9. lire et écrire des fichiers texte, binaires et d'objets (`FileInputStream`, `DataOutputStream`,
+   `Reader`/`Writer`, sérialisation, `RandomAccessFile`) en gérant les exceptions&nbsp;;
+10. expliquer en français, de façon claire et exacte, le fonctionnement du code produit.
+
+### Répartition de la partie A
+
+| Bloc | Contenu | Questions | Points |
+|------|---------|-----------|--------|
+| A-1 | Module 1 / chapitre 1&nbsp;: algorithmes, complexité, ordinateurs | Q1 à Q3 | 3 |
+| A-2 | Module 2 / chapitres 2 et 4&nbsp;: types, expressions, méthodes | Q4 à Q7 | 4 |
+| A-3 | Module 3 / chapitre 3&nbsp;: structures de contrôle et d'itération | Q8 à Q12 | 5 |
+| A-4 | Module 3&nbsp;: tableaux, chaînes et collections | Q13 à Q16 | 4 |
+| A-5 | Module 3&nbsp;: exceptions et récursivité | Q17 à Q20 | 4 |
+| A-6 | Module 5 / chapitre 5&nbsp;: graphisme 2D et concepts objet | Q21 à Q24 | 4 |
+| A-7 | Module 5 / chapitres 6 et 8&nbsp;: animation 2D et jeu simple | Q25 à Q28 | 4 |
+| A-8 | Module 5 / chapitres 7 et 8&nbsp;: conception objet, héritage, polymorphisme, génériques | Q29 à Q34 | 6 |
+| A-9 | Module 4 / chapitre 9&nbsp;: traitement de fichiers et entrées-sorties | Q35 à Q40 | 6 |
+
+### Parties B et C
+
+Les cinq questions courtes couvrent les mêmes blocs&nbsp;: elles portent respectivement sur les structures
+de contrôle et les tableaux, sur les chaînes et les collections, sur les exceptions, sur l'héritage et le
+polymorphisme, puis sur le graphisme, l'animation ou les fichiers.
+
+Les deux problèmes de programmation portent sur&nbsp;:
+
+1. la **conception objet**&nbsp;: une classe abstraite ou une interface, des sous-classes concrètes, du
+   polymorphisme et une collection (`ArrayList` ou tableau) d'objets de ces classes&nbsp;;
+2. le **traitement de fichiers avec gestion des exceptions**&nbsp;: écrire des données dans un fichier
+   (texte ou binaire), les relire, et s'assurer que les fichiers sont fermés dans tous les cas.
+
+Dans les deux cas, vous devez indiquer la sortie attendue et expliquer votre solution. Les examens factices
+ci-dessous vous en donnent des exemples représentatifs.
+
 ## Matériel autorisé
 
 Pour connaître le matériel autorisé durant votre examen, consultez la section «&nbsp;Activités d'évaluation&nbsp;»

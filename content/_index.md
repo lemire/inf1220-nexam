@@ -131,8 +131,15 @@ devez être capable de résoudre de manière autonome, et sans aucune aide, des 
 proposés dans les exercices et dans les examens factices. Si vous utilisez l'intelligence artificielle pour
 produire des solutions que vous ne pourriez pas produire par vous-même, vous vous préparez mal aux examens.
 
-[Consultez la page des examens]({{< relref "docs/modules/examen" >}}) pour connaître les conditions,
-les conseils de préparation et des exemples d'examens.
+Les deux examens ont la **même structure**, sur 100 points&nbsp;:
+
+- **Partie A (40 points)**&nbsp;: 40 questions à choix de réponses (une seule bonne réponse sur quatre, aucune pénalité pour une mauvaise réponse)&nbsp;;
+- **Partie B (20 points)**&nbsp;: 5 questions à réponse courte (compléter un programme, expliquer un bogue, donner la sortie d'un extrait de code, expliquer un mécanisme)&nbsp;;
+- **Partie C (40 points)**&nbsp;: 2 problèmes de programmation où vous devez écrire du code Java valide et fonctionnel, indiquer la sortie attendue et **expliquer votre solution en français**.
+
+[Consultez la page des examens]({{< relref "docs/modules/examen" >}}) pour une description détaillée
+de chaque examen (matière, objectifs, répartition des points, gestion du temps, critères de correction),
+des conseils de préparation et des examens factices.
 
 {{% /hint  %}}
 

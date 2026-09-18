@@ -35,6 +35,21 @@ que la pratique régulière est essentielle tout au long du cours.
 
 {{% /hint %}}
 
+## Format des examens
+
+Les deux examens ont la **même structure**. Chaque examen est noté sur 100 points et comporte trois parties&nbsp;:
+
+| Partie | Type de question | Nombre | Points | Temps suggéré |
+|--------|------------------|--------|--------|---------------|
+| A      | Choix de réponses (4 options, une seule bonne réponse, aucune pénalité) | 40 | 40 | 60 minutes |
+| B      | Réponses courtes (compléter un programme, expliquer un bogue, sortie d'un extrait de code, analyse d'un mécanisme) | 5 | 20 | 30 minutes |
+| C      | Problèmes de programmation (code Java valide et fonctionnel, sortie attendue, explication en français) | 2 | 40 | 80 minutes |
+
+Il vous reste ainsi une dizaine de minutes pour la relecture. La partie A est corrigée automatiquement&nbsp;;
+les parties B et C sont corrigées manuellement. La [page des examens]({{< relref "docs/modules/examen" >}})
+décrit en détail la matière, les objectifs évalués, la répartition des points et les critères de correction
+de chaque examen.
+
 ## Préparation
 
 Le cours ne comporte pas de travail à remettre&nbsp;: votre note dépend entièrement de votre capacité à
