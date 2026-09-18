@@ -410,34 +410,12 @@ Si vous avez aimé le cours...
 
 ## Vous voulez continuer votre apprentissage ?
 
-Je vous recommande les cours suivants.
+Je vous recommande les cours suivants. Les notes de cours de chacun sont en accès libre&nbsp;: vous pouvez les
+consulter dès maintenant pour vous faire une idée de la matière. [L'ensemble de mes notes de cours est
+réuni sur une même page](https://lemire.me/notesdecours/).
 
-- Au sein du cours [INF 2007 Programmation avancée](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%202007/), vous approfondirez vos compétences en développement logiciel avec des concepts avancés comme les tests et l'optimisation des performances en utilisant le langage Go. Ce cours de programmation avancée est une suite naturelle au cours INF 1220. Plusieurs des mêmes notions y sont approfondies.
-- Au sein du cours [INF 2020 Programmation d'applications avec Python : des jeux au Web](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%202020/), vous apprendrez à créer des applications dynamiques, allant des jeux interactifs aux interfaces web, en maîtrisant Python et ses bibliothèques. Ce cours est aussi une suite naturelle au cours INF 1220.
-- Au sein du cours [INF 6450 Gestion de l'information avec XML](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%206450/), vous explorerez les techniques de structuration, de stockage et de transformation des données à l’aide du langage XML et de ses technologies associées. Ces techniques sont importantes pour développer des applications web.
-- Au sein du cours [INF 6460 Recherche et filtrage d'informations](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%206460/), vous développerez des compétences pour concevoir et utiliser des systèmes de recherche et de filtrage d'informations, en exploitant des techniques avancées d'indexation et d'analyse de données. Vous y apprendrez comment fonctionnent les moteurs de recherche.
-- Au sein du cours [INF 9004 Informatique des entrepôts de données](https://www.teluq.ca/site/etudes/offre/cours/teluq/inf%209004), vous développerez des compétences en conception, gestion et analyse d’entrepôts de données pour soutenir la prise de décision stratégique. Vous y apprendrez à faire des requêtes sophistiquées au sein de bases de données avec des langages comme MDX et le SQL.
-
-
-### INF 2007
-
-{{< youtube id="Of7vbY4eAGI" >}}
-
-### INF 2020
-
-{{< youtube id="F6fI-1dtxxw" >}}
-
-### INF 6450
-
-{{< youtube id="VpxyCuuTInA" >}}
-
-[Le contenu du cours INF 6450 est en accès libre](https://lemire.github.io/inf6450-hugo/). Il s'agit d'une
-excellente suite au cours INF 1220.
-
-### INF 6460
-
-{{< youtube id="xh_l-2qhe48" >}}
-
-### INF 9004
-
-{{< youtube id="Qq3W6OUfrc0" >}}
+- Au sein du cours [INF 2007 Programmation avancée](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%202007/), vous approfondirez vos compétences en développement logiciel avec des concepts avancés comme les tests et l'optimisation des performances en utilisant le langage Go. Ce cours de programmation avancée est une suite naturelle au cours INF 1220. Plusieurs des mêmes notions y sont approfondies. [Consultez les notes de cours](https://lemire.me/notesdecours/programmation-avancee/).
+- Au sein du cours [INF 2020 Programmation d'applications avec Python : des jeux au Web](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%202020/), vous apprendrez à créer des applications dynamiques, allant des jeux interactifs aux interfaces web, en maîtrisant Python et ses bibliothèques. Ce cours est aussi une suite naturelle au cours INF 1220. [Consultez les notes de cours](https://lemire.me/notesdecours/python/).
+- Au sein du cours [INF 6450 Gestion de l'information avec XML](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%206450/), vous explorerez les techniques de structuration, de stockage et de transformation des données à l'aide du langage XML et de ses technologies associées. Ces techniques sont importantes pour développer des applications web. [Consultez les notes de cours](https://lemire.github.io/inf6450-hugo/).
+- Au sein du cours [INF 6460 Recherche et filtrage d'informations](https://www.teluq.ca/site/etudes/offre/cours/TELUQ/INF%206460/), vous développerez des compétences pour concevoir et utiliser des systèmes de recherche et de filtrage d'informations, en exploitant des techniques avancées d'indexation et d'analyse de données. Vous y apprendrez comment fonctionnent les moteurs de recherche. [Consultez les notes de cours](https://lemire.me/notesdecours/recherche/).
+- Au sein du cours [INF 9004 Informatique des entrepôts de données](https://www.teluq.ca/site/etudes/offre/cours/teluq/inf%209004), vous développerez des compétences en conception, gestion et analyse d'entrepôts de données pour soutenir la prise de décision stratégique. Vous y apprendrez à faire des requêtes sophistiquées au sein de bases de données avec des langages comme MDX et le SQL. [Consultez les notes de cours](https://lemire.me/notesdecours/entrepot/).
