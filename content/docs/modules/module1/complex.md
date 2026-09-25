@@ -866,6 +866,94 @@ en même temps. Constatez que certains algorithmes sont plus rapides que d'autre
 
 {{< webapp path="tricompare.html" >}}
 
+### Le tri par tas
+
+Le tri par tas (heapsort) est un autre algorithme en \( O(n \log n) \). Contrairement au tri rapide, cette complexité est garantie même dans le pire cas, et contrairement au tri fusion, il trie en place, sans tableau auxiliaire.
+
+Il repose sur une structure appelée *tas* (heap). Un tas max est un arbre binaire presque complet dans lequel chaque nœud est plus grand ou égal à ses enfants&nbsp;; le plus grand élément se trouve donc toujours à la racine. On n’a pas besoin de construire un arbre avec des pointeurs&nbsp;: on range le tas directement dans le tableau. La racine est à l’indice 0, et les enfants de l’élément d’indice \( i \) sont aux indices \( 2i + 1 \) et \( 2i + 2 \). Par exemple, le tableau `[9, 7, 8, 2, 5, 1]` est un tas max&nbsp;: 9 a pour enfants 7 et 8, 7 a pour enfants 2 et 5, et 8 a pour enfant 1.
+
+```
+    9
+   / \
+  7   8
+ / \  /
+2  5 1
+```
+
+L’opération de base consiste à *tamiser* un élément vers le bas&nbsp;: tant qu’il est plus petit que l’un de ses enfants, on l’échange avec le plus grand de ses enfants. Le tri se fait ensuite en deux phases. D’abord, on transforme le tableau en tas max en tamisant chaque nœud interne, du dernier jusqu’à la racine. Ensuite, on échange la racine (le maximum) avec le dernier élément du tas, on réduit la taille du tas d’une unité, puis on tamise la nouvelle racine pour rétablir la propriété de tas. On répète jusqu’à ce que le tas soit vide&nbsp;: les plus grands éléments s’accumulent ainsi, dans l’ordre, à la fin du tableau.
+
+```
+FONCTION triParTas(tableau)
+    n ← taille(tableau)
+    // Phase 1 : construire le tas max
+    POUR i de n // 2 - 1 à 0 (en descendant)
+        tamiser(tableau, i, n)
+    FIN POUR
+    // Phase 2 : extraire le maximum à répétition
+    POUR fin de n - 1 à 1 (en descendant)
+        échanger tableau[0] et tableau[fin]
+        tamiser(tableau, 0, fin)
+    FIN POUR
+FIN FONCTION
+
+FONCTION tamiser(tableau, i, taille)
+    TANT QUE 2i + 1 < taille
+        enfant ← 2i + 1
+        SI enfant + 1 < taille ET tableau[enfant + 1] > tableau[enfant] ALORS
+            enfant ← enfant + 1
+        FIN SI
+        SI tableau[i] ≥ tableau[enfant] ALORS
+            retourner
+        FIN SI
+        échanger tableau[i] et tableau[enfant]
+        i ← enfant
+    FIN TANT QUE
+FIN FONCTION
+```
+
+La fonction tamiser choisit le plus grand des deux enfants (`enfant` ou `enfant + 1`, s’il existe) et, si l’élément courant est plus petit, les échange puis poursuit la descente depuis la position de l’enfant. Seuls les éléments d’indice inférieur à `taille` font partie du tas&nbsp;; ceux qui suivent sont déjà triés. Comme la hauteur d’un tas de \( n \) éléments est d’environ \( \log_2 n \), un tamisage coûte \( O(\log n) \). La phase 2 effectue \( n - 1 \) tamisages, d’où un coût total en \( O(n \log n) \), quelles que soient les données. (On peut montrer que la phase 1 ne coûte que \( O(n) \), mais cela ne change pas le résultat global.)
+
+En pratique, le tri par tas est pourtant souvent deux ou trois fois plus lent que le tri rapide. Ses accès sautent d’un bout à l’autre du tableau (de l’indice \( i \) à l’indice \( 2i + 1 \)), ce qui exploite mal la mémoire cache. De plus, il n’est pas stable&nbsp;: deux éléments égaux peuvent se retrouver inversés.
+
+### Le tri introspectif
+
+Nous avons donc deux algorithmes complémentaires&nbsp;: le tri rapide, excellent en moyenne mais en \( O(n^2) \) dans le pire cas, et le tri par tas, plus lent en pratique mais garanti en \( O(n \log n) \). Le tri introspectif (introsort), proposé par David Musser en 1997, combine les deux.
+
+L’idée est simple&nbsp;: on exécute le tri rapide, mais on surveille la profondeur de la récursion. Lorsque les pivots sont bien choisis, chaque partition divise l’intervalle à peu près en deux, et la profondeur reste proche de \( \log_2 n \). Une récursion beaucoup plus profonde signale que les pivots sont mauvais et que l’on se dirige vers le pire cas quadratique. Le tri introspectif fixe donc une limite de \( 2\lfloor \log_2 n \rfloor \)&nbsp;: dès qu’un appel récursif la dépasse, il abandonne le tri rapide pour le sous-tableau concerné et le trie avec le tri par tas.
+
+```
+FONCTION triIntrospectif(tableau)
+    n ← taille(tableau)
+    SI n > 1 ALORS
+        introRécursif(tableau, 0, n - 1, 2 × ⌊log₂ n⌋)
+    FIN SI
+FIN FONCTION
+
+FONCTION introRécursif(tableau, début, fin, profondeur)
+    SI début < fin ALORS
+        SI profondeur = 0 ALORS
+            trier tableau[début .. fin] avec le tri par tas
+        SINON
+            pivot ← partitionner(tableau, début, fin)
+            introRécursif(tableau, début, pivot - 1, profondeur - 1)
+            introRécursif(tableau, pivot + 1, fin, profondeur - 1)
+        FIN SI
+    FIN SI
+FIN FONCTION
+```
+
+La fonction partitionner est la même que pour le tri rapide. Le paramètre `profondeur` indique combien de niveaux de récursion il reste avant de basculer vers le tri par tas&nbsp;; il diminue d’une unité à chaque appel.
+
+On obtient ainsi le meilleur des deux mondes. Sur des données ordinaires, la limite n’est jamais atteinte&nbsp;: l’algorithme se comporte exactement comme le tri rapide, avec sa vitesse en pratique. Dans le pire cas, le tri rapide effectue au plus \( 2\lfloor \log_2 n \rfloor \) niveaux de partitionnement, chacun coûtant \( O(n) \) au total, soit \( O(n \log n) \)&nbsp;; les sous-tableaux restants, dont la taille totale ne dépasse pas \( n \), sont ensuite triés par tas, aussi en \( O(n \log n) \). Le cas moyen est donc celui du tri rapide, et le pire cas est celui du tri par tas, en \( O(n \log n) \).
+
+{{% hint info %}}
+
+Le tri introspectif est largement utilisé. La fonction `std::sort` de la bibliothèque standard du C++ l’utilise généralement, tout comme la méthode `Array.Sort` de .NET. En Java, la méthode `Arrays.sort` sur des tableaux de types primitifs (comme `int[]`) utilise un tri rapide à deux pivots qui, depuis Java 14, bascule aussi vers le tri par tas lorsque la récursion devient trop profonde. Les implantations réelles ajoutent souvent un troisième ingrédient&nbsp;: le tri par insertion pour les tout petits sous-tableaux.
+
+{{% /hint %}}
+
+### Timsort et le tri par niches
+
 Pour trier des objets, Java utilise généralement Timsort (par exemple via `Arrays.sort` sur des tableaux d’objets).
 Timsort est un algorithme de tri hybride, conçu par Tim Peters. Il combine le tri par insertion et le tri fusion pour optimiser les performances sur des données réelles, en exploitant les séquences déjà triées, appelées *runs*. L’algorithme commence par diviser le tableau en petits *runs*, soit naturels (séquences croissantes ou décroissantes), soit créés en triant des blocs de taille minimale (souvent 32 éléments) avec le tri par insertion. Ces *runs* sont ensuite fusionnés deux à deux à l’aide d’une version optimisée du tri fusion, qui minimise les comparaisons et les copies. Sa complexité est en \( O(n \log n) \) dans le pire cas, mais elle peut descendre à \( O(n) \) pour des données presque triées, rendant Timsort particulièrement efficace en pratique. De plus, Timsort est stable, préservant l’ordre relatif des éléments égaux, ce qui est crucial dans certaines applications. 
 
