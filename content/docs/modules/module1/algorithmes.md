@@ -37,7 +37,7 @@ Pour un programmeur d'expérience, s'exprimer à l'aide d'un pseudocode est chos
 
 > Une femme demande à son programmeur de mari : «&nbsp;Va au supermarché acheter une bouteille de lait. Et si ils ont des œufs, prends en 6&nbsp;». Le mari revient avec six bouteilles de lait. Sa femme lui demande pourquoi il a pris six bouteilles. «&nbsp;Parce qu'ils avaient des oeufs&nbsp;» répond-il.
 
-Quand on rédige un pseudocode, il faut tout spécifier, comme si on s'adressait à quelqu'un qui prend tout littéralement, sans aucun jugement. Pour devenir un programmeur, pour penser comme un programmeur, il faut s'habituer à rédiger des séquences d'instructions précises. La lecture et la rédaction de pseudocodes relativement simples peut être une bonne pratique.
+Quand on rédige un pseudocode, il faut tout spécifier, comme si on s'adressait à quelqu'un qui prend tout littéralement, sans aucun jugement. Pour devenir un programmeur, pour penser comme un programmeur, il faut s'habituer à rédiger des séquences d'instructions précises. La lecture et la rédaction de pseudocodes relativement simples peut être une bonne pratique. L'activité [Le robot dans le labyrinthe]({{< ref "/docs/modules/module1/labyrinthe" >}}) vous fait écrire une telle suite, puis la voir exécutée.
 
 Le pseudocode est destiné à être lu par l'humain, et il peut être écrit de diverses manières tant que l'humain le comprend. Le cours ne vise pas à vous permettre de comprendre une syntaxe particulière de pseudocode,  mais bien le pseudocode en général.
 
