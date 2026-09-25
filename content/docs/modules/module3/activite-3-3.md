@@ -1264,6 +1264,52 @@ public class ExemplePriorityQueue {
 
 Dans cet exemple, les entiers sont extraits dans l’ordre croissant. On peut aussi utiliser des objets et définir l’ordre de priorité avec un comparateur.
 
+### BitSet (Ensemble de bits)
+
+Un <strong>BitSet</strong> est une structure de données qui représente un ensemble d’entiers positifs ou nuls à l’aide d’un tableau de bits&nbsp;: le bit d’indice \( i \) vaut 1 si l’entier \( i \) fait partie de l’ensemble, et 0 sinon. Par exemple, l’ensemble {1, 3, 4} est représenté par les bits <code>01011</code> (en lisant les indices 0 à 4 de gauche à droite). En Java, la classe <code>java.util.BitSet</code> range ces bits par paquets de 64 dans un tableau de <code>long</code>, et agrandit ce tableau automatiquement au besoin.
+
+Le principal avantage d’un <code>BitSet</code> est sa compacité. Un <code>HashSet&lt;Integer&gt;</code> utilise plusieurs dizaines d’octets par élément (un objet <code>Integer</code>, un nœud, une case dans la table), alors qu’un <code>BitSet</code> n’utilise qu’un seul bit par valeur possible. Pour représenter un ensemble d’entiers entre 0 et un million, il suffit d’environ 125&nbsp;000 octets, quel que soit le nombre d’éléments. Un tableau de <code>boolean</code> ferait le même travail, mais Java y consacre généralement un octet entier par valeur, soit huit fois plus de mémoire.
+
+En termes de complexité algorithmique, l’ajout (<code>set</code>), le retrait (<code>clear</code>) et la vérification d’appartenance (<code>get</code>) s’exécutent en temps constant, \( O(1) \)&nbsp;: il suffit de calculer dans quel <code>long</code> se trouve le bit, puis de le modifier avec une opération bit à bit. Les opérations ensemblistes sont aussi très rapides&nbsp;: l’intersection (<code>and</code>), l’union (<code>or</code>), la différence symétrique (<code>xor</code>) et la différence (<code>andNot</code>) traitent 64 valeurs à la fois, en une seule instruction du processeur. Leur coût est en \( O(m/64) \), où \( m \) est la plus grande valeur présente. De même, compter les éléments (<code>cardinality</code>) ou trouver le prochain élément à partir d’une position (<code>nextSetBit</code>) se fait un <code>long</code> à la fois.
+
+La contrepartie est que la mémoire utilisée dépend de la plus grande valeur, et non du nombre d’éléments. Un <code>BitSet</code> qui contient seulement la valeur 1&nbsp;000&nbsp;000&nbsp;000 occupe environ 125 mégaoctets&nbsp;! Le <code>BitSet</code> convient donc bien aux ensembles denses de petits entiers (des identifiants, des indices dans un tableau, les nombres premiers d’un crible d’Ératosthène), mais mal aux ensembles clairsemés de grandes valeurs. Pour ces derniers, on utilise un <code>HashSet</code>, ou des formats compressés comme les bitmaps Roaring, qui découpent l’ensemble en blocs et choisissent pour chaque bloc la représentation la plus compacte.
+
+Voici un exemple d’utilisation.
+
+{{<inlineJava path="ExempleBitSet.java">}}
+import java.util.BitSet;
+
+public class ExempleBitSet {
+    public static void main(String[] args) {
+        BitSet pairs = new BitSet();
+        BitSet multiplesDe3 = new BitSet();
+        for (int i = 0; i < 20; i++) {
+            if (i % 2 == 0) {
+                pairs.set(i);
+            }
+            if (i % 3 == 0) {
+                multiplesDe3.set(i);
+            }
+        }
+        System.out.println(pairs.get(4)); // Affiche true
+        System.out.println(pairs.get(5)); // Affiche false
+
+        BitSet multiplesDe6 = (BitSet) pairs.clone(); // Copie de pairs
+        multiplesDe6.and(multiplesDe3); // Intersection
+        System.out.println(multiplesDe6); // Affiche {0, 6, 12, 18}
+        System.out.println(multiplesDe6.cardinality()); // Affiche 4
+
+        // Parcourir les éléments en ordre croissant
+        for (int i = multiplesDe3.nextSetBit(0); i >= 0; i = multiplesDe3.nextSetBit(i + 1)) {
+            System.out.print(i + " "); // Affiche 0 3 6 9 12 15 18
+        }
+        System.out.println();
+    }
+}
+{{</inlineJava>}}
+
+Dans cet exemple, on construit l’ensemble des nombres pairs et celui des multiples de 3 inférieurs à 20. L’intersection des deux donne les multiples de 6. Comme la méthode <code>and</code> modifie le <code>BitSet</code> sur lequel elle est appelée, on travaille sur une copie obtenue avec <code>clone</code> pour ne pas altérer <code>pairs</code>. Enfin, la boucle avec <code>nextSetBit</code> parcourt les éléments en ordre croissant&nbsp;: la méthode retourne \( -1 \) lorsqu’il n’y a plus d’élément.
+
 ## Par valeur et par référence
 
 Quand on passe une valeur en Java, il y a une différence fondamentale selon qu’il s’agit d’un type primitif ou d’un type référence, en raison de la manière dont Java gère les paramètres dans les méthodes.
@@ -1399,6 +1445,10 @@ La complexité algorithmique mesure le coût (en temps ou en espace) des opérat
 - *Ajout d’un élément* : \(O(\log n)\) (le nouvel élément est placé à la fin puis remonté)
 - *Extraction du plus prioritaire (poll)* : \(O(\log n)\) (le dernier élément est placé en tête puis redescendu)
 - *Consultation du plus prioritaire (peek)* : \(O(1)\)
+### BitSet
+- *Ajout, retrait, vérification d’appartenance (set, clear, get)* : \(O(1)\)
+- *Union, intersection, différence (or, and, andNot)* : \(O(m/64)\), où \(m\) est la plus grande valeur présente
+- *Mémoire* : environ \(m\) bits, quel que soit le nombre d’éléments
 ### Opérations sur les streams et lambdas
 - *Filtrage, transformation (map, filter, etc.)* : \(O(n)\), car chaque élément est traité une fois
 - *Tri d’une liste* : \(O(n \log n)\) (par exemple, avec `Collections.sort()` ou `List.sort()`)
